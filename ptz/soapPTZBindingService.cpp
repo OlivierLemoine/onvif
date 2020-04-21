@@ -60,6 +60,14 @@ void PTZBindingService::PTZBindingService_init(soap_mode imode, soap_mode omode)
         { "xop", "http://www.w3.org/2004/08/xop/include", NULL, NULL },
         { "chan", "http://schemas.microsoft.com/ws/2005/02/duplex", NULL, NULL },
         { "wsa5", "http://www.w3.org/2005/08/addressing", "http://schemas.xmlsoap.org/ws/2004/08/addressing", NULL },
+        { "c14n", "http://www.w3.org/2001/10/xml-exc-c14n#", NULL, NULL },
+        { "ds", "http://www.w3.org/2000/09/xmldsig#", NULL, NULL },
+        { "saml1", "urn:oasis:names:tc:SAML:1.0:assertion", NULL, NULL },
+        { "saml2", "urn:oasis:names:tc:SAML:2.0:assertion", NULL, NULL },
+        { "wsu", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd", NULL, NULL },
+        { "xenc", "http://www.w3.org/2001/04/xmlenc#", NULL, NULL },
+        { "wsc", "http://docs.oasis-open.org/ws-sx/ws-secureconversation/200512", "http://schemas.xmlsoap.org/ws/2005/02/sc", NULL },
+        { "wsse", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd", "http://docs.oasis-open.org/wss/oasis-wss-wssecurity-secext-1.1.xsd", NULL },
         { "tt", "http://www.onvif.org/ver10/schema", NULL, NULL },
         { "tptz", "http://www.onvif.org/ver20/ptz/wsdl", NULL, NULL },
         { NULL, NULL, NULL, NULL}
@@ -144,7 +152,7 @@ void PTZBindingService::soap_noheader()
 {	this->soap->header = NULL;
 }
 
-void PTZBindingService::soap_header(char *wsa5__MessageID, struct wsa5__RelatesToType *wsa5__RelatesTo, struct wsa5__EndpointReferenceType *wsa5__From, struct wsa5__EndpointReferenceType *wsa5__ReplyTo, struct wsa5__EndpointReferenceType *wsa5__FaultTo, char *wsa5__To, char *wsa5__Action, struct chan__ChannelInstanceType *chan__ChannelInstance)
+void PTZBindingService::soap_header(char *wsa5__MessageID, struct wsa5__RelatesToType *wsa5__RelatesTo, struct wsa5__EndpointReferenceType *wsa5__From, struct wsa5__EndpointReferenceType *wsa5__ReplyTo, struct wsa5__EndpointReferenceType *wsa5__FaultTo, char *wsa5__To, char *wsa5__Action, struct chan__ChannelInstanceType *chan__ChannelInstance, struct _wsse__Security *wsse__Security)
 {
 	::soap_header(this->soap);
 	this->soap->header->wsa5__MessageID = wsa5__MessageID;
@@ -155,6 +163,7 @@ void PTZBindingService::soap_header(char *wsa5__MessageID, struct wsa5__RelatesT
 	this->soap->header->wsa5__To = wsa5__To;
 	this->soap->header->wsa5__Action = wsa5__Action;
 	this->soap->header->chan__ChannelInstance = chan__ChannelInstance;
+	this->soap->header->wsse__Security = wsse__Security;
 }
 
 ::SOAP_ENV__Header *PTZBindingService::soap_header()

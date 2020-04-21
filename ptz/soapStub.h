@@ -14,6 +14,13 @@ A commercial use license is available from Genivia Inc., contact@genivia.com
 #include <vector>
 #define SOAP_WSA_2005
 #define SOAP_NAMESPACE_OF_wsa5	"http://www.w3.org/2005/08/addressing"
+#define SOAP_NAMESPACE_OF_wsu	"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+#define SOAP_NAMESPACE_OF_wsse	"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+#define SOAP_NAMESPACE_OF_ds	"http://www.w3.org/2000/09/xmldsig#"
+#define SOAP_NAMESPACE_OF_xenc	"http://www.w3.org/2001/04/xmlenc#"
+#define SOAP_NAMESPACE_OF_wsc	"http://docs.oasis-open.org/ws-sx/ws-secureconversation/200512"
+#define SOAP_NAMESPACE_OF_saml1	"urn:oasis:names:tc:SAML:1.0:assertion"
+#define SOAP_NAMESPACE_OF_saml2	"urn:oasis:names:tc:SAML:2.0:assertion"
 #define SOAP_NAMESPACE_OF_tptz	"http://www.onvif.org/ver20/ptz/wsdl"
 #define SOAP_NAMESPACE_OF_tt	"http://www.onvif.org/ver10/schema"
 #define SOAP_NAMESPACE_OF_wsnt	"http://docs.oasis-open.org/wsn/b-2"
@@ -73,9 +80,68 @@ enum _wsa5__IsReferenceParameter {
 };
 #endif
 
-/* onvif.h:629 */
+/* wsu.h:67 */
+#ifndef SOAP_TYPE_wsu__tTimestampFault
+#define SOAP_TYPE_wsu__tTimestampFault (57)
+/* wsu:tTimestampFault */
+enum wsu__tTimestampFault {
+	wsu__MessageExpired = 0
+};
+#endif
+
+/* wsse.h:117 */
+#ifndef SOAP_TYPE_wsse__FaultcodeEnum
+#define SOAP_TYPE_wsse__FaultcodeEnum (60)
+/* wsse:FaultcodeEnum */
+enum wsse__FaultcodeEnum {
+	wsse__UnsupportedSecurityToken = 0,
+	wsse__UnsupportedAlgorithm = 1,
+	wsse__InvalidSecurity = 2,
+	wsse__InvalidSecurityToken = 3,
+	wsse__FailedAuthentication = 4,
+	wsse__FailedCheck = 5,
+	wsse__SecurityTokenUnavailable = 6
+};
+#endif
+
+/* wsc.h:63 */
+#ifndef SOAP_TYPE_wsc__FaultCodeType
+#define SOAP_TYPE_wsc__FaultCodeType (136)
+/* wsc:FaultCodeType */
+enum wsc__FaultCodeType {
+	wsc__BadContextToken = 0,
+	wsc__UnsupportedContextToken = 1,
+	wsc__UnknownDerivationSource = 2,
+	wsc__RenewNeeded = 3,
+	wsc__UnableToRenew = 4
+};
+#endif
+
+/* saml1.h:146 */
+#ifndef SOAP_TYPE_saml1__DecisionType
+#define SOAP_TYPE_saml1__DecisionType (167)
+/* saml1:DecisionType */
+enum saml1__DecisionType {
+	saml1__DecisionType__Permit = 0,
+	saml1__DecisionType__Deny = 1,
+	saml1__DecisionType__Indeterminate = 2
+};
+#endif
+
+/* saml2.h:155 */
+#ifndef SOAP_TYPE_saml2__DecisionType
+#define SOAP_TYPE_saml2__DecisionType (246)
+/* saml2:DecisionType */
+enum saml2__DecisionType {
+	saml2__DecisionType__Permit = 0,
+	saml2__DecisionType__Deny = 1,
+	saml2__DecisionType__Indeterminate = 2
+};
+#endif
+
+/* onvif.h:630 */
 #ifndef SOAP_TYPE_tt__EFlipMode
-#define SOAP_TYPE_tt__EFlipMode (187)
+#define SOAP_TYPE_tt__EFlipMode (451)
 /* tt:EFlipMode */
 enum tt__EFlipMode {
 	tt__EFlipMode__OFF = 0,
@@ -84,9 +150,9 @@ enum tt__EFlipMode {
 };
 #endif
 
-/* onvif.h:639 */
+/* onvif.h:640 */
 #ifndef SOAP_TYPE_tt__ReverseMode
-#define SOAP_TYPE_tt__ReverseMode (188)
+#define SOAP_TYPE_tt__ReverseMode (452)
 /* tt:ReverseMode */
 enum tt__ReverseMode {
 	tt__ReverseMode__OFF = 0,
@@ -96,9 +162,9 @@ enum tt__ReverseMode {
 };
 #endif
 
-/* onvif.h:655 */
+/* onvif.h:656 */
 #ifndef SOAP_TYPE_tt__PTZPresetTourState
-#define SOAP_TYPE_tt__PTZPresetTourState (190)
+#define SOAP_TYPE_tt__PTZPresetTourState (454)
 /* tt:PTZPresetTourState */
 enum tt__PTZPresetTourState {
 	tt__PTZPresetTourState__Idle = 0,
@@ -108,9 +174,9 @@ enum tt__PTZPresetTourState {
 };
 #endif
 
-/* onvif.h:666 */
+/* onvif.h:667 */
 #ifndef SOAP_TYPE_tt__PTZPresetTourDirection
-#define SOAP_TYPE_tt__PTZPresetTourDirection (191)
+#define SOAP_TYPE_tt__PTZPresetTourDirection (455)
 /* tt:PTZPresetTourDirection */
 enum tt__PTZPresetTourDirection {
 	tt__PTZPresetTourDirection__Forward = 0,
@@ -119,9 +185,9 @@ enum tt__PTZPresetTourDirection {
 };
 #endif
 
-/* onvif.h:676 */
+/* onvif.h:677 */
 #ifndef SOAP_TYPE_tt__PTZPresetTourOperation
-#define SOAP_TYPE_tt__PTZPresetTourOperation (192)
+#define SOAP_TYPE_tt__PTZPresetTourOperation (456)
 /* tt:PTZPresetTourOperation */
 enum tt__PTZPresetTourOperation {
 	tt__PTZPresetTourOperation__Start = 0,
@@ -131,9 +197,9 @@ enum tt__PTZPresetTourOperation {
 };
 #endif
 
-/* onvif.h:755 */
+/* onvif.h:756 */
 #ifndef SOAP_TYPE_tt__MoveStatus
-#define SOAP_TYPE_tt__MoveStatus (194)
+#define SOAP_TYPE_tt__MoveStatus (458)
 /* tt:MoveStatus */
 enum tt__MoveStatus {
 	tt__MoveStatus__IDLE = 0,
@@ -149,9 +215,15 @@ enum tt__MoveStatus {
 \******************************************************************************/
 
 
-/* onvif.h:191 */
+/* custom/struct_timeval.h:77 */
+#ifndef SOAP_TYPE_xsd__dateTime
+#define SOAP_TYPE_xsd__dateTime (146)
+typedef struct timeval xsd__dateTime;
+#endif
+
+/* onvif.h:192 */
 #ifndef SOAP_TYPE_xsd__QName
-#define SOAP_TYPE_xsd__QName (62)
+#define SOAP_TYPE_xsd__QName (326)
 typedef std::string xsd__QName;
 #endif
 
@@ -169,152 +241,248 @@ struct wsa5__MetadataType;	/* wsa5.h:71 */
 struct wsa5__ProblemActionType;	/* wsa5.h:86 */
 struct wsa5__RelatesToType;	/* wsa5.h:74 */
 struct chan__ChannelInstanceType;	/* wsa5.h:260 */
-class xsd__anyType;	/* onvif.h:181 */
-struct SOAP_ENV__Envelope;	/* onvif.h:188 */
-class xsd__base64Binary;	/* onvif.h:194 */
-class xsd__hexBinary;	/* onvif.h:202 */
-class tptz__Capabilities;	/* onvif.h:244 */
-class _tptz__GetServiceCapabilities;	/* onvif.h:246 */
-class _tptz__GetServiceCapabilitiesResponse;	/* onvif.h:248 */
-class _tptz__GetNodes;	/* onvif.h:250 */
-class _tptz__GetNodesResponse;	/* onvif.h:252 */
-class _tptz__GetNode;	/* onvif.h:254 */
-class _tptz__GetNodeResponse;	/* onvif.h:256 */
-class _tptz__GetConfigurations;	/* onvif.h:258 */
-class _tptz__GetConfigurationsResponse;	/* onvif.h:260 */
-class _tptz__GetConfiguration;	/* onvif.h:262 */
-class _tptz__GetConfigurationResponse;	/* onvif.h:264 */
-class _tptz__SetConfiguration;	/* onvif.h:266 */
-struct __tptz__SetConfigurationResponse_sequence;	/* onvif.h:1186 */
-class _tptz__SetConfigurationResponse;	/* onvif.h:268 */
-class _tptz__GetConfigurationOptions;	/* onvif.h:270 */
-class _tptz__GetConfigurationOptionsResponse;	/* onvif.h:272 */
-class _tptz__SendAuxiliaryCommand;	/* onvif.h:274 */
-class _tptz__SendAuxiliaryCommandResponse;	/* onvif.h:276 */
-class _tptz__GetPresets;	/* onvif.h:278 */
-class _tptz__GetPresetsResponse;	/* onvif.h:280 */
-class _tptz__SetPreset;	/* onvif.h:282 */
-class _tptz__SetPresetResponse;	/* onvif.h:284 */
-class _tptz__RemovePreset;	/* onvif.h:286 */
-class _tptz__RemovePresetResponse;	/* onvif.h:288 */
-class _tptz__GotoPreset;	/* onvif.h:290 */
-class _tptz__GotoPresetResponse;	/* onvif.h:292 */
-class _tptz__GetStatus;	/* onvif.h:294 */
-class _tptz__GetStatusResponse;	/* onvif.h:296 */
-class _tptz__GotoHomePosition;	/* onvif.h:298 */
-class _tptz__GotoHomePositionResponse;	/* onvif.h:300 */
-class _tptz__SetHomePosition;	/* onvif.h:302 */
-class _tptz__SetHomePositionResponse;	/* onvif.h:304 */
-class _tptz__ContinuousMove;	/* onvif.h:306 */
-class _tptz__ContinuousMoveResponse;	/* onvif.h:308 */
-class _tptz__RelativeMove;	/* onvif.h:310 */
-class _tptz__RelativeMoveResponse;	/* onvif.h:312 */
-class _tptz__AbsoluteMove;	/* onvif.h:314 */
-class _tptz__AbsoluteMoveResponse;	/* onvif.h:316 */
-class _tptz__GeoMove;	/* onvif.h:318 */
-class _tptz__GeoMoveResponse;	/* onvif.h:320 */
-class _tptz__Stop;	/* onvif.h:322 */
-class _tptz__StopResponse;	/* onvif.h:324 */
-class _tptz__GetPresetTours;	/* onvif.h:326 */
-class _tptz__GetPresetToursResponse;	/* onvif.h:328 */
-class _tptz__GetPresetTour;	/* onvif.h:330 */
-class _tptz__GetPresetTourResponse;	/* onvif.h:332 */
-class _tptz__GetPresetTourOptions;	/* onvif.h:334 */
-class _tptz__GetPresetTourOptionsResponse;	/* onvif.h:336 */
-class _tptz__CreatePresetTour;	/* onvif.h:338 */
-class _tptz__CreatePresetTourResponse;	/* onvif.h:340 */
-class _tptz__ModifyPresetTour;	/* onvif.h:342 */
-class _tptz__ModifyPresetTourResponse;	/* onvif.h:344 */
-class _tptz__OperatePresetTour;	/* onvif.h:346 */
-class _tptz__OperatePresetTourResponse;	/* onvif.h:348 */
-class _tptz__RemovePresetTour;	/* onvif.h:350 */
-class _tptz__RemovePresetTourResponse;	/* onvif.h:352 */
-class _tptz__GetCompatibleConfigurations;	/* onvif.h:354 */
-class _tptz__GetCompatibleConfigurationsResponse;	/* onvif.h:356 */
-class tt__DeviceEntity;	/* onvif.h:358 */
-class tt__FloatRange;	/* onvif.h:360 */
-class tt__DurationRange;	/* onvif.h:362 */
-class tt__ConfigurationEntity;	/* onvif.h:364 */
-class tt__PTZNodeExtension;	/* onvif.h:368 */
-class tt__PTZNodeExtension2;	/* onvif.h:370 */
-class tt__PTZPresetTourSupported;	/* onvif.h:372 */
-class tt__PTZPresetTourSupportedExtension;	/* onvif.h:374 */
-class tt__PTZConfigurationExtension;	/* onvif.h:378 */
-class tt__PTZConfigurationExtension2;	/* onvif.h:380 */
-class tt__PTControlDirection;	/* onvif.h:382 */
-class tt__PTControlDirectionExtension;	/* onvif.h:384 */
-class tt__EFlip;	/* onvif.h:386 */
-class tt__Reverse;	/* onvif.h:388 */
-class tt__PTZConfigurationOptions;	/* onvif.h:390 */
-class tt__PTZConfigurationOptions2;	/* onvif.h:392 */
-class tt__PTControlDirectionOptions;	/* onvif.h:394 */
-class tt__PTControlDirectionOptionsExtension;	/* onvif.h:396 */
-class tt__EFlipOptions;	/* onvif.h:398 */
-class tt__EFlipOptionsExtension;	/* onvif.h:400 */
-class tt__ReverseOptions;	/* onvif.h:402 */
-class tt__ReverseOptionsExtension;	/* onvif.h:404 */
-class tt__PanTiltLimits;	/* onvif.h:406 */
-class tt__ZoomLimits;	/* onvif.h:408 */
-class tt__PTZSpaces;	/* onvif.h:410 */
-class tt__PTZSpacesExtension;	/* onvif.h:412 */
-class tt__Space2DDescription;	/* onvif.h:414 */
-class tt__Space1DDescription;	/* onvif.h:416 */
-class tt__PTZSpeed;	/* onvif.h:418 */
-class tt__PTZPreset;	/* onvif.h:420 */
-class tt__PresetTour;	/* onvif.h:422 */
-class tt__PTZPresetTourExtension;	/* onvif.h:424 */
-class tt__PTZPresetTourSpot;	/* onvif.h:426 */
-class tt__PTZPresetTourSpotExtension;	/* onvif.h:428 */
-union _tt__union_PTZPresetTourPresetDetail;	/* onvif.h:3905 */
-class tt__PTZPresetTourPresetDetail;	/* onvif.h:430 */
-class tt__PTZPresetTourTypeExtension;	/* onvif.h:432 */
-class tt__PTZPresetTourStatus;	/* onvif.h:434 */
-class tt__PTZPresetTourStatusExtension;	/* onvif.h:436 */
-class tt__PTZPresetTourStartingCondition;	/* onvif.h:438 */
-class tt__PTZPresetTourStartingConditionExtension;	/* onvif.h:440 */
-class tt__PTZPresetTourOptions;	/* onvif.h:442 */
-class tt__PTZPresetTourSpotOptions;	/* onvif.h:444 */
-class tt__PTZPresetTourPresetDetailOptions;	/* onvif.h:446 */
-class tt__PTZPresetTourPresetDetailOptionsExtension;	/* onvif.h:448 */
-class tt__PTZPresetTourStartingConditionOptions;	/* onvif.h:450 */
-class tt__PTZPresetTourStartingConditionOptionsExtension;	/* onvif.h:452 */
-class tt__IntRange;	/* onvif.h:454 */
-class tt__Vector2D;	/* onvif.h:456 */
-class tt__Vector1D;	/* onvif.h:458 */
-class tt__PTZVector;	/* onvif.h:460 */
-class tt__PTZStatus;	/* onvif.h:462 */
-class tt__PTZMoveStatus;	/* onvif.h:464 */
-class tt__GeoLocation;	/* onvif.h:466 */
-class tt__PTZNode;	/* onvif.h:366 */
-class tt__PTZConfiguration;	/* onvif.h:376 */
-struct __tptz__GetServiceCapabilities;	/* onvif.h:5852 */
-struct __tptz__GetConfigurations;	/* onvif.h:5949 */
-struct __tptz__GetPresets;	/* onvif.h:6020 */
-struct __tptz__SetPreset;	/* onvif.h:6106 */
-struct __tptz__RemovePreset;	/* onvif.h:6181 */
-struct __tptz__GotoPreset;	/* onvif.h:6252 */
-struct __tptz__GetStatus;	/* onvif.h:6323 */
-struct __tptz__GetConfiguration;	/* onvif.h:6420 */
-struct __tptz__GetNodes;	/* onvif.h:6499 */
-struct __tptz__GetNode;	/* onvif.h:6569 */
-struct __tptz__SetConfiguration;	/* onvif.h:6639 */
-struct __tptz__GetConfigurationOptions;	/* onvif.h:6719 */
-struct __tptz__GotoHomePosition;	/* onvif.h:6789 */
-struct __tptz__SetHomePosition;	/* onvif.h:6862 */
-struct __tptz__ContinuousMove;	/* onvif.h:6933 */
-struct __tptz__RelativeMove;	/* onvif.h:7009 */
-struct __tptz__SendAuxiliaryCommand;	/* onvif.h:7082 */
-struct __tptz__AbsoluteMove;	/* onvif.h:7157 */
-struct __tptz__GeoMove;	/* onvif.h:7237 */
-struct __tptz__Stop;	/* onvif.h:7308 */
-struct __tptz__GetPresetTours;	/* onvif.h:7376 */
-struct __tptz__GetPresetTour;	/* onvif.h:7444 */
-struct __tptz__GetPresetTourOptions;	/* onvif.h:7512 */
-struct __tptz__CreatePresetTour;	/* onvif.h:7580 */
-struct __tptz__ModifyPresetTour;	/* onvif.h:7648 */
-struct __tptz__OperatePresetTour;	/* onvif.h:7716 */
-struct __tptz__RemovePresetTour;	/* onvif.h:7784 */
-struct __tptz__GetCompatibleConfigurations;	/* onvif.h:7860 */
+struct _wsu__Timestamp;	/* wsu.h:77 */
+struct wsse__EncodedString;	/* wsse.h:74 */
+struct _wsse__UsernameToken;	/* wsse.h:145 */
+struct _wsse__BinarySecurityToken;	/* wsse.h:158 */
+struct _wsse__Reference;	/* wsse.h:168 */
+struct _wsse__Embedded;	/* wsse.h:176 */
+struct _wsse__KeyIdentifier;	/* wsse.h:185 */
+struct _wsse__SecurityTokenReference;	/* wsse.h:195 */
+struct ds__KeyInfoType;	/* xenc.h:38 */
+struct ds__SignatureType;	/* ds.h:50 */
+struct _c14n__InclusiveNamespaces;	/* c14n.h:24 */
+struct ds__TransformType;	/* ds.h:77 */
+struct ds__SignedInfoType;	/* ds.h:50 */
+struct ds__CanonicalizationMethodType;	/* ds.h:63 */
+struct ds__SignatureMethodType;	/* ds.h:66 */
+struct ds__ReferenceType;	/* ds.h:69 */
+struct ds__TransformsType;	/* ds.h:72 */
+struct ds__DigestMethodType;	/* ds.h:83 */
+struct ds__KeyValueType;	/* ds.h:88 */
+struct ds__RetrievalMethodType;	/* ds.h:89 */
+struct ds__X509DataType;	/* wsse.h:198 */
+struct ds__X509IssuerSerialType;	/* ds.h:106 */
+struct ds__DSAKeyValueType;	/* ds.h:127 */
+struct ds__RSAKeyValueType;	/* ds.h:130 */
+struct xenc__EncryptionPropertyType;	/* xenc.h:101 */
+struct xenc__EncryptedType;	/* xenc.h:70 */
+struct xenc__EncryptionMethodType;	/* xenc.h:73 */
+struct xenc__CipherDataType;	/* xenc.h:76 */
+struct xenc__CipherReferenceType;	/* xenc.h:79 */
+struct xenc__TransformsType;	/* xenc.h:82 */
+struct xenc__AgreementMethodType;	/* xenc.h:91 */
+struct xenc__ReferenceType;	/* xenc.h:94 */
+struct xenc__EncryptionPropertiesType;	/* xenc.h:97 */
+struct __xenc__union_ReferenceList;	/* xenc.h:253 */
+struct _xenc__ReferenceList;	/* xenc.h:106 */
+struct xenc__EncryptedDataType;	/* xenc.h:85 */
+struct xenc__EncryptedKeyType;	/* xenc.h:39 */
+struct wsc__SecurityContextTokenType;	/* wsc.h:88 */
+union _wsc__union_DerivedKeyTokenType;	/* wsc.h:121 */
+struct __wsc__DerivedKeyTokenType_sequence;	/* wsc.h:117 */
+struct wsc__DerivedKeyTokenType;	/* wsc.h:110 */
+struct wsc__PropertiesType;	/* wsc.h:114 */
+struct __saml1__union_AssertionType;	/* saml1.h:181 */
+struct saml1__AssertionType;	/* saml1.h:75 */
+struct __saml1__union_ConditionsType;	/* saml1.h:224 */
+struct saml1__ConditionsType;	/* saml1.h:78 */
+struct saml1__ConditionAbstractType;	/* saml1.h:81 */
+struct __saml1__union_AdviceType;	/* saml1.h:270 */
+struct saml1__AdviceType;	/* saml1.h:90 */
+struct saml1__StatementAbstractType;	/* saml1.h:93 */
+struct saml1__SubjectType;	/* saml1.h:99 */
+struct saml1__SubjectConfirmationType;	/* saml1.h:105 */
+struct saml1__SubjectLocalityType;	/* saml1.h:111 */
+struct saml1__AuthorityBindingType;	/* saml1.h:114 */
+struct __saml1__union_EvidenceType;	/* saml1.h:395 */
+struct saml1__EvidenceType;	/* saml1.h:123 */
+struct saml1__AttributeDesignatorType;	/* saml1.h:129 */
+struct saml1__AudienceRestrictionConditionType;	/* saml1.h:84 */
+struct saml1__DoNotCacheConditionType;	/* saml1.h:87 */
+struct saml1__SubjectStatementAbstractType;	/* saml1.h:96 */
+struct saml1__NameIdentifierType;	/* saml1.h:102 */
+struct saml1__ActionType;	/* saml1.h:120 */
+struct saml1__AttributeType;	/* saml1.h:132 */
+struct saml1__AuthenticationStatementType;	/* saml1.h:108 */
+struct saml1__AuthorizationDecisionStatementType;	/* saml1.h:117 */
+struct saml1__AttributeStatementType;	/* saml1.h:126 */
+struct saml2__BaseIDAbstractType;	/* saml2.h:75 */
+struct saml2__EncryptedElementType;	/* saml2.h:81 */
+struct __saml2__union_AssertionType;	/* saml2.h:234 */
+struct saml2__AssertionType;	/* saml2.h:84 */
+struct saml2__SubjectType;	/* saml2.h:87 */
+struct saml2__SubjectConfirmationType;	/* saml2.h:90 */
+struct __saml2__union_ConditionsType;	/* saml2.h:327 */
+struct saml2__ConditionsType;	/* saml2.h:99 */
+struct saml2__ConditionAbstractType;	/* saml2.h:102 */
+struct __saml2__union_AdviceType;	/* saml2.h:376 */
+struct saml2__AdviceType;	/* saml2.h:114 */
+struct saml2__StatementAbstractType;	/* saml2.h:117 */
+struct saml2__SubjectLocalityType;	/* saml2.h:123 */
+struct saml2__AuthnContextType;	/* saml2.h:126 */
+struct __saml2__union_EvidenceType;	/* saml2.h:479 */
+struct saml2__EvidenceType;	/* saml2.h:135 */
+struct saml2__AttributeType;	/* saml2.h:141 */
+struct saml2__NameIDType;	/* saml2.h:78 */
+struct saml2__SubjectConfirmationDataType;	/* saml2.h:93 */
+struct saml2__AudienceRestrictionType;	/* saml2.h:105 */
+struct saml2__OneTimeUseType;	/* saml2.h:108 */
+struct saml2__ProxyRestrictionType;	/* saml2.h:111 */
+struct saml2__AuthnStatementType;	/* saml2.h:120 */
+struct saml2__AuthzDecisionStatementType;	/* saml2.h:129 */
+struct saml2__ActionType;	/* saml2.h:132 */
+struct __saml2__union_AttributeStatementType;	/* saml2.h:729 */
+struct saml2__AttributeStatementType;	/* saml2.h:138 */
+struct saml2__KeyInfoConfirmationDataType;	/* saml2.h:96 */
+struct _wsse__Security;	/* wsse.h:212 */
+struct _wsse__Password;	/* wsse.h:146 */
+class xsd__anyType;	/* onvif.h:182 */
+struct SOAP_ENV__Envelope;	/* onvif.h:189 */
+class xsd__base64Binary;	/* onvif.h:195 */
+class xsd__hexBinary;	/* onvif.h:203 */
+class tptz__Capabilities;	/* onvif.h:245 */
+class _tptz__GetServiceCapabilities;	/* onvif.h:247 */
+class _tptz__GetServiceCapabilitiesResponse;	/* onvif.h:249 */
+class _tptz__GetNodes;	/* onvif.h:251 */
+class _tptz__GetNodesResponse;	/* onvif.h:253 */
+class _tptz__GetNode;	/* onvif.h:255 */
+class _tptz__GetNodeResponse;	/* onvif.h:257 */
+class _tptz__GetConfigurations;	/* onvif.h:259 */
+class _tptz__GetConfigurationsResponse;	/* onvif.h:261 */
+class _tptz__GetConfiguration;	/* onvif.h:263 */
+class _tptz__GetConfigurationResponse;	/* onvif.h:265 */
+class _tptz__SetConfiguration;	/* onvif.h:267 */
+struct __tptz__SetConfigurationResponse_sequence;	/* onvif.h:1187 */
+class _tptz__SetConfigurationResponse;	/* onvif.h:269 */
+class _tptz__GetConfigurationOptions;	/* onvif.h:271 */
+class _tptz__GetConfigurationOptionsResponse;	/* onvif.h:273 */
+class _tptz__SendAuxiliaryCommand;	/* onvif.h:275 */
+class _tptz__SendAuxiliaryCommandResponse;	/* onvif.h:277 */
+class _tptz__GetPresets;	/* onvif.h:279 */
+class _tptz__GetPresetsResponse;	/* onvif.h:281 */
+class _tptz__SetPreset;	/* onvif.h:283 */
+class _tptz__SetPresetResponse;	/* onvif.h:285 */
+class _tptz__RemovePreset;	/* onvif.h:287 */
+class _tptz__RemovePresetResponse;	/* onvif.h:289 */
+class _tptz__GotoPreset;	/* onvif.h:291 */
+class _tptz__GotoPresetResponse;	/* onvif.h:293 */
+class _tptz__GetStatus;	/* onvif.h:295 */
+class _tptz__GetStatusResponse;	/* onvif.h:297 */
+class _tptz__GotoHomePosition;	/* onvif.h:299 */
+class _tptz__GotoHomePositionResponse;	/* onvif.h:301 */
+class _tptz__SetHomePosition;	/* onvif.h:303 */
+class _tptz__SetHomePositionResponse;	/* onvif.h:305 */
+class _tptz__ContinuousMove;	/* onvif.h:307 */
+class _tptz__ContinuousMoveResponse;	/* onvif.h:309 */
+class _tptz__RelativeMove;	/* onvif.h:311 */
+class _tptz__RelativeMoveResponse;	/* onvif.h:313 */
+class _tptz__AbsoluteMove;	/* onvif.h:315 */
+class _tptz__AbsoluteMoveResponse;	/* onvif.h:317 */
+class _tptz__GeoMove;	/* onvif.h:319 */
+class _tptz__GeoMoveResponse;	/* onvif.h:321 */
+class _tptz__Stop;	/* onvif.h:323 */
+class _tptz__StopResponse;	/* onvif.h:325 */
+class _tptz__GetPresetTours;	/* onvif.h:327 */
+class _tptz__GetPresetToursResponse;	/* onvif.h:329 */
+class _tptz__GetPresetTour;	/* onvif.h:331 */
+class _tptz__GetPresetTourResponse;	/* onvif.h:333 */
+class _tptz__GetPresetTourOptions;	/* onvif.h:335 */
+class _tptz__GetPresetTourOptionsResponse;	/* onvif.h:337 */
+class _tptz__CreatePresetTour;	/* onvif.h:339 */
+class _tptz__CreatePresetTourResponse;	/* onvif.h:341 */
+class _tptz__ModifyPresetTour;	/* onvif.h:343 */
+class _tptz__ModifyPresetTourResponse;	/* onvif.h:345 */
+class _tptz__OperatePresetTour;	/* onvif.h:347 */
+class _tptz__OperatePresetTourResponse;	/* onvif.h:349 */
+class _tptz__RemovePresetTour;	/* onvif.h:351 */
+class _tptz__RemovePresetTourResponse;	/* onvif.h:353 */
+class _tptz__GetCompatibleConfigurations;	/* onvif.h:355 */
+class _tptz__GetCompatibleConfigurationsResponse;	/* onvif.h:357 */
+class tt__DeviceEntity;	/* onvif.h:359 */
+class tt__FloatRange;	/* onvif.h:361 */
+class tt__DurationRange;	/* onvif.h:363 */
+class tt__ConfigurationEntity;	/* onvif.h:365 */
+class tt__PTZNodeExtension;	/* onvif.h:369 */
+class tt__PTZNodeExtension2;	/* onvif.h:371 */
+class tt__PTZPresetTourSupported;	/* onvif.h:373 */
+class tt__PTZPresetTourSupportedExtension;	/* onvif.h:375 */
+class tt__PTZConfigurationExtension;	/* onvif.h:379 */
+class tt__PTZConfigurationExtension2;	/* onvif.h:381 */
+class tt__PTControlDirection;	/* onvif.h:383 */
+class tt__PTControlDirectionExtension;	/* onvif.h:385 */
+class tt__EFlip;	/* onvif.h:387 */
+class tt__Reverse;	/* onvif.h:389 */
+class tt__PTZConfigurationOptions;	/* onvif.h:391 */
+class tt__PTZConfigurationOptions2;	/* onvif.h:393 */
+class tt__PTControlDirectionOptions;	/* onvif.h:395 */
+class tt__PTControlDirectionOptionsExtension;	/* onvif.h:397 */
+class tt__EFlipOptions;	/* onvif.h:399 */
+class tt__EFlipOptionsExtension;	/* onvif.h:401 */
+class tt__ReverseOptions;	/* onvif.h:403 */
+class tt__ReverseOptionsExtension;	/* onvif.h:405 */
+class tt__PanTiltLimits;	/* onvif.h:407 */
+class tt__ZoomLimits;	/* onvif.h:409 */
+class tt__PTZSpaces;	/* onvif.h:411 */
+class tt__PTZSpacesExtension;	/* onvif.h:413 */
+class tt__Space2DDescription;	/* onvif.h:415 */
+class tt__Space1DDescription;	/* onvif.h:417 */
+class tt__PTZSpeed;	/* onvif.h:419 */
+class tt__PTZPreset;	/* onvif.h:421 */
+class tt__PresetTour;	/* onvif.h:423 */
+class tt__PTZPresetTourExtension;	/* onvif.h:425 */
+class tt__PTZPresetTourSpot;	/* onvif.h:427 */
+class tt__PTZPresetTourSpotExtension;	/* onvif.h:429 */
+union _tt__union_PTZPresetTourPresetDetail;	/* onvif.h:3906 */
+class tt__PTZPresetTourPresetDetail;	/* onvif.h:431 */
+class tt__PTZPresetTourTypeExtension;	/* onvif.h:433 */
+class tt__PTZPresetTourStatus;	/* onvif.h:435 */
+class tt__PTZPresetTourStatusExtension;	/* onvif.h:437 */
+class tt__PTZPresetTourStartingCondition;	/* onvif.h:439 */
+class tt__PTZPresetTourStartingConditionExtension;	/* onvif.h:441 */
+class tt__PTZPresetTourOptions;	/* onvif.h:443 */
+class tt__PTZPresetTourSpotOptions;	/* onvif.h:445 */
+class tt__PTZPresetTourPresetDetailOptions;	/* onvif.h:447 */
+class tt__PTZPresetTourPresetDetailOptionsExtension;	/* onvif.h:449 */
+class tt__PTZPresetTourStartingConditionOptions;	/* onvif.h:451 */
+class tt__PTZPresetTourStartingConditionOptionsExtension;	/* onvif.h:453 */
+class tt__IntRange;	/* onvif.h:455 */
+class tt__Vector2D;	/* onvif.h:457 */
+class tt__Vector1D;	/* onvif.h:459 */
+class tt__PTZVector;	/* onvif.h:461 */
+class tt__PTZStatus;	/* onvif.h:463 */
+class tt__PTZMoveStatus;	/* onvif.h:465 */
+class tt__GeoLocation;	/* onvif.h:467 */
+class tt__PTZNode;	/* onvif.h:367 */
+class tt__PTZConfiguration;	/* onvif.h:377 */
+struct __tptz__GetServiceCapabilities;	/* onvif.h:5853 */
+struct __tptz__GetConfigurations;	/* onvif.h:5950 */
+struct __tptz__GetPresets;	/* onvif.h:6021 */
+struct __tptz__SetPreset;	/* onvif.h:6107 */
+struct __tptz__RemovePreset;	/* onvif.h:6182 */
+struct __tptz__GotoPreset;	/* onvif.h:6253 */
+struct __tptz__GetStatus;	/* onvif.h:6324 */
+struct __tptz__GetConfiguration;	/* onvif.h:6421 */
+struct __tptz__GetNodes;	/* onvif.h:6500 */
+struct __tptz__GetNode;	/* onvif.h:6570 */
+struct __tptz__SetConfiguration;	/* onvif.h:6640 */
+struct __tptz__GetConfigurationOptions;	/* onvif.h:6720 */
+struct __tptz__GotoHomePosition;	/* onvif.h:6790 */
+struct __tptz__SetHomePosition;	/* onvif.h:6863 */
+struct __tptz__ContinuousMove;	/* onvif.h:6934 */
+struct __tptz__RelativeMove;	/* onvif.h:7010 */
+struct __tptz__SendAuxiliaryCommand;	/* onvif.h:7083 */
+struct __tptz__AbsoluteMove;	/* onvif.h:7158 */
+struct __tptz__GeoMove;	/* onvif.h:7238 */
+struct __tptz__Stop;	/* onvif.h:7309 */
+struct __tptz__GetPresetTours;	/* onvif.h:7377 */
+struct __tptz__GetPresetTour;	/* onvif.h:7445 */
+struct __tptz__GetPresetTourOptions;	/* onvif.h:7513 */
+struct __tptz__CreatePresetTour;	/* onvif.h:7581 */
+struct __tptz__ModifyPresetTour;	/* onvif.h:7649 */
+struct __tptz__OperatePresetTour;	/* onvif.h:7717 */
+struct __tptz__RemovePresetTour;	/* onvif.h:7785 */
+struct __tptz__GetCompatibleConfigurations;	/* onvif.h:7861 */
 
 /* xop.h:59 */
 #ifndef SOAP_TYPE__xop__Include
@@ -498,11 +666,13 @@ struct SOAP_CMAC SOAP_ENV__Header {
         char *wsa5__Action;
         /** Optional element 'chan:ChannelInstance' of XML schema type 'chan:ChannelInstanceType' */
         struct chan__ChannelInstanceType *chan__ChannelInstance;
+        /** MustUnderstand */
+        struct _wsse__Security *wsse__Security;
       public:
         /** Return unique type id SOAP_TYPE_SOAP_ENV__Header */
         long soap_type() const { return SOAP_TYPE_SOAP_ENV__Header; }
         /** Constructor with member initializations */
-        SOAP_ENV__Header() : wsa5__MessageID(), wsa5__RelatesTo(), wsa5__From(), wsa5__ReplyTo(), wsa5__FaultTo(), wsa5__To(), wsa5__Action(), chan__ChannelInstance() { }
+        SOAP_ENV__Header() : wsa5__MessageID(), wsa5__RelatesTo(), wsa5__From(), wsa5__ReplyTo(), wsa5__FaultTo(), wsa5__To(), wsa5__Action(), chan__ChannelInstance(), wsse__Security() { }
         /** Friend allocator */
         friend SOAP_FMAC1 SOAP_ENV__Header * SOAP_FMAC2 soap_instantiate_SOAP_ENV__Header(struct soap*, int, const char*, const char*, size_t*);
 };
@@ -611,9 +781,2176 @@ struct SOAP_CMAC SOAP_ENV__Fault {
 #endif
 #endif
 
-/* onvif.h:181 */
+/* wsu.h:77 */
+#ifndef SOAP_TYPE__wsu__Timestamp
+#define SOAP_TYPE__wsu__Timestamp (58)
+/* complex XML schema type 'wsu:Timestamp': */
+struct SOAP_CMAC _wsu__Timestamp {
+      public:
+        /** Optional attribute 'wsu:Id' of XML schema type 'xsd:string' */
+        char *wsu__Id;
+        /** Optional element 'wsu:Created' of XML schema type 'xsd:string' */
+        char *Created;
+        /** Optional element 'wsu:Expires' of XML schema type 'xsd:string' */
+        char *Expires;
+      public:
+        /** Return unique type id SOAP_TYPE__wsu__Timestamp */
+        long soap_type() const { return SOAP_TYPE__wsu__Timestamp; }
+        /** Constructor with member initializations */
+        _wsu__Timestamp() : wsu__Id(), Created(), Expires() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 _wsu__Timestamp * SOAP_FMAC2 soap_instantiate__wsu__Timestamp(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* wsse.h:74 */
+#ifndef SOAP_TYPE_wsse__EncodedString
+#define SOAP_TYPE_wsse__EncodedString (59)
+/* simple XML schema type 'wsse:EncodedString': */
+struct SOAP_CMAC wsse__EncodedString {
+      public:
+        /** Simple content of XML schema type 'xsd:string' wrapped by this struct */
+        char *__item;
+        /** Optional attribute 'EncodingType' of XML schema type 'xsd:string' */
+        char *EncodingType;
+        /** Optional attribute 'wsu:Id' of XML schema type 'xsd:string' */
+        char *wsu__Id;
+      public:
+        /** Return unique type id SOAP_TYPE_wsse__EncodedString */
+        long soap_type() const { return SOAP_TYPE_wsse__EncodedString; }
+        /** Constructor with member initializations */
+        wsse__EncodedString() : __item(), EncodingType(), wsu__Id() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 wsse__EncodedString * SOAP_FMAC2 soap_instantiate_wsse__EncodedString(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* wsse.h:145 */
+#ifndef SOAP_TYPE__wsse__UsernameToken
+#define SOAP_TYPE__wsse__UsernameToken (61)
+/* complex XML schema type 'wsse:UsernameToken': */
+struct SOAP_CMAC _wsse__UsernameToken {
+      public:
+        /** Optional element 'wsse:Username' of XML schema type 'xsd:string' */
+        char *Username;
+        /** Optional element 'wsse:Password' of XML schema type 'wsse:Password' */
+        struct _wsse__Password *Password;
+        /** Optional element 'wsse:Nonce' of XML schema type 'wsse:EncodedString' */
+        struct wsse__EncodedString *Nonce;
+        /** Optional element 'wsse:Salt' of XML schema type 'xsd:string' */
+        char *Salt;
+        /** Optional element 'wsse:Iteration' of XML schema type 'xsd:unsignedInt' */
+        unsigned int *Iteration;
+        /** Optional element 'wsu:Created' of XML schema type 'xsd:string' */
+        char *wsu__Created;
+        /** Optional attribute 'wsu:Id' of XML schema type 'xsd:string' */
+        char *wsu__Id;
+      public:
+        /** Return unique type id SOAP_TYPE__wsse__UsernameToken */
+        long soap_type() const { return SOAP_TYPE__wsse__UsernameToken; }
+        /** Constructor with member initializations */
+        _wsse__UsernameToken() : Username(), Password(), Nonce(), Salt(), Iteration(), wsu__Created(), wsu__Id() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 _wsse__UsernameToken * SOAP_FMAC2 soap_instantiate__wsse__UsernameToken(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* wsse.h:158 */
+#ifndef SOAP_TYPE__wsse__BinarySecurityToken
+#define SOAP_TYPE__wsse__BinarySecurityToken (66)
+/* simple XML schema type 'wsse:BinarySecurityToken': */
+struct SOAP_CMAC _wsse__BinarySecurityToken {
+      public:
+        /** Simple content of XML schema type 'xsd:string' wrapped by this struct */
+        char *__item;
+        /** Optional attribute 'wsu:Id' of XML schema type 'xsd:string' */
+        char *wsu__Id;
+        /** Optional attribute 'ValueType' of XML schema type 'xsd:string' */
+        char *ValueType;
+        /** Optional attribute 'EncodingType' of XML schema type 'xsd:string' */
+        char *EncodingType;
+      public:
+        /** Return unique type id SOAP_TYPE__wsse__BinarySecurityToken */
+        long soap_type() const { return SOAP_TYPE__wsse__BinarySecurityToken; }
+        /** Constructor with member initializations */
+        _wsse__BinarySecurityToken() : __item(), wsu__Id(), ValueType(), EncodingType() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 _wsse__BinarySecurityToken * SOAP_FMAC2 soap_instantiate__wsse__BinarySecurityToken(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* wsse.h:168 */
+#ifndef SOAP_TYPE__wsse__Reference
+#define SOAP_TYPE__wsse__Reference (67)
+/* complex XML schema type 'wsse:Reference': */
+struct SOAP_CMAC _wsse__Reference {
+      public:
+        /** Optional attribute 'URI' of XML schema type 'xsd:string' */
+        char *URI;
+        /** Optional attribute 'ValueType' of XML schema type 'xsd:string' */
+        char *ValueType;
+      public:
+        /** Return unique type id SOAP_TYPE__wsse__Reference */
+        long soap_type() const { return SOAP_TYPE__wsse__Reference; }
+        /** Constructor with member initializations */
+        _wsse__Reference() : URI(), ValueType() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 _wsse__Reference * SOAP_FMAC2 soap_instantiate__wsse__Reference(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* wsse.h:176 */
+#ifndef SOAP_TYPE__wsse__Embedded
+#define SOAP_TYPE__wsse__Embedded (68)
+/* complex XML schema type 'wsse:Embedded': */
+struct SOAP_CMAC _wsse__Embedded {
+      public:
+        /** Optional attribute 'wsu:Id' of XML schema type 'xsd:string' */
+        char *wsu__Id;
+        /** Optional attribute 'ValueType' of XML schema type 'xsd:string' */
+        char *ValueType;
+      public:
+        /** Return unique type id SOAP_TYPE__wsse__Embedded */
+        long soap_type() const { return SOAP_TYPE__wsse__Embedded; }
+        /** Constructor with member initializations */
+        _wsse__Embedded() : wsu__Id(), ValueType() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 _wsse__Embedded * SOAP_FMAC2 soap_instantiate__wsse__Embedded(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* wsse.h:185 */
+#ifndef SOAP_TYPE__wsse__KeyIdentifier
+#define SOAP_TYPE__wsse__KeyIdentifier (69)
+/* simple XML schema type 'wsse:KeyIdentifier': */
+struct SOAP_CMAC _wsse__KeyIdentifier {
+      public:
+        /** Simple content of XML schema type 'xsd:string' wrapped by this struct */
+        char *__item;
+        /** Optional attribute 'wsu:Id' of XML schema type 'xsd:string' */
+        char *wsu__Id;
+        /** Optional attribute 'ValueType' of XML schema type 'xsd:string' */
+        char *ValueType;
+        /** Optional attribute 'EncodingType' of XML schema type 'xsd:string' */
+        char *EncodingType;
+      public:
+        /** Return unique type id SOAP_TYPE__wsse__KeyIdentifier */
+        long soap_type() const { return SOAP_TYPE__wsse__KeyIdentifier; }
+        /** Constructor with member initializations */
+        _wsse__KeyIdentifier() : __item(), wsu__Id(), ValueType(), EncodingType() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 _wsse__KeyIdentifier * SOAP_FMAC2 soap_instantiate__wsse__KeyIdentifier(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* wsse.h:195 */
+#ifndef SOAP_TYPE__wsse__SecurityTokenReference
+#define SOAP_TYPE__wsse__SecurityTokenReference (70)
+/* complex XML schema type 'wsse:SecurityTokenReference': */
+struct SOAP_CMAC _wsse__SecurityTokenReference {
+      public:
+        /** Optional element 'wsse:Reference' of XML schema type 'wsse:Reference' */
+        struct _wsse__Reference *Reference;
+        /** Optional element 'wsse:KeyIdentifier' of XML schema type 'wsse:KeyIdentifier' */
+        struct _wsse__KeyIdentifier *KeyIdentifier;
+        /** Optional element 'wsse:Embedded' of XML schema type 'wsse:Embedded' */
+        struct _wsse__Embedded *Embedded;
+        /** Optional element 'ds:X509Data' of XML schema type 'ds:X509DataType' */
+        struct ds__X509DataType *ds__X509Data;
+        /** Optional attribute 'wsu:Id' of XML schema type 'xsd:string' */
+        char *wsu__Id;
+        /** Optional attribute 'wsc:Instance' of XML schema type 'xsd:string' */
+        char *wsc__Instance;
+        /** Optional attribute 'Usage' of XML schema type 'xsd:string' */
+        char *Usage;
+      public:
+        /** Return unique type id SOAP_TYPE__wsse__SecurityTokenReference */
+        long soap_type() const { return SOAP_TYPE__wsse__SecurityTokenReference; }
+        /** Constructor with member initializations */
+        _wsse__SecurityTokenReference() : Reference(), KeyIdentifier(), Embedded(), ds__X509Data(), wsu__Id(), wsc__Instance(), Usage() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 _wsse__SecurityTokenReference * SOAP_FMAC2 soap_instantiate__wsse__SecurityTokenReference(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* xenc.h:38 */
+#ifndef SOAP_TYPE_ds__KeyInfoType
+#define SOAP_TYPE_ds__KeyInfoType (76)
+/* complex XML schema type 'ds:KeyInfoType': */
+struct SOAP_CMAC ds__KeyInfoType {
+      public:
+        /** Optional element 'xenc:EncryptedKey' of XML schema type 'xenc:EncryptedKeyType' */
+        struct xenc__EncryptedKeyType *xenc__EncryptedKey;
+        /** Optional element 'ds:KeyName' of XML schema type 'xsd:string' */
+        char *KeyName;
+        /** Optional element 'ds:KeyValue' of XML schema type 'ds:KeyValueType' */
+        struct ds__KeyValueType *KeyValue;
+        /** Optional element 'ds:RetrievalMethod' of XML schema type 'ds:RetrievalMethodType' */
+        struct ds__RetrievalMethodType *RetrievalMethod;
+        /** Optional element 'ds:X509Data' of XML schema type 'ds:X509DataType' */
+        struct ds__X509DataType *X509Data;
+        /** Optional element 'wsse:SecurityTokenReference' of XML schema type 'wsse:SecurityTokenReference' */
+        struct _wsse__SecurityTokenReference *wsse__SecurityTokenReference;
+        /** Optional attribute 'Id' of XML schema type 'xsd:string' */
+        char *Id;
+      public:
+        /** Return unique type id SOAP_TYPE_ds__KeyInfoType */
+        long soap_type() const { return SOAP_TYPE_ds__KeyInfoType; }
+        /** Constructor with member initializations */
+        ds__KeyInfoType() : xenc__EncryptedKey(), KeyName(), KeyValue(), RetrievalMethod(), X509Data(), wsse__SecurityTokenReference(), Id() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 ds__KeyInfoType * SOAP_FMAC2 soap_instantiate_ds__KeyInfoType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* ds.h:50 */
+#ifndef SOAP_TYPE_ds__SignatureType
+#define SOAP_TYPE_ds__SignatureType (80)
+/* complex XML schema type 'ds:SignatureType': */
+struct SOAP_CMAC ds__SignatureType {
+      public:
+        /** Optional element 'ds:SignedInfo' of XML schema type 'ds:SignedInfoType' */
+        struct ds__SignedInfoType *SignedInfo;
+        /** Optional element 'ds:SignatureValue' of XML schema type 'ds:SignatureValue' */
+        char *SignatureValue;
+        /** Optional element 'ds:KeyInfo' of XML schema type 'ds:KeyInfoType' */
+        struct ds__KeyInfoType *KeyInfo;
+        /** Optional attribute 'Id' of XML schema type 'xsd:string' */
+        char *Id;
+      public:
+        /** Return unique type id SOAP_TYPE_ds__SignatureType */
+        long soap_type() const { return SOAP_TYPE_ds__SignatureType; }
+        /** Constructor with member initializations */
+        ds__SignatureType() : SignedInfo(), SignatureValue(), KeyInfo(), Id() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 ds__SignatureType * SOAP_FMAC2 soap_instantiate_ds__SignatureType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* c14n.h:24 */
+#ifndef SOAP_TYPE__c14n__InclusiveNamespaces
+#define SOAP_TYPE__c14n__InclusiveNamespaces (89)
+/* complex XML schema type 'c14n:InclusiveNamespaces': */
+struct SOAP_CMAC _c14n__InclusiveNamespaces {
+      public:
+        /** Optional attribute 'PrefixList' of XML schema type 'xsd:string' */
+        char *PrefixList;
+      public:
+        /** Return unique type id SOAP_TYPE__c14n__InclusiveNamespaces */
+        long soap_type() const { return SOAP_TYPE__c14n__InclusiveNamespaces; }
+        /** Constructor with member initializations */
+        _c14n__InclusiveNamespaces() : PrefixList() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 _c14n__InclusiveNamespaces * SOAP_FMAC2 soap_instantiate__c14n__InclusiveNamespaces(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* ds.h:77 */
+#ifndef SOAP_TYPE_ds__TransformType
+#define SOAP_TYPE_ds__TransformType (90)
+/* complex XML schema type 'ds:TransformType': */
+struct SOAP_CMAC ds__TransformType {
+      public:
+        /** Optional element 'c14n:InclusiveNamespaces' of XML schema type 'c14n:InclusiveNamespaces' */
+        struct _c14n__InclusiveNamespaces *c14n__InclusiveNamespaces;
+        char *__any;
+        /** Optional attribute 'Algorithm' of XML schema type 'xsd:string' */
+        char *Algorithm;
+      public:
+        /** Return unique type id SOAP_TYPE_ds__TransformType */
+        long soap_type() const { return SOAP_TYPE_ds__TransformType; }
+        /** Constructor with member initializations */
+        ds__TransformType() : c14n__InclusiveNamespaces(), __any(), Algorithm() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 ds__TransformType * SOAP_FMAC2 soap_instantiate_ds__TransformType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* ds.h:50 */
+#ifndef SOAP_TYPE_ds__SignedInfoType
+#define SOAP_TYPE_ds__SignedInfoType (81)
+/* complex XML schema type 'ds:SignedInfoType': */
+struct SOAP_CMAC ds__SignedInfoType {
+      public:
+        /** Required element 'ds:CanonicalizationMethod' of XML schema type 'ds:CanonicalizationMethodType' */
+        struct ds__CanonicalizationMethodType *CanonicalizationMethod;
+        /** Required element 'ds:SignatureMethod' of XML schema type 'ds:SignatureMethodType' */
+        struct ds__SignatureMethodType *SignatureMethod;
+        /** Sequence of elements 'ds:Reference' of XML schema type 'ds:ReferenceType' stored in dynamic array Reference of length __sizeReference */
+        int __sizeReference;
+        struct ds__ReferenceType **Reference;
+        /** Optional attribute 'Id' of XML schema type 'xsd:string' */
+        char *Id;
+      public:
+        /** Return unique type id SOAP_TYPE_ds__SignedInfoType */
+        long soap_type() const { return SOAP_TYPE_ds__SignedInfoType; }
+        /** Constructor with member initializations */
+        ds__SignedInfoType() : CanonicalizationMethod(), SignatureMethod(), __sizeReference(), Reference(), Id() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 ds__SignedInfoType * SOAP_FMAC2 soap_instantiate_ds__SignedInfoType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* ds.h:63 */
+#ifndef SOAP_TYPE_ds__CanonicalizationMethodType
+#define SOAP_TYPE_ds__CanonicalizationMethodType (85)
+/* complex XML schema type 'ds:CanonicalizationMethodType': */
+struct SOAP_CMAC ds__CanonicalizationMethodType {
+      public:
+        /** Required attribute 'Algorithm' of XML schema type 'xsd:string' */
+        char *Algorithm;
+        /** Optional element 'c14n:InclusiveNamespaces' of XML schema type 'c14n:InclusiveNamespaces' */
+        struct _c14n__InclusiveNamespaces *c14n__InclusiveNamespaces;
+      public:
+        /** Return unique type id SOAP_TYPE_ds__CanonicalizationMethodType */
+        long soap_type() const { return SOAP_TYPE_ds__CanonicalizationMethodType; }
+        /** Constructor with member initializations */
+        ds__CanonicalizationMethodType() : Algorithm(), c14n__InclusiveNamespaces() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 ds__CanonicalizationMethodType * SOAP_FMAC2 soap_instantiate_ds__CanonicalizationMethodType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* ds.h:66 */
+#ifndef SOAP_TYPE_ds__SignatureMethodType
+#define SOAP_TYPE_ds__SignatureMethodType (86)
+/* complex XML schema type 'ds:SignatureMethodType': */
+struct SOAP_CMAC ds__SignatureMethodType {
+      public:
+        /** Optional element 'ds:HMACOutputLength' of XML schema type 'xsd:int' */
+        int *HMACOutputLength;
+        /** Required attribute 'Algorithm' of XML schema type 'xsd:string' */
+        char *Algorithm;
+      public:
+        /** Return unique type id SOAP_TYPE_ds__SignatureMethodType */
+        long soap_type() const { return SOAP_TYPE_ds__SignatureMethodType; }
+        /** Constructor with member initializations */
+        ds__SignatureMethodType() : HMACOutputLength(), Algorithm() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 ds__SignatureMethodType * SOAP_FMAC2 soap_instantiate_ds__SignatureMethodType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* ds.h:69 */
+#ifndef SOAP_TYPE_ds__ReferenceType
+#define SOAP_TYPE_ds__ReferenceType (87)
+/* complex XML schema type 'ds:ReferenceType': */
+struct SOAP_CMAC ds__ReferenceType {
+      public:
+        /** Optional element 'ds:Transforms' of XML schema type 'ds:TransformsType' */
+        struct ds__TransformsType *Transforms;
+        /** Required element 'ds:DigestMethod' of XML schema type 'ds:DigestMethodType' */
+        struct ds__DigestMethodType *DigestMethod;
+        /** Required element 'ds:DigestValue' of XML schema type 'xsd:string' */
+        char *DigestValue;
+        /** Optional attribute 'Id' of XML schema type 'xsd:string' */
+        char *Id;
+        /** Optional attribute 'URI' of XML schema type 'xsd:string' */
+        char *URI;
+        /** Optional attribute 'Type' of XML schema type 'xsd:string' */
+        char *Type;
+      public:
+        /** Return unique type id SOAP_TYPE_ds__ReferenceType */
+        long soap_type() const { return SOAP_TYPE_ds__ReferenceType; }
+        /** Constructor with member initializations */
+        ds__ReferenceType() : Transforms(), DigestMethod(), DigestValue(), Id(), URI(), Type() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 ds__ReferenceType * SOAP_FMAC2 soap_instantiate_ds__ReferenceType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* ds.h:72 */
+#ifndef SOAP_TYPE_ds__TransformsType
+#define SOAP_TYPE_ds__TransformsType (88)
+/* complex XML schema type 'ds:TransformsType': */
+struct SOAP_CMAC ds__TransformsType {
+      public:
+        /** Sequence of elements 'ds:Transform' of XML schema type 'ds:TransformType' stored in dynamic array Transform of length __sizeTransform */
+        int __sizeTransform;
+        struct ds__TransformType *Transform;
+      public:
+        /** Return unique type id SOAP_TYPE_ds__TransformsType */
+        long soap_type() const { return SOAP_TYPE_ds__TransformsType; }
+        /** Constructor with member initializations */
+        ds__TransformsType() : __sizeTransform(), Transform() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 ds__TransformsType * SOAP_FMAC2 soap_instantiate_ds__TransformsType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* ds.h:83 */
+#ifndef SOAP_TYPE_ds__DigestMethodType
+#define SOAP_TYPE_ds__DigestMethodType (93)
+/* complex XML schema type 'ds:DigestMethodType': */
+struct SOAP_CMAC ds__DigestMethodType {
+      public:
+        /** Required attribute 'Algorithm' of XML schema type 'xsd:string' */
+        char *Algorithm;
+      public:
+        /** Return unique type id SOAP_TYPE_ds__DigestMethodType */
+        long soap_type() const { return SOAP_TYPE_ds__DigestMethodType; }
+        /** Constructor with member initializations */
+        ds__DigestMethodType() : Algorithm() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 ds__DigestMethodType * SOAP_FMAC2 soap_instantiate_ds__DigestMethodType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* ds.h:88 */
+#ifndef SOAP_TYPE_ds__KeyValueType
+#define SOAP_TYPE_ds__KeyValueType (94)
+/* complex XML schema type 'ds:KeyValueType': */
+struct SOAP_CMAC ds__KeyValueType {
+      public:
+        /** Optional element 'ds:DSAKeyValue' of XML schema type 'ds:DSAKeyValueType' */
+        struct ds__DSAKeyValueType *DSAKeyValue;
+        /** Optional element 'ds:RSAKeyValue' of XML schema type 'ds:RSAKeyValueType' */
+        struct ds__RSAKeyValueType *RSAKeyValue;
+      public:
+        /** Return unique type id SOAP_TYPE_ds__KeyValueType */
+        long soap_type() const { return SOAP_TYPE_ds__KeyValueType; }
+        /** Constructor with member initializations */
+        ds__KeyValueType() : DSAKeyValue(), RSAKeyValue() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 ds__KeyValueType * SOAP_FMAC2 soap_instantiate_ds__KeyValueType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* ds.h:89 */
+#ifndef SOAP_TYPE_ds__RetrievalMethodType
+#define SOAP_TYPE_ds__RetrievalMethodType (96)
+/* complex XML schema type 'ds:RetrievalMethodType': */
+struct SOAP_CMAC ds__RetrievalMethodType {
+      public:
+        /** Optional element 'ds:Transforms' of XML schema type 'ds:TransformsType' */
+        struct ds__TransformsType *Transforms;
+        /** Optional attribute 'URI' of XML schema type 'xsd:string' */
+        char *URI;
+        /** Optional attribute 'Type' of XML schema type 'xsd:string' */
+        char *Type;
+      public:
+        /** Return unique type id SOAP_TYPE_ds__RetrievalMethodType */
+        long soap_type() const { return SOAP_TYPE_ds__RetrievalMethodType; }
+        /** Constructor with member initializations */
+        ds__RetrievalMethodType() : Transforms(), URI(), Type() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 ds__RetrievalMethodType * SOAP_FMAC2 soap_instantiate_ds__RetrievalMethodType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* wsse.h:198 */
+#ifndef SOAP_TYPE_ds__X509DataType
+#define SOAP_TYPE_ds__X509DataType (74)
+/* complex XML schema type 'ds:X509DataType': */
+struct SOAP_CMAC ds__X509DataType {
+      public:
+        /** Optional element 'ds:X509IssuerSerial' of XML schema type 'ds:X509IssuerSerialType' */
+        struct ds__X509IssuerSerialType *X509IssuerSerial;
+        /** Optional element 'ds:X509SKI' of XML schema type 'xsd:string' */
+        char *X509SKI;
+        /** Optional element 'ds:X509SubjectName' of XML schema type 'xsd:string' */
+        char *X509SubjectName;
+        /** Optional element 'ds:X509Certificate' of XML schema type 'xsd:string' */
+        char *X509Certificate;
+        /** Optional element 'ds:X509CRL' of XML schema type 'xsd:string' */
+        char *X509CRL;
+      public:
+        /** Return unique type id SOAP_TYPE_ds__X509DataType */
+        long soap_type() const { return SOAP_TYPE_ds__X509DataType; }
+        /** Constructor with member initializations */
+        ds__X509DataType() : X509IssuerSerial(), X509SKI(), X509SubjectName(), X509Certificate(), X509CRL() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 ds__X509DataType * SOAP_FMAC2 soap_instantiate_ds__X509DataType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* ds.h:106 */
+#ifndef SOAP_TYPE_ds__X509IssuerSerialType
+#define SOAP_TYPE_ds__X509IssuerSerialType (100)
+/* complex XML schema type 'ds:X509IssuerSerialType': */
+struct SOAP_CMAC ds__X509IssuerSerialType {
+      public:
+        /** Required element 'ds:X509IssuerName' of XML schema type 'xsd:string' */
+        char *X509IssuerName;
+        /** Required element 'ds:X509SerialNumber' of XML schema type 'xsd:string' */
+        char *X509SerialNumber;
+      public:
+        /** Return unique type id SOAP_TYPE_ds__X509IssuerSerialType */
+        long soap_type() const { return SOAP_TYPE_ds__X509IssuerSerialType; }
+        /** Constructor with member initializations */
+        ds__X509IssuerSerialType() : X509IssuerName(), X509SerialNumber() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 ds__X509IssuerSerialType * SOAP_FMAC2 soap_instantiate_ds__X509IssuerSerialType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* ds.h:127 */
+#ifndef SOAP_TYPE_ds__DSAKeyValueType
+#define SOAP_TYPE_ds__DSAKeyValueType (101)
+/* complex XML schema type 'ds:DSAKeyValueType': */
+struct SOAP_CMAC ds__DSAKeyValueType {
+      public:
+        /** Optional element 'ds:G' of XML schema type 'xsd:string' */
+        char *G;
+        /** Required element 'ds:Y' of XML schema type 'xsd:string' */
+        char *Y;
+        /** Optional element 'ds:J' of XML schema type 'xsd:string' */
+        char *J;
+        /** Required element 'ds:P' of XML schema type 'xsd:string' */
+        char *P;
+        /** Required element 'ds:Q' of XML schema type 'xsd:string' */
+        char *Q;
+        /** Required element 'ds:Seed' of XML schema type 'xsd:string' */
+        char *Seed;
+        /** Required element 'ds:PgenCounter' of XML schema type 'xsd:string' */
+        char *PgenCounter;
+      public:
+        /** Return unique type id SOAP_TYPE_ds__DSAKeyValueType */
+        long soap_type() const { return SOAP_TYPE_ds__DSAKeyValueType; }
+        /** Constructor with member initializations */
+        ds__DSAKeyValueType() : G(), Y(), J(), P(), Q(), Seed(), PgenCounter() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 ds__DSAKeyValueType * SOAP_FMAC2 soap_instantiate_ds__DSAKeyValueType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* ds.h:130 */
+#ifndef SOAP_TYPE_ds__RSAKeyValueType
+#define SOAP_TYPE_ds__RSAKeyValueType (102)
+/* complex XML schema type 'ds:RSAKeyValueType': */
+struct SOAP_CMAC ds__RSAKeyValueType {
+      public:
+        /** Required element 'ds:Modulus' of XML schema type 'xsd:string' */
+        char *Modulus;
+        /** Required element 'ds:Exponent' of XML schema type 'xsd:string' */
+        char *Exponent;
+      public:
+        /** Return unique type id SOAP_TYPE_ds__RSAKeyValueType */
+        long soap_type() const { return SOAP_TYPE_ds__RSAKeyValueType; }
+        /** Constructor with member initializations */
+        ds__RSAKeyValueType() : Modulus(), Exponent() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 ds__RSAKeyValueType * SOAP_FMAC2 soap_instantiate_ds__RSAKeyValueType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* xenc.h:101 */
+#ifndef SOAP_TYPE_xenc__EncryptionPropertyType
+#define SOAP_TYPE_xenc__EncryptionPropertyType (122)
+/* complex XML schema type 'xenc:EncryptionPropertyType': */
+struct SOAP_CMAC xenc__EncryptionPropertyType {
+      public:
+        /** Optional attribute 'Target' of XML schema type 'xsd:string' */
+        char *Target;
+        /** Optional attribute 'Id' of XML schema type 'xsd:string' */
+        char *Id;
+      public:
+        /** Return unique type id SOAP_TYPE_xenc__EncryptionPropertyType */
+        long soap_type() const { return SOAP_TYPE_xenc__EncryptionPropertyType; }
+        /** Constructor with member initializations */
+        xenc__EncryptionPropertyType() : Target(), Id() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 xenc__EncryptionPropertyType * SOAP_FMAC2 soap_instantiate_xenc__EncryptionPropertyType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* xenc.h:70 */
+#ifndef SOAP_TYPE_xenc__EncryptedType
+#define SOAP_TYPE_xenc__EncryptedType (113)
+/* complex XML schema type 'xenc:EncryptedType': */
+struct SOAP_CMAC xenc__EncryptedType {
+      public:
+        /** Optional element 'xenc:EncryptionMethod' of XML schema type 'xenc:EncryptionMethodType' */
+        struct xenc__EncryptionMethodType *EncryptionMethod;
+        /** Optional element 'ds:KeyInfo' of XML schema type 'ds:KeyInfo' */
+        struct ds__KeyInfoType *ds__KeyInfo;
+        /** Required element 'xenc:CipherData' of XML schema type 'xenc:CipherDataType' */
+        struct xenc__CipherDataType *CipherData;
+        /** Optional element 'xenc:EncryptionProperties' of XML schema type 'xenc:EncryptionPropertiesType' */
+        struct xenc__EncryptionPropertiesType *EncryptionProperties;
+        /** Optional attribute 'Id' of XML schema type 'xsd:string' */
+        char *Id;
+        /** Optional attribute 'Type' of XML schema type 'xsd:string' */
+        char *Type;
+        /** Optional attribute 'MimeType' of XML schema type 'xsd:string' */
+        char *MimeType;
+        /** Optional attribute 'Encoding' of XML schema type 'xsd:string' */
+        char *Encoding;
+      public:
+        /** Return unique type id SOAP_TYPE_xenc__EncryptedType */
+        long soap_type() const { return SOAP_TYPE_xenc__EncryptedType; }
+        /** Constructor with member initializations */
+        xenc__EncryptedType() : EncryptionMethod(), ds__KeyInfo(), CipherData(), EncryptionProperties(), Id(), Type(), MimeType(), Encoding() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 xenc__EncryptedType * SOAP_FMAC2 soap_instantiate_xenc__EncryptedType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* xenc.h:73 */
+#ifndef SOAP_TYPE_xenc__EncryptionMethodType
+#define SOAP_TYPE_xenc__EncryptionMethodType (114)
+/* complex XML schema type 'xenc:EncryptionMethodType': */
+struct SOAP_CMAC xenc__EncryptionMethodType {
+      public:
+        /** Optional element 'xenc:KeySize' of XML schema type 'xsd:int' */
+        int *KeySize;
+        /** Optional element 'xenc:OAEPparams' of XML schema type 'xsd:string' */
+        char *OAEPparams;
+        /** Required attribute 'Algorithm' of XML schema type 'xsd:string' */
+        char *Algorithm;
+        /** Optional element 'ds:DigestMethod' of XML schema type 'ds:DigestMethodType' */
+        struct ds__DigestMethodType *ds__DigestMethod;
+        char *__mixed;
+      public:
+        /** Return unique type id SOAP_TYPE_xenc__EncryptionMethodType */
+        long soap_type() const { return SOAP_TYPE_xenc__EncryptionMethodType; }
+        /** Constructor with member initializations */
+        xenc__EncryptionMethodType() : KeySize(), OAEPparams(), Algorithm(), ds__DigestMethod(), __mixed() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 xenc__EncryptionMethodType * SOAP_FMAC2 soap_instantiate_xenc__EncryptionMethodType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* xenc.h:76 */
+#ifndef SOAP_TYPE_xenc__CipherDataType
+#define SOAP_TYPE_xenc__CipherDataType (115)
+/* complex XML schema type 'xenc:CipherDataType': */
+struct SOAP_CMAC xenc__CipherDataType {
+      public:
+        /** Optional element 'xenc:CipherValue' of XML schema type 'xsd:string' */
+        char *CipherValue;
+        /** Optional element 'xenc:CipherReference' of XML schema type 'xenc:CipherReferenceType' */
+        struct xenc__CipherReferenceType *CipherReference;
+      public:
+        /** Return unique type id SOAP_TYPE_xenc__CipherDataType */
+        long soap_type() const { return SOAP_TYPE_xenc__CipherDataType; }
+        /** Constructor with member initializations */
+        xenc__CipherDataType() : CipherValue(), CipherReference() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 xenc__CipherDataType * SOAP_FMAC2 soap_instantiate_xenc__CipherDataType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* xenc.h:79 */
+#ifndef SOAP_TYPE_xenc__CipherReferenceType
+#define SOAP_TYPE_xenc__CipherReferenceType (116)
+/* complex XML schema type 'xenc:CipherReferenceType': */
+struct SOAP_CMAC xenc__CipherReferenceType {
+      public:
+        /** Optional element 'xenc:Transforms' of XML schema type 'xenc:TransformsType' */
+        struct xenc__TransformsType *Transforms;
+        /** Required attribute 'URI' of XML schema type 'xsd:string' */
+        char *URI;
+      public:
+        /** Return unique type id SOAP_TYPE_xenc__CipherReferenceType */
+        long soap_type() const { return SOAP_TYPE_xenc__CipherReferenceType; }
+        /** Constructor with member initializations */
+        xenc__CipherReferenceType() : Transforms(), URI() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 xenc__CipherReferenceType * SOAP_FMAC2 soap_instantiate_xenc__CipherReferenceType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* xenc.h:82 */
+#ifndef SOAP_TYPE_xenc__TransformsType
+#define SOAP_TYPE_xenc__TransformsType (117)
+/* complex XML schema type 'xenc:TransformsType': */
+struct SOAP_CMAC xenc__TransformsType {
+      public:
+        /** Required element 'ds:Transform' of XML schema type 'ds:Transform' */
+        struct ds__TransformType ds__Transform;
+      public:
+        /** Return unique type id SOAP_TYPE_xenc__TransformsType */
+        long soap_type() const { return SOAP_TYPE_xenc__TransformsType; }
+        /** Constructor with member initializations */
+        xenc__TransformsType() : ds__Transform() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 xenc__TransformsType * SOAP_FMAC2 soap_instantiate_xenc__TransformsType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* xenc.h:91 */
+#ifndef SOAP_TYPE_xenc__AgreementMethodType
+#define SOAP_TYPE_xenc__AgreementMethodType (119)
+/* complex XML schema type 'xenc:AgreementMethodType': */
+struct SOAP_CMAC xenc__AgreementMethodType {
+      public:
+        /** Optional element 'xenc:KA-Nonce' of XML schema type 'xsd:string' */
+        char *KA_Nonce;
+        /** Optional element 'xenc:OriginatorKeyInfo' of XML schema type 'ds:KeyInfoType' */
+        struct ds__KeyInfoType *OriginatorKeyInfo;
+        /** Optional element 'xenc:RecipientKeyInfo' of XML schema type 'ds:KeyInfoType' */
+        struct ds__KeyInfoType *RecipientKeyInfo;
+        /** Required attribute 'Algorithm' of XML schema type 'xsd:string' */
+        char *Algorithm;
+        char *__mixed;
+      public:
+        /** Return unique type id SOAP_TYPE_xenc__AgreementMethodType */
+        long soap_type() const { return SOAP_TYPE_xenc__AgreementMethodType; }
+        /** Constructor with member initializations */
+        xenc__AgreementMethodType() : KA_Nonce(), OriginatorKeyInfo(), RecipientKeyInfo(), Algorithm(), __mixed() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 xenc__AgreementMethodType * SOAP_FMAC2 soap_instantiate_xenc__AgreementMethodType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* xenc.h:94 */
+#ifndef SOAP_TYPE_xenc__ReferenceType
+#define SOAP_TYPE_xenc__ReferenceType (120)
+/* complex XML schema type 'xenc:ReferenceType': */
+struct SOAP_CMAC xenc__ReferenceType {
+      public:
+        /** Required attribute 'URI' of XML schema type 'xsd:string' */
+        char *URI;
+      public:
+        /** Return unique type id SOAP_TYPE_xenc__ReferenceType */
+        long soap_type() const { return SOAP_TYPE_xenc__ReferenceType; }
+        /** Constructor with member initializations */
+        xenc__ReferenceType() : URI() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 xenc__ReferenceType * SOAP_FMAC2 soap_instantiate_xenc__ReferenceType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* xenc.h:97 */
+#ifndef SOAP_TYPE_xenc__EncryptionPropertiesType
+#define SOAP_TYPE_xenc__EncryptionPropertiesType (121)
+/* complex XML schema type 'xenc:EncryptionPropertiesType': */
+struct SOAP_CMAC xenc__EncryptionPropertiesType {
+      public:
+        /** Sequence of at least 1 elements 'xenc:EncryptionProperty' of XML schema type 'xenc:EncryptionPropertyType' stored in dynamic array EncryptionProperty of length __sizeEncryptionProperty */
+        int __sizeEncryptionProperty;
+        struct xenc__EncryptionPropertyType *EncryptionProperty;
+        /** Optional attribute 'Id' of XML schema type 'xsd:string' */
+        char *Id;
+      public:
+        /** Return unique type id SOAP_TYPE_xenc__EncryptionPropertiesType */
+        long soap_type() const { return SOAP_TYPE_xenc__EncryptionPropertiesType; }
+        /** Constructor with member initializations */
+        xenc__EncryptionPropertiesType() : __sizeEncryptionProperty(), EncryptionProperty(), Id() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 xenc__EncryptionPropertiesType * SOAP_FMAC2 soap_instantiate_xenc__EncryptionPropertiesType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* xenc.h:253 */
+#ifndef SOAP_TYPE___xenc__union_ReferenceList
+#define SOAP_TYPE___xenc__union_ReferenceList (131)
+/* Wrapper: */
+struct SOAP_CMAC __xenc__union_ReferenceList {
+      public:
+        /** Optional element 'xenc:DataReference' of XML schema type 'xenc:ReferenceType' */
+        struct xenc__ReferenceType *DataReference;
+        /** Optional element 'xenc:KeyReference' of XML schema type 'xenc:ReferenceType' */
+        struct xenc__ReferenceType *KeyReference;
+      public:
+        /** Return unique type id SOAP_TYPE___xenc__union_ReferenceList */
+        long soap_type() const { return SOAP_TYPE___xenc__union_ReferenceList; }
+        /** Constructor with member initializations */
+        __xenc__union_ReferenceList() : DataReference(), KeyReference() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 __xenc__union_ReferenceList * SOAP_FMAC2 soap_instantiate___xenc__union_ReferenceList(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* xenc.h:106 */
+#ifndef SOAP_TYPE__xenc__ReferenceList
+#define SOAP_TYPE__xenc__ReferenceList (123)
+/* complex XML schema type 'xenc:ReferenceList': */
+struct SOAP_CMAC _xenc__ReferenceList {
+      public:
+        /** Sequence of at least 1 elements '-union-ReferenceList' of XML schema type '-xenc:union-ReferenceList' stored in dynamic array __union_ReferenceList of length __size_ReferenceList */
+        int __size_ReferenceList;
+        struct __xenc__union_ReferenceList *__union_ReferenceList;
+      public:
+        /** Return unique type id SOAP_TYPE__xenc__ReferenceList */
+        long soap_type() const { return SOAP_TYPE__xenc__ReferenceList; }
+        /** Constructor with member initializations */
+        _xenc__ReferenceList() : __size_ReferenceList(), __union_ReferenceList() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 _xenc__ReferenceList * SOAP_FMAC2 soap_instantiate__xenc__ReferenceList(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* xenc.h:85 */
+#ifndef SOAP_TYPE_xenc__EncryptedDataType
+#define SOAP_TYPE_xenc__EncryptedDataType (118)
+/* complex XML schema type 'xenc:EncryptedDataType': */
+struct SOAP_CMAC xenc__EncryptedDataType {
+      public:
+        /** Optional element 'xenc:EncryptionMethod' of XML schema type 'xenc:EncryptionMethodType' */
+        struct xenc__EncryptionMethodType *EncryptionMethod;
+        /** Optional element 'ds:KeyInfo' of XML schema type 'ds:KeyInfo' */
+        struct ds__KeyInfoType *ds__KeyInfo;
+        /** Required element 'xenc:CipherData' of XML schema type 'xenc:CipherDataType' */
+        struct xenc__CipherDataType *CipherData;
+        /** Optional element 'xenc:EncryptionProperties' of XML schema type 'xenc:EncryptionPropertiesType' */
+        struct xenc__EncryptionPropertiesType *EncryptionProperties;
+        /** Optional attribute 'Id' of XML schema type 'xsd:string' */
+        char *Id;
+        /** Optional attribute 'Type' of XML schema type 'xsd:string' */
+        char *Type;
+        /** Optional attribute 'MimeType' of XML schema type 'xsd:string' */
+        char *MimeType;
+        /** Optional attribute 'Encoding' of XML schema type 'xsd:string' */
+        char *Encoding;
+      public:
+        /** Return unique type id SOAP_TYPE_xenc__EncryptedDataType */
+        long soap_type() const { return SOAP_TYPE_xenc__EncryptedDataType; }
+        /** Constructor with member initializations */
+        xenc__EncryptedDataType() : EncryptionMethod(), ds__KeyInfo(), CipherData(), EncryptionProperties(), Id(), Type(), MimeType(), Encoding() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 xenc__EncryptedDataType * SOAP_FMAC2 soap_instantiate_xenc__EncryptedDataType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* xenc.h:39 */
+#ifndef SOAP_TYPE_xenc__EncryptedKeyType
+#define SOAP_TYPE_xenc__EncryptedKeyType (77)
+/* Type xenc__EncryptedKeyType is a recursive data type, (in)directly referencing itself through its (base or derived class) members */
+/* complex XML schema type 'xenc:EncryptedKeyType': */
+struct SOAP_CMAC xenc__EncryptedKeyType {
+      public:
+        /** Optional element 'xenc:EncryptionMethod' of XML schema type 'xenc:EncryptionMethodType' */
+        struct xenc__EncryptionMethodType *EncryptionMethod;
+        /** Optional element 'ds:KeyInfo' of XML schema type 'ds:KeyInfo' */
+        struct ds__KeyInfoType *ds__KeyInfo;
+        /** Required element 'xenc:CipherData' of XML schema type 'xenc:CipherDataType' */
+        struct xenc__CipherDataType *CipherData;
+        /** Optional element 'xenc:EncryptionProperties' of XML schema type 'xenc:EncryptionPropertiesType' */
+        struct xenc__EncryptionPropertiesType *EncryptionProperties;
+        /** Optional attribute 'Id' of XML schema type 'xsd:string' */
+        char *Id;
+        /** Optional attribute 'Type' of XML schema type 'xsd:string' */
+        char *Type;
+        /** Optional attribute 'MimeType' of XML schema type 'xsd:string' */
+        char *MimeType;
+        /** Optional attribute 'Encoding' of XML schema type 'xsd:string' */
+        char *Encoding;
+        /** Optional element 'xenc:ReferenceList' of XML schema type 'xenc:ReferenceList' */
+        struct _xenc__ReferenceList *ReferenceList;
+        /** Optional element 'xenc:CarriedKeyName' of XML schema type 'xsd:string' */
+        char *CarriedKeyName;
+        /** Optional attribute 'Recipient' of XML schema type 'xsd:string' */
+        char *Recipient;
+      public:
+        /** Return unique type id SOAP_TYPE_xenc__EncryptedKeyType */
+        long soap_type() const { return SOAP_TYPE_xenc__EncryptedKeyType; }
+        /** Constructor with member initializations */
+        xenc__EncryptedKeyType() : EncryptionMethod(), ds__KeyInfo(), CipherData(), EncryptionProperties(), Id(), Type(), MimeType(), Encoding(), ReferenceList(), CarriedKeyName(), Recipient() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 xenc__EncryptedKeyType * SOAP_FMAC2 soap_instantiate_xenc__EncryptedKeyType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* wsc.h:88 */
+#ifndef SOAP_TYPE_wsc__SecurityContextTokenType
+#define SOAP_TYPE_wsc__SecurityContextTokenType (137)
+/* complex XML schema type 'wsc:SecurityContextTokenType': */
+struct SOAP_CMAC wsc__SecurityContextTokenType {
+      public:
+        /** Optional attribute 'wsu:Id' of XML schema type 'xsd:string' */
+        char *wsu__Id;
+        /** Optional element 'wsc:Identifier' of XML schema type 'xsd:string' */
+        char *Identifier;
+        /** Optional element 'wsc:Instance' of XML schema type 'xsd:string' */
+        char *Instance;
+      public:
+        /** Return unique type id SOAP_TYPE_wsc__SecurityContextTokenType */
+        long soap_type() const { return SOAP_TYPE_wsc__SecurityContextTokenType; }
+        /** Constructor with member initializations */
+        wsc__SecurityContextTokenType() : wsu__Id(), Identifier(), Instance() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 wsc__SecurityContextTokenType * SOAP_FMAC2 soap_instantiate_wsc__SecurityContextTokenType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* wsc.h:121 */
+#ifndef SOAP_TYPE__wsc__union_DerivedKeyTokenType
+#define SOAP_TYPE__wsc__union_DerivedKeyTokenType (142)
+/* union serializable only when used as a member of a struct or class with a union variant selector */
+union _wsc__union_DerivedKeyTokenType
+{
+        #define SOAP_UNION__wsc__union_DerivedKeyTokenType_Generation	(1)	/**< union variant selector value for member Generation */
+        ULONG64 Generation;
+        #define SOAP_UNION__wsc__union_DerivedKeyTokenType_Offset	(2)	/**< union variant selector value for member Offset */
+        ULONG64 Offset;
+};
+#endif
+
+/* wsc.h:117 */
+#ifndef SOAP_TYPE___wsc__DerivedKeyTokenType_sequence
+#define SOAP_TYPE___wsc__DerivedKeyTokenType_sequence (141)
+/* Wrapper: */
+struct SOAP_CMAC __wsc__DerivedKeyTokenType_sequence {
+      public:
+        /** Union with union _wsc__union_DerivedKeyTokenType variant selector __union_DerivedKeyTokenType set to one of: SOAP_UNION__wsc__union_DerivedKeyTokenType_Generation SOAP_UNION__wsc__union_DerivedKeyTokenType_Offset */
+        int __union_DerivedKeyTokenType;
+        union _wsc__union_DerivedKeyTokenType union_DerivedKeyTokenType;
+        /** Optional element 'wsc:Length' of XML schema type 'xsd:unsignedLong' */
+        ULONG64 *Length;
+      public:
+        /** Return unique type id SOAP_TYPE___wsc__DerivedKeyTokenType_sequence */
+        long soap_type() const { return SOAP_TYPE___wsc__DerivedKeyTokenType_sequence; }
+        /** Constructor with member initializations */
+        __wsc__DerivedKeyTokenType_sequence() : __union_DerivedKeyTokenType(), Length() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 __wsc__DerivedKeyTokenType_sequence * SOAP_FMAC2 soap_instantiate___wsc__DerivedKeyTokenType_sequence(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* wsc.h:110 */
+#ifndef SOAP_TYPE_wsc__DerivedKeyTokenType
+#define SOAP_TYPE_wsc__DerivedKeyTokenType (138)
+/* complex XML schema type 'wsc:DerivedKeyTokenType': */
+struct SOAP_CMAC wsc__DerivedKeyTokenType {
+      public:
+        /** Optional element 'wsse:SecurityTokenReference' of XML schema type 'wsse:SecurityTokenReference' */
+        struct _wsse__SecurityTokenReference *wsse__SecurityTokenReference;
+        /** Optional element 'wsc:Properties' of XML schema type 'wsc:PropertiesType' */
+        struct wsc__PropertiesType *Properties;
+        struct __wsc__DerivedKeyTokenType_sequence *__DerivedKeyTokenType_sequence;
+        /** Optional element 'wsc:Label' of XML schema type 'xsd:string' */
+        char *Label;
+        /** Optional element 'wsc:Nonce' of XML schema type 'xsd:string' */
+        char *Nonce;
+        /** Optional attribute 'wsu:Id' of XML schema type 'xsd:string' */
+        char *wsu__Id;
+        /** Optional attribute 'Algorithm' of XML schema type 'xsd:string' */
+        char *Algorithm;
+      public:
+        /** Return unique type id SOAP_TYPE_wsc__DerivedKeyTokenType */
+        long soap_type() const { return SOAP_TYPE_wsc__DerivedKeyTokenType; }
+        /** Constructor with member initializations */
+        wsc__DerivedKeyTokenType() : wsse__SecurityTokenReference(), Properties(), __DerivedKeyTokenType_sequence(), Label(), Nonce(), wsu__Id(), Algorithm() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 wsc__DerivedKeyTokenType * SOAP_FMAC2 soap_instantiate_wsc__DerivedKeyTokenType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* wsc.h:114 */
+#ifndef SOAP_TYPE_wsc__PropertiesType
+#define SOAP_TYPE_wsc__PropertiesType (139)
+/* complex XML schema type 'wsc:PropertiesType': */
+struct SOAP_CMAC wsc__PropertiesType {
+      public:
+        /** Return unique type id SOAP_TYPE_wsc__PropertiesType */
+        long soap_type() const { return SOAP_TYPE_wsc__PropertiesType; }
+        /** Constructor with member initializations */
+        wsc__PropertiesType() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 wsc__PropertiesType * SOAP_FMAC2 soap_instantiate_wsc__PropertiesType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml1.h:181 */
+#ifndef SOAP_TYPE___saml1__union_AssertionType
+#define SOAP_TYPE___saml1__union_AssertionType (170)
+/* Wrapper: */
+struct SOAP_CMAC __saml1__union_AssertionType {
+      public:
+        /** Optional element 'saml1:Statement' of XML schema type 'saml1:StatementAbstractType' */
+        struct saml1__StatementAbstractType *saml1__Statement;
+        /** Optional element 'saml1:SubjectStatement' of XML schema type 'saml1:SubjectStatementAbstractType' */
+        struct saml1__SubjectStatementAbstractType *saml1__SubjectStatement;
+        /** Optional element 'saml1:AuthenticationStatement' of XML schema type 'saml1:AuthenticationStatementType' */
+        struct saml1__AuthenticationStatementType *saml1__AuthenticationStatement;
+        /** Optional element 'saml1:AuthorizationDecisionStatement' of XML schema type 'saml1:AuthorizationDecisionStatementType' */
+        struct saml1__AuthorizationDecisionStatementType *saml1__AuthorizationDecisionStatement;
+        /** Optional element 'saml1:AttributeStatement' of XML schema type 'saml1:AttributeStatementType' */
+        struct saml1__AttributeStatementType *saml1__AttributeStatement;
+      public:
+        /** Return unique type id SOAP_TYPE___saml1__union_AssertionType */
+        long soap_type() const { return SOAP_TYPE___saml1__union_AssertionType; }
+        /** Constructor with member initializations */
+        __saml1__union_AssertionType() : saml1__Statement(), saml1__SubjectStatement(), saml1__AuthenticationStatement(), saml1__AuthorizationDecisionStatement(), saml1__AttributeStatement() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 __saml1__union_AssertionType * SOAP_FMAC2 soap_instantiate___saml1__union_AssertionType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml1.h:75 */
+#ifndef SOAP_TYPE_saml1__AssertionType
+#define SOAP_TYPE_saml1__AssertionType (147)
+/* Type saml1__AssertionType is a recursive data type, (in)directly referencing itself through its (base or derived class) members */
+/* complex XML schema type 'saml1:AssertionType': */
+struct SOAP_CMAC saml1__AssertionType {
+      public:
+        /** Optional element 'saml1:Conditions' of XML schema type 'saml1:ConditionsType' */
+        struct saml1__ConditionsType *saml1__Conditions;
+        /** Optional element 'saml1:Advice' of XML schema type 'saml1:AdviceType' */
+        struct saml1__AdviceType *saml1__Advice;
+        /** Sequence of elements '-union-AssertionType' of XML schema type '-saml1:union-AssertionType' stored in dynamic array __union_AssertionType of length __size_AssertionType */
+        int __size_AssertionType;
+        struct __saml1__union_AssertionType *__union_AssertionType;
+        /** Optional element 'ds:Signature' of XML schema type 'ds:Signature' */
+        struct ds__SignatureType *ds__Signature;
+        /** Required attribute 'MajorVersion' of XML schema type 'xsd:string' */
+        char *MajorVersion;
+        /** Required attribute 'MinorVersion' of XML schema type 'xsd:string' */
+        char *MinorVersion;
+        /** Required attribute 'AssertionID' of XML schema type 'xsd:string' */
+        char *AssertionID;
+        /** Required attribute 'Issuer' of XML schema type 'xsd:string' */
+        char *Issuer;
+        /** Required attribute 'IssueInstant' of XML schema type 'xsd:dateTime' */
+        struct timeval IssueInstant;
+        /** Optional attribute 'wsu:Id' of XML schema type 'xsd:string' */
+        char *wsu__Id;
+      public:
+        /** Return unique type id SOAP_TYPE_saml1__AssertionType */
+        long soap_type() const { return SOAP_TYPE_saml1__AssertionType; }
+        /** Constructor with member initializations */
+        saml1__AssertionType() : saml1__Conditions(), saml1__Advice(), __size_AssertionType(), __union_AssertionType(), ds__Signature(), MajorVersion(), MinorVersion(), AssertionID(), Issuer(), IssueInstant(), wsu__Id() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml1__AssertionType * SOAP_FMAC2 soap_instantiate_saml1__AssertionType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml1.h:224 */
+#ifndef SOAP_TYPE___saml1__union_ConditionsType
+#define SOAP_TYPE___saml1__union_ConditionsType (178)
+/* Wrapper: */
+struct SOAP_CMAC __saml1__union_ConditionsType {
+      public:
+        /** Optional element 'saml1:AudienceRestrictionCondition' of XML schema type 'saml1:AudienceRestrictionConditionType' */
+        struct saml1__AudienceRestrictionConditionType *saml1__AudienceRestrictionCondition;
+        /** Optional element 'saml1:DoNotCacheCondition' of XML schema type 'saml1:DoNotCacheConditionType' */
+        struct saml1__DoNotCacheConditionType *saml1__DoNotCacheCondition;
+        /** Optional element 'saml1:Condition' of XML schema type 'saml1:ConditionAbstractType' */
+        struct saml1__ConditionAbstractType *saml1__Condition;
+      public:
+        /** Return unique type id SOAP_TYPE___saml1__union_ConditionsType */
+        long soap_type() const { return SOAP_TYPE___saml1__union_ConditionsType; }
+        /** Constructor with member initializations */
+        __saml1__union_ConditionsType() : saml1__AudienceRestrictionCondition(), saml1__DoNotCacheCondition(), saml1__Condition() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 __saml1__union_ConditionsType * SOAP_FMAC2 soap_instantiate___saml1__union_ConditionsType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml1.h:78 */
+#ifndef SOAP_TYPE_saml1__ConditionsType
+#define SOAP_TYPE_saml1__ConditionsType (148)
+/* complex XML schema type 'saml1:ConditionsType': */
+struct SOAP_CMAC saml1__ConditionsType {
+      public:
+        /** Sequence of elements '-union-ConditionsType' of XML schema type '-saml1:union-ConditionsType' stored in dynamic array __union_ConditionsType of length __size_ConditionsType */
+        int __size_ConditionsType;
+        struct __saml1__union_ConditionsType *__union_ConditionsType;
+        /** Optional attribute 'NotBefore' of XML schema type 'xsd:dateTime' */
+        struct timeval *NotBefore;
+        /** Optional attribute 'NotOnOrAfter' of XML schema type 'xsd:dateTime' */
+        struct timeval *NotOnOrAfter;
+      public:
+        /** Return unique type id SOAP_TYPE_saml1__ConditionsType */
+        long soap_type() const { return SOAP_TYPE_saml1__ConditionsType; }
+        /** Constructor with member initializations */
+        saml1__ConditionsType() : __size_ConditionsType(), __union_ConditionsType(), NotBefore(), NotOnOrAfter() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml1__ConditionsType * SOAP_FMAC2 soap_instantiate_saml1__ConditionsType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml1.h:81 */
+#ifndef SOAP_TYPE_saml1__ConditionAbstractType
+#define SOAP_TYPE_saml1__ConditionAbstractType (149)
+/* complex XML schema type 'saml1:ConditionAbstractType': */
+struct SOAP_CMAC saml1__ConditionAbstractType {
+      public:
+        /** Return unique type id SOAP_TYPE_saml1__ConditionAbstractType */
+        long soap_type() const { return SOAP_TYPE_saml1__ConditionAbstractType; }
+        /** Constructor with member initializations */
+        saml1__ConditionAbstractType() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml1__ConditionAbstractType * SOAP_FMAC2 soap_instantiate_saml1__ConditionAbstractType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml1.h:270 */
+#ifndef SOAP_TYPE___saml1__union_AdviceType
+#define SOAP_TYPE___saml1__union_AdviceType (184)
+/* Wrapper: */
+struct SOAP_CMAC __saml1__union_AdviceType {
+      public:
+        /** Optional element 'saml1:AssertionIDReference' of XML schema type 'xsd:string' */
+        char *saml1__AssertionIDReference;
+        /** Optional element 'saml1:Assertion' of XML schema type 'saml1:AssertionType' */
+        struct saml1__AssertionType *saml1__Assertion;
+      public:
+        /** Return unique type id SOAP_TYPE___saml1__union_AdviceType */
+        long soap_type() const { return SOAP_TYPE___saml1__union_AdviceType; }
+        /** Constructor with member initializations */
+        __saml1__union_AdviceType() : saml1__AssertionIDReference(), saml1__Assertion() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 __saml1__union_AdviceType * SOAP_FMAC2 soap_instantiate___saml1__union_AdviceType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml1.h:90 */
+#ifndef SOAP_TYPE_saml1__AdviceType
+#define SOAP_TYPE_saml1__AdviceType (152)
+/* complex XML schema type 'saml1:AdviceType': */
+struct SOAP_CMAC saml1__AdviceType {
+      public:
+        /** Sequence of elements '-union-AdviceType' of XML schema type '-saml1:union-AdviceType' stored in dynamic array __union_AdviceType of length __size_AdviceType */
+        int __size_AdviceType;
+        struct __saml1__union_AdviceType *__union_AdviceType;
+      public:
+        /** Return unique type id SOAP_TYPE_saml1__AdviceType */
+        long soap_type() const { return SOAP_TYPE_saml1__AdviceType; }
+        /** Constructor with member initializations */
+        saml1__AdviceType() : __size_AdviceType(), __union_AdviceType() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml1__AdviceType * SOAP_FMAC2 soap_instantiate_saml1__AdviceType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml1.h:93 */
+#ifndef SOAP_TYPE_saml1__StatementAbstractType
+#define SOAP_TYPE_saml1__StatementAbstractType (153)
+/* complex XML schema type 'saml1:StatementAbstractType': */
+struct SOAP_CMAC saml1__StatementAbstractType {
+      public:
+        /** Return unique type id SOAP_TYPE_saml1__StatementAbstractType */
+        long soap_type() const { return SOAP_TYPE_saml1__StatementAbstractType; }
+        /** Constructor with member initializations */
+        saml1__StatementAbstractType() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml1__StatementAbstractType * SOAP_FMAC2 soap_instantiate_saml1__StatementAbstractType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml1.h:99 */
+#ifndef SOAP_TYPE_saml1__SubjectType
+#define SOAP_TYPE_saml1__SubjectType (155)
+/* complex XML schema type 'saml1:SubjectType': */
+struct SOAP_CMAC saml1__SubjectType {
+      public:
+        /** Optional element 'saml1:NameIdentifier' of XML schema type 'saml1:NameIdentifierType' */
+        struct saml1__NameIdentifierType *saml1__NameIdentifier;
+        /** Optional element 'saml1:SubjectConfirmation' of XML schema type 'saml1:SubjectConfirmationType' */
+        struct saml1__SubjectConfirmationType *saml1__SubjectConfirmation;
+        /** Optional element 'saml1:SubjectConfirmation' of XML schema type 'saml1:SubjectConfirmationType' */
+        struct saml1__SubjectConfirmationType *saml1__SubjectConfirmation_;
+      public:
+        /** Return unique type id SOAP_TYPE_saml1__SubjectType */
+        long soap_type() const { return SOAP_TYPE_saml1__SubjectType; }
+        /** Constructor with member initializations */
+        saml1__SubjectType() : saml1__NameIdentifier(), saml1__SubjectConfirmation(), saml1__SubjectConfirmation_() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml1__SubjectType * SOAP_FMAC2 soap_instantiate_saml1__SubjectType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml1.h:105 */
+#ifndef SOAP_TYPE_saml1__SubjectConfirmationType
+#define SOAP_TYPE_saml1__SubjectConfirmationType (157)
+/* complex XML schema type 'saml1:SubjectConfirmationType': */
+struct SOAP_CMAC saml1__SubjectConfirmationType {
+      public:
+        /** Sequence of at least 1 elements 'saml1:ConfirmationMethod' of XML schema type 'xsd:string' stored in dynamic array saml1__ConfirmationMethod of length __sizeConfirmationMethod */
+        int __sizeConfirmationMethod;
+        char **saml1__ConfirmationMethod;
+        /** Optional element 'saml1:SubjectConfirmationData' of XML schema type 'xsd:anyType' */
+        char *saml1__SubjectConfirmationData;
+        /** Optional element 'ds:KeyInfo' of XML schema type 'ds:KeyInfo' */
+        struct ds__KeyInfoType *ds__KeyInfo;
+      public:
+        /** Return unique type id SOAP_TYPE_saml1__SubjectConfirmationType */
+        long soap_type() const { return SOAP_TYPE_saml1__SubjectConfirmationType; }
+        /** Constructor with member initializations */
+        saml1__SubjectConfirmationType() : __sizeConfirmationMethod(), saml1__ConfirmationMethod(), saml1__SubjectConfirmationData(), ds__KeyInfo() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml1__SubjectConfirmationType * SOAP_FMAC2 soap_instantiate_saml1__SubjectConfirmationType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml1.h:111 */
+#ifndef SOAP_TYPE_saml1__SubjectLocalityType
+#define SOAP_TYPE_saml1__SubjectLocalityType (159)
+/* complex XML schema type 'saml1:SubjectLocalityType': */
+struct SOAP_CMAC saml1__SubjectLocalityType {
+      public:
+        /** Optional attribute 'IPAddress' of XML schema type 'xsd:string' */
+        char *IPAddress;
+        /** Optional attribute 'DNSAddress' of XML schema type 'xsd:string' */
+        char *DNSAddress;
+      public:
+        /** Return unique type id SOAP_TYPE_saml1__SubjectLocalityType */
+        long soap_type() const { return SOAP_TYPE_saml1__SubjectLocalityType; }
+        /** Constructor with member initializations */
+        saml1__SubjectLocalityType() : IPAddress(), DNSAddress() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml1__SubjectLocalityType * SOAP_FMAC2 soap_instantiate_saml1__SubjectLocalityType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml1.h:114 */
+#ifndef SOAP_TYPE_saml1__AuthorityBindingType
+#define SOAP_TYPE_saml1__AuthorityBindingType (160)
+/* complex XML schema type 'saml1:AuthorityBindingType': */
+struct SOAP_CMAC saml1__AuthorityBindingType {
+      public:
+        /** Required attribute 'AuthorityKind' of XML schema type 'xsd:QName' */
+        char *AuthorityKind;
+        /** Required attribute 'Location' of XML schema type 'xsd:string' */
+        char *Location;
+        /** Required attribute 'Binding' of XML schema type 'xsd:string' */
+        char *Binding;
+      public:
+        /** Return unique type id SOAP_TYPE_saml1__AuthorityBindingType */
+        long soap_type() const { return SOAP_TYPE_saml1__AuthorityBindingType; }
+        /** Constructor with member initializations */
+        saml1__AuthorityBindingType() : AuthorityKind(), Location(), Binding() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml1__AuthorityBindingType * SOAP_FMAC2 soap_instantiate_saml1__AuthorityBindingType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml1.h:395 */
+#ifndef SOAP_TYPE___saml1__union_EvidenceType
+#define SOAP_TYPE___saml1__union_EvidenceType (190)
+/* Wrapper: */
+struct SOAP_CMAC __saml1__union_EvidenceType {
+      public:
+        /** Optional element 'saml1:AssertionIDReference' of XML schema type 'xsd:string' */
+        char *saml1__AssertionIDReference;
+        /** Optional element 'saml1:Assertion' of XML schema type 'saml1:AssertionType' */
+        struct saml1__AssertionType *saml1__Assertion;
+      public:
+        /** Return unique type id SOAP_TYPE___saml1__union_EvidenceType */
+        long soap_type() const { return SOAP_TYPE___saml1__union_EvidenceType; }
+        /** Constructor with member initializations */
+        __saml1__union_EvidenceType() : saml1__AssertionIDReference(), saml1__Assertion() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 __saml1__union_EvidenceType * SOAP_FMAC2 soap_instantiate___saml1__union_EvidenceType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml1.h:123 */
+#ifndef SOAP_TYPE_saml1__EvidenceType
+#define SOAP_TYPE_saml1__EvidenceType (163)
+/* complex XML schema type 'saml1:EvidenceType': */
+struct SOAP_CMAC saml1__EvidenceType {
+      public:
+        /** Sequence of elements '-union-EvidenceType' of XML schema type '-saml1:union-EvidenceType' stored in dynamic array __union_EvidenceType of length __size_EvidenceType */
+        int __size_EvidenceType;
+        struct __saml1__union_EvidenceType *__union_EvidenceType;
+      public:
+        /** Return unique type id SOAP_TYPE_saml1__EvidenceType */
+        long soap_type() const { return SOAP_TYPE_saml1__EvidenceType; }
+        /** Constructor with member initializations */
+        saml1__EvidenceType() : __size_EvidenceType(), __union_EvidenceType() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml1__EvidenceType * SOAP_FMAC2 soap_instantiate_saml1__EvidenceType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml1.h:129 */
+#ifndef SOAP_TYPE_saml1__AttributeDesignatorType
+#define SOAP_TYPE_saml1__AttributeDesignatorType (165)
+/* complex XML schema type 'saml1:AttributeDesignatorType': */
+struct SOAP_CMAC saml1__AttributeDesignatorType {
+      public:
+        /** Required attribute 'AttributeName' of XML schema type 'xsd:string' */
+        char *AttributeName;
+        /** Required attribute 'AttributeNamespace' of XML schema type 'xsd:string' */
+        char *AttributeNamespace;
+      public:
+        /** Return unique type id SOAP_TYPE_saml1__AttributeDesignatorType */
+        long soap_type() const { return SOAP_TYPE_saml1__AttributeDesignatorType; }
+        /** Constructor with member initializations */
+        saml1__AttributeDesignatorType() : AttributeName(), AttributeNamespace() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml1__AttributeDesignatorType * SOAP_FMAC2 soap_instantiate_saml1__AttributeDesignatorType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml1.h:84 */
+#ifndef SOAP_TYPE_saml1__AudienceRestrictionConditionType
+#define SOAP_TYPE_saml1__AudienceRestrictionConditionType (150)
+/* complex XML schema type 'saml1:AudienceRestrictionConditionType': */
+struct SOAP_CMAC saml1__AudienceRestrictionConditionType {
+      public:
+        /** Sequence of at least 1 elements 'saml1:Audience' of XML schema type 'xsd:string' stored in dynamic array saml1__Audience of length __sizeAudience */
+        int __sizeAudience;
+        char **saml1__Audience;
+      public:
+        /** Return unique type id SOAP_TYPE_saml1__AudienceRestrictionConditionType */
+        long soap_type() const { return SOAP_TYPE_saml1__AudienceRestrictionConditionType; }
+        /** Constructor with member initializations */
+        saml1__AudienceRestrictionConditionType() : __sizeAudience(), saml1__Audience() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml1__AudienceRestrictionConditionType * SOAP_FMAC2 soap_instantiate_saml1__AudienceRestrictionConditionType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml1.h:87 */
+#ifndef SOAP_TYPE_saml1__DoNotCacheConditionType
+#define SOAP_TYPE_saml1__DoNotCacheConditionType (151)
+/* complex XML schema type 'saml1:DoNotCacheConditionType': */
+struct SOAP_CMAC saml1__DoNotCacheConditionType {
+      public:
+        /** Return unique type id SOAP_TYPE_saml1__DoNotCacheConditionType */
+        long soap_type() const { return SOAP_TYPE_saml1__DoNotCacheConditionType; }
+        /** Constructor with member initializations */
+        saml1__DoNotCacheConditionType() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml1__DoNotCacheConditionType * SOAP_FMAC2 soap_instantiate_saml1__DoNotCacheConditionType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml1.h:96 */
+#ifndef SOAP_TYPE_saml1__SubjectStatementAbstractType
+#define SOAP_TYPE_saml1__SubjectStatementAbstractType (154)
+/* complex XML schema type 'saml1:SubjectStatementAbstractType': */
+struct SOAP_CMAC saml1__SubjectStatementAbstractType {
+      public:
+        /** Required element 'saml1:Subject' of XML schema type 'saml1:SubjectType' */
+        struct saml1__SubjectType *saml1__Subject;
+      public:
+        /** Return unique type id SOAP_TYPE_saml1__SubjectStatementAbstractType */
+        long soap_type() const { return SOAP_TYPE_saml1__SubjectStatementAbstractType; }
+        /** Constructor with member initializations */
+        saml1__SubjectStatementAbstractType() : saml1__Subject() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml1__SubjectStatementAbstractType * SOAP_FMAC2 soap_instantiate_saml1__SubjectStatementAbstractType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml1.h:102 */
+#ifndef SOAP_TYPE_saml1__NameIdentifierType
+#define SOAP_TYPE_saml1__NameIdentifierType (156)
+/* simple XML schema type 'saml1:NameIdentifierType': */
+struct SOAP_CMAC saml1__NameIdentifierType {
+      public:
+        /** Simple content of XML schema type 'xsd:string' wrapped by this struct */
+        char *__item;
+        /** Optional attribute 'NameQualifier' of XML schema type 'xsd:string' */
+        char *NameQualifier;
+        /** Optional attribute 'Format' of XML schema type 'xsd:string' */
+        char *Format;
+      public:
+        /** Return unique type id SOAP_TYPE_saml1__NameIdentifierType */
+        long soap_type() const { return SOAP_TYPE_saml1__NameIdentifierType; }
+        /** Constructor with member initializations */
+        saml1__NameIdentifierType() : __item(), NameQualifier(), Format() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml1__NameIdentifierType * SOAP_FMAC2 soap_instantiate_saml1__NameIdentifierType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml1.h:120 */
+#ifndef SOAP_TYPE_saml1__ActionType
+#define SOAP_TYPE_saml1__ActionType (162)
+/* simple XML schema type 'saml1:ActionType': */
+struct SOAP_CMAC saml1__ActionType {
+      public:
+        /** Simple content of XML schema type 'xsd:string' wrapped by this struct */
+        char *__item;
+        /** Optional attribute 'Namespace' of XML schema type 'xsd:string' */
+        char *Namespace;
+      public:
+        /** Return unique type id SOAP_TYPE_saml1__ActionType */
+        long soap_type() const { return SOAP_TYPE_saml1__ActionType; }
+        /** Constructor with member initializations */
+        saml1__ActionType() : __item(), Namespace() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml1__ActionType * SOAP_FMAC2 soap_instantiate_saml1__ActionType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml1.h:132 */
+#ifndef SOAP_TYPE_saml1__AttributeType
+#define SOAP_TYPE_saml1__AttributeType (166)
+/* complex XML schema type 'saml1:AttributeType': */
+struct SOAP_CMAC saml1__AttributeType {
+      public:
+        /** Required attribute 'AttributeName' of XML schema type 'xsd:string' */
+        char *AttributeName;
+        /** Required attribute 'AttributeNamespace' of XML schema type 'xsd:string' */
+        char *AttributeNamespace;
+        /** Sequence of at least 1 elements 'saml1:AttributeValue' of XML schema type 'xsd:anyType' stored in dynamic array saml1__AttributeValue of length __sizeAttributeValue */
+        int __sizeAttributeValue;
+        char **saml1__AttributeValue;
+      public:
+        /** Return unique type id SOAP_TYPE_saml1__AttributeType */
+        long soap_type() const { return SOAP_TYPE_saml1__AttributeType; }
+        /** Constructor with member initializations */
+        saml1__AttributeType() : AttributeName(), AttributeNamespace(), __sizeAttributeValue(), saml1__AttributeValue() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml1__AttributeType * SOAP_FMAC2 soap_instantiate_saml1__AttributeType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml1.h:108 */
+#ifndef SOAP_TYPE_saml1__AuthenticationStatementType
+#define SOAP_TYPE_saml1__AuthenticationStatementType (158)
+/* complex XML schema type 'saml1:AuthenticationStatementType': */
+struct SOAP_CMAC saml1__AuthenticationStatementType {
+      public:
+        /** Required element 'saml1:Subject' of XML schema type 'saml1:SubjectType' */
+        struct saml1__SubjectType *saml1__Subject;
+        /** Optional element 'saml1:SubjectLocality' of XML schema type 'saml1:SubjectLocalityType' */
+        struct saml1__SubjectLocalityType *saml1__SubjectLocality;
+        /** Sequence of elements 'saml1:AuthorityBinding' of XML schema type 'saml1:AuthorityBindingType' stored in dynamic array saml1__AuthorityBinding of length __sizeAuthorityBinding */
+        int __sizeAuthorityBinding;
+        struct saml1__AuthorityBindingType *saml1__AuthorityBinding;
+        /** Required attribute 'AuthenticationMethod' of XML schema type 'xsd:string' */
+        char *AuthenticationMethod;
+        /** Required attribute 'AuthenticationInstant' of XML schema type 'xsd:dateTime' */
+        struct timeval AuthenticationInstant;
+      public:
+        /** Return unique type id SOAP_TYPE_saml1__AuthenticationStatementType */
+        long soap_type() const { return SOAP_TYPE_saml1__AuthenticationStatementType; }
+        /** Constructor with member initializations */
+        saml1__AuthenticationStatementType() : saml1__Subject(), saml1__SubjectLocality(), __sizeAuthorityBinding(), saml1__AuthorityBinding(), AuthenticationMethod(), AuthenticationInstant() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml1__AuthenticationStatementType * SOAP_FMAC2 soap_instantiate_saml1__AuthenticationStatementType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml1.h:117 */
+#ifndef SOAP_TYPE_saml1__AuthorizationDecisionStatementType
+#define SOAP_TYPE_saml1__AuthorizationDecisionStatementType (161)
+/* complex XML schema type 'saml1:AuthorizationDecisionStatementType': */
+struct SOAP_CMAC saml1__AuthorizationDecisionStatementType {
+      public:
+        /** Required element 'saml1:Subject' of XML schema type 'saml1:SubjectType' */
+        struct saml1__SubjectType *saml1__Subject;
+        /** Sequence of at least 1 elements 'saml1:Action' of XML schema type 'saml1:ActionType' stored in dynamic array saml1__Action of length __sizeAction */
+        int __sizeAction;
+        struct saml1__ActionType *saml1__Action;
+        /** Optional element 'saml1:Evidence' of XML schema type 'saml1:EvidenceType' */
+        struct saml1__EvidenceType *saml1__Evidence;
+        /** Required attribute 'Resource' of XML schema type 'xsd:string' */
+        char *Resource;
+        /** Required attribute 'Decision' of XML schema type 'saml1:DecisionType' */
+        enum saml1__DecisionType Decision;
+      public:
+        /** Return unique type id SOAP_TYPE_saml1__AuthorizationDecisionStatementType */
+        long soap_type() const { return SOAP_TYPE_saml1__AuthorizationDecisionStatementType; }
+        /** Constructor with member initializations */
+        saml1__AuthorizationDecisionStatementType() : saml1__Subject(), __sizeAction(), saml1__Action(), saml1__Evidence(), Resource(), Decision() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml1__AuthorizationDecisionStatementType * SOAP_FMAC2 soap_instantiate_saml1__AuthorizationDecisionStatementType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml1.h:126 */
+#ifndef SOAP_TYPE_saml1__AttributeStatementType
+#define SOAP_TYPE_saml1__AttributeStatementType (164)
+/* complex XML schema type 'saml1:AttributeStatementType': */
+struct SOAP_CMAC saml1__AttributeStatementType {
+      public:
+        /** Required element 'saml1:Subject' of XML schema type 'saml1:SubjectType' */
+        struct saml1__SubjectType *saml1__Subject;
+        /** Sequence of at least 1 elements 'saml1:Attribute' of XML schema type 'saml1:AttributeType' stored in dynamic array saml1__Attribute of length __sizeAttribute */
+        int __sizeAttribute;
+        struct saml1__AttributeType *saml1__Attribute;
+      public:
+        /** Return unique type id SOAP_TYPE_saml1__AttributeStatementType */
+        long soap_type() const { return SOAP_TYPE_saml1__AttributeStatementType; }
+        /** Constructor with member initializations */
+        saml1__AttributeStatementType() : saml1__Subject(), __sizeAttribute(), saml1__Attribute() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml1__AttributeStatementType * SOAP_FMAC2 soap_instantiate_saml1__AttributeStatementType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:75 */
+#ifndef SOAP_TYPE_saml2__BaseIDAbstractType
+#define SOAP_TYPE_saml2__BaseIDAbstractType (223)
+/* complex XML schema type 'saml2:BaseIDAbstractType': */
+struct SOAP_CMAC saml2__BaseIDAbstractType {
+      public:
+        /** Optional attribute 'NameQualifier' of XML schema type 'xsd:string' */
+        char *NameQualifier;
+        /** Optional attribute 'SPNameQualifier' of XML schema type 'xsd:string' */
+        char *SPNameQualifier;
+      public:
+        /** Return unique type id SOAP_TYPE_saml2__BaseIDAbstractType */
+        long soap_type() const { return SOAP_TYPE_saml2__BaseIDAbstractType; }
+        /** Constructor with member initializations */
+        saml2__BaseIDAbstractType() : NameQualifier(), SPNameQualifier() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml2__BaseIDAbstractType * SOAP_FMAC2 soap_instantiate_saml2__BaseIDAbstractType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:81 */
+#ifndef SOAP_TYPE_saml2__EncryptedElementType
+#define SOAP_TYPE_saml2__EncryptedElementType (225)
+/* complex XML schema type 'saml2:EncryptedElementType': */
+struct SOAP_CMAC saml2__EncryptedElementType {
+      public:
+        /** Required element 'xenc:EncryptedData' of XML schema type 'xenc:EncryptedDataType' */
+        struct xenc__EncryptedDataType xenc__EncryptedData;
+        /** Sequence of elements 'xenc:EncryptedKey' of XML schema type 'xenc:EncryptedKeyType' stored in dynamic array xenc__EncryptedKey of length __sizexenc__EncryptedKey */
+        int __sizexenc__EncryptedKey;
+        struct xenc__EncryptedKeyType **xenc__EncryptedKey;
+      public:
+        /** Return unique type id SOAP_TYPE_saml2__EncryptedElementType */
+        long soap_type() const { return SOAP_TYPE_saml2__EncryptedElementType; }
+        /** Constructor with member initializations */
+        saml2__EncryptedElementType() : xenc__EncryptedData(), __sizexenc__EncryptedKey(), xenc__EncryptedKey() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml2__EncryptedElementType * SOAP_FMAC2 soap_instantiate_saml2__EncryptedElementType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:234 */
+#ifndef SOAP_TYPE___saml2__union_AssertionType
+#define SOAP_TYPE___saml2__union_AssertionType (252)
+/* Wrapper: */
+struct SOAP_CMAC __saml2__union_AssertionType {
+      public:
+        /** Optional element 'saml2:Statement' of XML schema type 'saml2:StatementAbstractType' */
+        struct saml2__StatementAbstractType *saml2__Statement;
+        /** Optional element 'saml2:AuthnStatement' of XML schema type 'saml2:AuthnStatementType' */
+        struct saml2__AuthnStatementType *saml2__AuthnStatement;
+        /** Optional element 'saml2:AuthzDecisionStatement' of XML schema type 'saml2:AuthzDecisionStatementType' */
+        struct saml2__AuthzDecisionStatementType *saml2__AuthzDecisionStatement;
+        /** Optional element 'saml2:AttributeStatement' of XML schema type 'saml2:AttributeStatementType' */
+        struct saml2__AttributeStatementType *saml2__AttributeStatement;
+      public:
+        /** Return unique type id SOAP_TYPE___saml2__union_AssertionType */
+        long soap_type() const { return SOAP_TYPE___saml2__union_AssertionType; }
+        /** Constructor with member initializations */
+        __saml2__union_AssertionType() : saml2__Statement(), saml2__AuthnStatement(), saml2__AuthzDecisionStatement(), saml2__AttributeStatement() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 __saml2__union_AssertionType * SOAP_FMAC2 soap_instantiate___saml2__union_AssertionType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:84 */
+#ifndef SOAP_TYPE_saml2__AssertionType
+#define SOAP_TYPE_saml2__AssertionType (226)
+/* Type saml2__AssertionType is a recursive data type, (in)directly referencing itself through its (base or derived class) members */
+/* complex XML schema type 'saml2:AssertionType': */
+struct SOAP_CMAC saml2__AssertionType {
+      public:
+        /** Required element 'saml2:Issuer' of XML schema type 'saml2:NameIDType' */
+        struct saml2__NameIDType *saml2__Issuer;
+        /** Optional element 'ds:Signature' of XML schema type 'ds:Signature' */
+        struct ds__SignatureType *ds__Signature;
+        /** Optional element 'saml2:Subject' of XML schema type 'saml2:SubjectType' */
+        struct saml2__SubjectType *saml2__Subject;
+        /** Optional element 'saml2:Conditions' of XML schema type 'saml2:ConditionsType' */
+        struct saml2__ConditionsType *saml2__Conditions;
+        /** Optional element 'saml2:Advice' of XML schema type 'saml2:AdviceType' */
+        struct saml2__AdviceType *saml2__Advice;
+        /** Sequence of elements '-union-AssertionType' of XML schema type '-saml2:union-AssertionType' stored in dynamic array __union_AssertionType of length __size_AssertionType */
+        int __size_AssertionType;
+        struct __saml2__union_AssertionType *__union_AssertionType;
+        /** Required attribute 'Version' of XML schema type 'xsd:string' */
+        char *Version;
+        /** Required attribute 'ID' of XML schema type 'xsd:string' */
+        char *ID;
+        /** Required attribute 'IssueInstant' of XML schema type 'xsd:dateTime' */
+        struct timeval IssueInstant;
+        /** Optional attribute 'wsu:Id' of XML schema type 'xsd:string' */
+        char *wsu__Id;
+      public:
+        /** Return unique type id SOAP_TYPE_saml2__AssertionType */
+        long soap_type() const { return SOAP_TYPE_saml2__AssertionType; }
+        /** Constructor with member initializations */
+        saml2__AssertionType() : saml2__Issuer(), ds__Signature(), saml2__Subject(), saml2__Conditions(), saml2__Advice(), __size_AssertionType(), __union_AssertionType(), Version(), ID(), IssueInstant(), wsu__Id() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml2__AssertionType * SOAP_FMAC2 soap_instantiate_saml2__AssertionType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:87 */
+#ifndef SOAP_TYPE_saml2__SubjectType
+#define SOAP_TYPE_saml2__SubjectType (227)
+/* complex XML schema type 'saml2:SubjectType': */
+struct SOAP_CMAC saml2__SubjectType {
+      public:
+        /** Optional element 'saml2:BaseID' of XML schema type 'saml2:BaseIDAbstractType' */
+        struct saml2__BaseIDAbstractType *saml2__BaseID;
+        /** Optional element 'saml2:NameID' of XML schema type 'saml2:NameIDType' */
+        struct saml2__NameIDType *saml2__NameID;
+        /** Optional element 'saml2:EncryptedID' of XML schema type 'saml2:EncryptedElementType' */
+        struct saml2__EncryptedElementType *saml2__EncryptedID;
+        /** Sequence of elements 'saml2:SubjectConfirmation' of XML schema type 'saml2:SubjectConfirmationType' stored in dynamic array saml2__SubjectConfirmation of length __sizeSubjectConfirmation */
+        int __sizeSubjectConfirmation;
+        struct saml2__SubjectConfirmationType *saml2__SubjectConfirmation;
+        /** Sequence of elements 'saml2:SubjectConfirmation' of XML schema type 'saml2:SubjectConfirmationType' stored in dynamic array saml2__SubjectConfirmation_ of length __sizeSubjectConfirmation_ */
+        int __sizeSubjectConfirmation_;
+        struct saml2__SubjectConfirmationType *saml2__SubjectConfirmation_;
+      public:
+        /** Return unique type id SOAP_TYPE_saml2__SubjectType */
+        long soap_type() const { return SOAP_TYPE_saml2__SubjectType; }
+        /** Constructor with member initializations */
+        saml2__SubjectType() : saml2__BaseID(), saml2__NameID(), saml2__EncryptedID(), __sizeSubjectConfirmation(), saml2__SubjectConfirmation(), __sizeSubjectConfirmation_(), saml2__SubjectConfirmation_() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml2__SubjectType * SOAP_FMAC2 soap_instantiate_saml2__SubjectType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:90 */
+#ifndef SOAP_TYPE_saml2__SubjectConfirmationType
+#define SOAP_TYPE_saml2__SubjectConfirmationType (228)
+/* complex XML schema type 'saml2:SubjectConfirmationType': */
+struct SOAP_CMAC saml2__SubjectConfirmationType {
+      public:
+        /** Optional element 'saml2:BaseID' of XML schema type 'saml2:BaseIDAbstractType' */
+        struct saml2__BaseIDAbstractType *saml2__BaseID;
+        /** Optional element 'saml2:NameID' of XML schema type 'saml2:NameIDType' */
+        struct saml2__NameIDType *saml2__NameID;
+        /** Optional element 'saml2:EncryptedID' of XML schema type 'saml2:EncryptedElementType' */
+        struct saml2__EncryptedElementType *saml2__EncryptedID;
+        /** Optional element 'saml2:SubjectConfirmationData' of XML schema type 'saml2:SubjectConfirmationDataType' */
+        struct saml2__SubjectConfirmationDataType *saml2__SubjectConfirmationData;
+        /** Required attribute 'Method' of XML schema type 'xsd:string' */
+        char *Method;
+      public:
+        /** Return unique type id SOAP_TYPE_saml2__SubjectConfirmationType */
+        long soap_type() const { return SOAP_TYPE_saml2__SubjectConfirmationType; }
+        /** Constructor with member initializations */
+        saml2__SubjectConfirmationType() : saml2__BaseID(), saml2__NameID(), saml2__EncryptedID(), saml2__SubjectConfirmationData(), Method() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml2__SubjectConfirmationType * SOAP_FMAC2 soap_instantiate_saml2__SubjectConfirmationType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:327 */
+#ifndef SOAP_TYPE___saml2__union_ConditionsType
+#define SOAP_TYPE___saml2__union_ConditionsType (262)
+/* Wrapper: */
+struct SOAP_CMAC __saml2__union_ConditionsType {
+      public:
+        /** Optional element 'saml2:Condition' of XML schema type 'saml2:ConditionAbstractType' */
+        struct saml2__ConditionAbstractType *saml2__Condition;
+        /** Optional element 'saml2:AudienceRestriction' of XML schema type 'saml2:AudienceRestrictionType' */
+        struct saml2__AudienceRestrictionType *saml2__AudienceRestriction;
+        /** Optional element 'saml2:OneTimeUse' of XML schema type 'saml2:OneTimeUseType' */
+        struct saml2__OneTimeUseType *saml2__OneTimeUse;
+        /** Optional element 'saml2:ProxyRestriction' of XML schema type 'saml2:ProxyRestrictionType' */
+        struct saml2__ProxyRestrictionType *saml2__ProxyRestriction;
+      public:
+        /** Return unique type id SOAP_TYPE___saml2__union_ConditionsType */
+        long soap_type() const { return SOAP_TYPE___saml2__union_ConditionsType; }
+        /** Constructor with member initializations */
+        __saml2__union_ConditionsType() : saml2__Condition(), saml2__AudienceRestriction(), saml2__OneTimeUse(), saml2__ProxyRestriction() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 __saml2__union_ConditionsType * SOAP_FMAC2 soap_instantiate___saml2__union_ConditionsType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:99 */
+#ifndef SOAP_TYPE_saml2__ConditionsType
+#define SOAP_TYPE_saml2__ConditionsType (231)
+/* complex XML schema type 'saml2:ConditionsType': */
+struct SOAP_CMAC saml2__ConditionsType {
+      public:
+        /** Sequence of elements '-union-ConditionsType' of XML schema type '-saml2:union-ConditionsType' stored in dynamic array __union_ConditionsType of length __size_ConditionsType */
+        int __size_ConditionsType;
+        struct __saml2__union_ConditionsType *__union_ConditionsType;
+        /** Optional attribute 'NotBefore' of XML schema type 'xsd:dateTime' */
+        struct timeval *NotBefore;
+        /** Optional attribute 'NotOnOrAfter' of XML schema type 'xsd:dateTime' */
+        struct timeval *NotOnOrAfter;
+      public:
+        /** Return unique type id SOAP_TYPE_saml2__ConditionsType */
+        long soap_type() const { return SOAP_TYPE_saml2__ConditionsType; }
+        /** Constructor with member initializations */
+        saml2__ConditionsType() : __size_ConditionsType(), __union_ConditionsType(), NotBefore(), NotOnOrAfter() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml2__ConditionsType * SOAP_FMAC2 soap_instantiate_saml2__ConditionsType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:102 */
+#ifndef SOAP_TYPE_saml2__ConditionAbstractType
+#define SOAP_TYPE_saml2__ConditionAbstractType (232)
+/* complex XML schema type 'saml2:ConditionAbstractType': */
+struct SOAP_CMAC saml2__ConditionAbstractType {
+      public:
+        /** Return unique type id SOAP_TYPE_saml2__ConditionAbstractType */
+        long soap_type() const { return SOAP_TYPE_saml2__ConditionAbstractType; }
+        /** Constructor with member initializations */
+        saml2__ConditionAbstractType() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml2__ConditionAbstractType * SOAP_FMAC2 soap_instantiate_saml2__ConditionAbstractType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:376 */
+#ifndef SOAP_TYPE___saml2__union_AdviceType
+#define SOAP_TYPE___saml2__union_AdviceType (268)
+/* Wrapper: */
+struct SOAP_CMAC __saml2__union_AdviceType {
+      public:
+        /** Optional element 'saml2:AssertionIDRef' of XML schema type 'xsd:string' */
+        char *saml2__AssertionIDRef;
+        /** Optional element 'saml2:AssertionURIRef' of XML schema type 'xsd:string' */
+        char *saml2__AssertionURIRef;
+        /** Optional element 'saml2:Assertion' of XML schema type 'saml2:AssertionType' */
+        struct saml2__AssertionType *saml2__Assertion;
+        /** Optional element 'saml2:EncryptedAssertion' of XML schema type 'saml2:EncryptedElementType' */
+        struct saml2__EncryptedElementType *saml2__EncryptedAssertion;
+      public:
+        /** Return unique type id SOAP_TYPE___saml2__union_AdviceType */
+        long soap_type() const { return SOAP_TYPE___saml2__union_AdviceType; }
+        /** Constructor with member initializations */
+        __saml2__union_AdviceType() : saml2__AssertionIDRef(), saml2__AssertionURIRef(), saml2__Assertion(), saml2__EncryptedAssertion() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 __saml2__union_AdviceType * SOAP_FMAC2 soap_instantiate___saml2__union_AdviceType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:114 */
+#ifndef SOAP_TYPE_saml2__AdviceType
+#define SOAP_TYPE_saml2__AdviceType (236)
+/* complex XML schema type 'saml2:AdviceType': */
+struct SOAP_CMAC saml2__AdviceType {
+      public:
+        /** Sequence of elements '-union-AdviceType' of XML schema type '-saml2:union-AdviceType' stored in dynamic array __union_AdviceType of length __size_AdviceType */
+        int __size_AdviceType;
+        struct __saml2__union_AdviceType *__union_AdviceType;
+      public:
+        /** Return unique type id SOAP_TYPE_saml2__AdviceType */
+        long soap_type() const { return SOAP_TYPE_saml2__AdviceType; }
+        /** Constructor with member initializations */
+        saml2__AdviceType() : __size_AdviceType(), __union_AdviceType() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml2__AdviceType * SOAP_FMAC2 soap_instantiate_saml2__AdviceType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:117 */
+#ifndef SOAP_TYPE_saml2__StatementAbstractType
+#define SOAP_TYPE_saml2__StatementAbstractType (237)
+/* complex XML schema type 'saml2:StatementAbstractType': */
+struct SOAP_CMAC saml2__StatementAbstractType {
+      public:
+        /** Return unique type id SOAP_TYPE_saml2__StatementAbstractType */
+        long soap_type() const { return SOAP_TYPE_saml2__StatementAbstractType; }
+        /** Constructor with member initializations */
+        saml2__StatementAbstractType() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml2__StatementAbstractType * SOAP_FMAC2 soap_instantiate_saml2__StatementAbstractType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:123 */
+#ifndef SOAP_TYPE_saml2__SubjectLocalityType
+#define SOAP_TYPE_saml2__SubjectLocalityType (239)
+/* complex XML schema type 'saml2:SubjectLocalityType': */
+struct SOAP_CMAC saml2__SubjectLocalityType {
+      public:
+        /** Optional attribute 'Address' of XML schema type 'xsd:string' */
+        char *Address;
+        /** Optional attribute 'DNSName' of XML schema type 'xsd:string' */
+        char *DNSName;
+      public:
+        /** Return unique type id SOAP_TYPE_saml2__SubjectLocalityType */
+        long soap_type() const { return SOAP_TYPE_saml2__SubjectLocalityType; }
+        /** Constructor with member initializations */
+        saml2__SubjectLocalityType() : Address(), DNSName() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml2__SubjectLocalityType * SOAP_FMAC2 soap_instantiate_saml2__SubjectLocalityType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:126 */
+#ifndef SOAP_TYPE_saml2__AuthnContextType
+#define SOAP_TYPE_saml2__AuthnContextType (240)
+/* complex XML schema type 'saml2:AuthnContextType': */
+struct SOAP_CMAC saml2__AuthnContextType {
+      public:
+        /** Optional element 'saml2:AuthnContextClassRef' of XML schema type 'xsd:string' */
+        char *saml2__AuthnContextClassRef;
+        /** Optional element 'saml2:AuthnContextDecl' of XML schema type 'xsd:anyType' */
+        char *saml2__AuthnContextDecl;
+        /** Optional element 'saml2:AuthnContextDeclRef' of XML schema type 'xsd:string' */
+        char *saml2__AuthnContextDeclRef;
+        /** Optional element 'saml2:AuthnContextDecl' of XML schema type 'xsd:anyType' */
+        char *saml2__AuthnContextDecl_;
+        /** Optional element 'saml2:AuthnContextDeclRef' of XML schema type 'xsd:string' */
+        char *saml2__AuthnContextDeclRef_;
+        /** Sequence of elements 'saml2:AuthenticatingAuthority' of XML schema type 'xsd:string' stored in dynamic array saml2__AuthenticatingAuthority of length __sizeAuthenticatingAuthority */
+        int __sizeAuthenticatingAuthority;
+        char **saml2__AuthenticatingAuthority;
+      public:
+        /** Return unique type id SOAP_TYPE_saml2__AuthnContextType */
+        long soap_type() const { return SOAP_TYPE_saml2__AuthnContextType; }
+        /** Constructor with member initializations */
+        saml2__AuthnContextType() : saml2__AuthnContextClassRef(), saml2__AuthnContextDecl(), saml2__AuthnContextDeclRef(), saml2__AuthnContextDecl_(), saml2__AuthnContextDeclRef_(), __sizeAuthenticatingAuthority(), saml2__AuthenticatingAuthority() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml2__AuthnContextType * SOAP_FMAC2 soap_instantiate_saml2__AuthnContextType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:479 */
+#ifndef SOAP_TYPE___saml2__union_EvidenceType
+#define SOAP_TYPE___saml2__union_EvidenceType (271)
+/* Wrapper: */
+struct SOAP_CMAC __saml2__union_EvidenceType {
+      public:
+        /** Optional element 'saml2:AssertionIDRef' of XML schema type 'xsd:string' */
+        char *saml2__AssertionIDRef;
+        /** Optional element 'saml2:AssertionURIRef' of XML schema type 'xsd:string' */
+        char *saml2__AssertionURIRef;
+        /** Optional element 'saml2:Assertion' of XML schema type 'saml2:AssertionType' */
+        struct saml2__AssertionType *saml2__Assertion;
+        /** Optional element 'saml2:EncryptedAssertion' of XML schema type 'saml2:EncryptedElementType' */
+        struct saml2__EncryptedElementType *saml2__EncryptedAssertion;
+      public:
+        /** Return unique type id SOAP_TYPE___saml2__union_EvidenceType */
+        long soap_type() const { return SOAP_TYPE___saml2__union_EvidenceType; }
+        /** Constructor with member initializations */
+        __saml2__union_EvidenceType() : saml2__AssertionIDRef(), saml2__AssertionURIRef(), saml2__Assertion(), saml2__EncryptedAssertion() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 __saml2__union_EvidenceType * SOAP_FMAC2 soap_instantiate___saml2__union_EvidenceType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:135 */
+#ifndef SOAP_TYPE_saml2__EvidenceType
+#define SOAP_TYPE_saml2__EvidenceType (243)
+/* complex XML schema type 'saml2:EvidenceType': */
+struct SOAP_CMAC saml2__EvidenceType {
+      public:
+        /** Sequence of elements '-union-EvidenceType' of XML schema type '-saml2:union-EvidenceType' stored in dynamic array __union_EvidenceType of length __size_EvidenceType */
+        int __size_EvidenceType;
+        struct __saml2__union_EvidenceType *__union_EvidenceType;
+      public:
+        /** Return unique type id SOAP_TYPE_saml2__EvidenceType */
+        long soap_type() const { return SOAP_TYPE_saml2__EvidenceType; }
+        /** Constructor with member initializations */
+        saml2__EvidenceType() : __size_EvidenceType(), __union_EvidenceType() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml2__EvidenceType * SOAP_FMAC2 soap_instantiate_saml2__EvidenceType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:141 */
+#ifndef SOAP_TYPE_saml2__AttributeType
+#define SOAP_TYPE_saml2__AttributeType (245)
+/* complex XML schema type 'saml2:AttributeType': */
+struct SOAP_CMAC saml2__AttributeType {
+      public:
+        /** Sequence of elements 'saml2:AttributeValue' of XML schema type 'xsd:anyType' stored in dynamic array saml2__AttributeValue of length __sizeAttributeValue */
+        int __sizeAttributeValue;
+        char **saml2__AttributeValue;
+        /** Required attribute 'Name' of XML schema type 'xsd:string' */
+        char *Name;
+        /** Optional attribute 'NameFormat' of XML schema type 'xsd:string' */
+        char *NameFormat;
+        /** Optional attribute 'FriendlyName' of XML schema type 'xsd:string' */
+        char *FriendlyName;
+      public:
+        /** Return unique type id SOAP_TYPE_saml2__AttributeType */
+        long soap_type() const { return SOAP_TYPE_saml2__AttributeType; }
+        /** Constructor with member initializations */
+        saml2__AttributeType() : __sizeAttributeValue(), saml2__AttributeValue(), Name(), NameFormat(), FriendlyName() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml2__AttributeType * SOAP_FMAC2 soap_instantiate_saml2__AttributeType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:78 */
+#ifndef SOAP_TYPE_saml2__NameIDType
+#define SOAP_TYPE_saml2__NameIDType (224)
+/* simple XML schema type 'saml2:NameIDType': */
+struct SOAP_CMAC saml2__NameIDType {
+      public:
+        /** Simple content of XML schema type 'xsd:string' wrapped by this struct */
+        char *__item;
+        /** Optional attribute 'Format' of XML schema type 'xsd:string' */
+        char *Format;
+        /** Optional attribute 'SPProvidedID' of XML schema type 'xsd:string' */
+        char *SPProvidedID;
+        /** Optional attribute 'NameQualifier' of XML schema type 'xsd:string' */
+        char *NameQualifier;
+        /** Optional attribute 'SPNameQualifier' of XML schema type 'xsd:string' */
+        char *SPNameQualifier;
+      public:
+        /** Return unique type id SOAP_TYPE_saml2__NameIDType */
+        long soap_type() const { return SOAP_TYPE_saml2__NameIDType; }
+        /** Constructor with member initializations */
+        saml2__NameIDType() : __item(), Format(), SPProvidedID(), NameQualifier(), SPNameQualifier() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml2__NameIDType * SOAP_FMAC2 soap_instantiate_saml2__NameIDType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:93 */
+#ifndef SOAP_TYPE_saml2__SubjectConfirmationDataType
+#define SOAP_TYPE_saml2__SubjectConfirmationDataType (229)
+/* complex XML schema type 'saml2:SubjectConfirmationDataType': */
+struct SOAP_CMAC saml2__SubjectConfirmationDataType {
+      public:
+        /** Optional attribute 'NotBefore' of XML schema type 'xsd:dateTime' */
+        struct timeval *NotBefore;
+        /** Optional attribute 'NotOnOrAfter' of XML schema type 'xsd:dateTime' */
+        struct timeval *NotOnOrAfter;
+        /** Optional attribute 'Recipient' of XML schema type 'xsd:string' */
+        char *Recipient;
+        /** Optional attribute 'InResponseTo' of XML schema type 'xsd:string' */
+        char *InResponseTo;
+        /** Optional attribute 'Address' of XML schema type 'xsd:string' */
+        char *Address;
+        char *__mixed;
+      public:
+        /** Return unique type id SOAP_TYPE_saml2__SubjectConfirmationDataType */
+        long soap_type() const { return SOAP_TYPE_saml2__SubjectConfirmationDataType; }
+        /** Constructor with member initializations */
+        saml2__SubjectConfirmationDataType() : NotBefore(), NotOnOrAfter(), Recipient(), InResponseTo(), Address(), __mixed() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml2__SubjectConfirmationDataType * SOAP_FMAC2 soap_instantiate_saml2__SubjectConfirmationDataType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:105 */
+#ifndef SOAP_TYPE_saml2__AudienceRestrictionType
+#define SOAP_TYPE_saml2__AudienceRestrictionType (233)
+/* complex XML schema type 'saml2:AudienceRestrictionType': */
+struct SOAP_CMAC saml2__AudienceRestrictionType {
+      public:
+        /** Sequence of at least 1 elements 'saml2:Audience' of XML schema type 'xsd:string' stored in dynamic array saml2__Audience of length __sizeAudience */
+        int __sizeAudience;
+        char **saml2__Audience;
+      public:
+        /** Return unique type id SOAP_TYPE_saml2__AudienceRestrictionType */
+        long soap_type() const { return SOAP_TYPE_saml2__AudienceRestrictionType; }
+        /** Constructor with member initializations */
+        saml2__AudienceRestrictionType() : __sizeAudience(), saml2__Audience() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml2__AudienceRestrictionType * SOAP_FMAC2 soap_instantiate_saml2__AudienceRestrictionType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:108 */
+#ifndef SOAP_TYPE_saml2__OneTimeUseType
+#define SOAP_TYPE_saml2__OneTimeUseType (234)
+/* complex XML schema type 'saml2:OneTimeUseType': */
+struct SOAP_CMAC saml2__OneTimeUseType {
+      public:
+        /** Return unique type id SOAP_TYPE_saml2__OneTimeUseType */
+        long soap_type() const { return SOAP_TYPE_saml2__OneTimeUseType; }
+        /** Constructor with member initializations */
+        saml2__OneTimeUseType() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml2__OneTimeUseType * SOAP_FMAC2 soap_instantiate_saml2__OneTimeUseType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:111 */
+#ifndef SOAP_TYPE_saml2__ProxyRestrictionType
+#define SOAP_TYPE_saml2__ProxyRestrictionType (235)
+/* complex XML schema type 'saml2:ProxyRestrictionType': */
+struct SOAP_CMAC saml2__ProxyRestrictionType {
+      public:
+        /** Sequence of elements 'saml2:Audience' of XML schema type 'xsd:string' stored in dynamic array saml2__Audience of length __sizeAudience */
+        int __sizeAudience;
+        char **saml2__Audience;
+        /** Optional attribute 'Count' of XML schema type 'xsd:string' */
+        char *Count;
+      public:
+        /** Return unique type id SOAP_TYPE_saml2__ProxyRestrictionType */
+        long soap_type() const { return SOAP_TYPE_saml2__ProxyRestrictionType; }
+        /** Constructor with member initializations */
+        saml2__ProxyRestrictionType() : __sizeAudience(), saml2__Audience(), Count() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml2__ProxyRestrictionType * SOAP_FMAC2 soap_instantiate_saml2__ProxyRestrictionType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:120 */
+#ifndef SOAP_TYPE_saml2__AuthnStatementType
+#define SOAP_TYPE_saml2__AuthnStatementType (238)
+/* complex XML schema type 'saml2:AuthnStatementType': */
+struct SOAP_CMAC saml2__AuthnStatementType {
+      public:
+        /** Optional element 'saml2:SubjectLocality' of XML schema type 'saml2:SubjectLocalityType' */
+        struct saml2__SubjectLocalityType *saml2__SubjectLocality;
+        /** Required element 'saml2:AuthnContext' of XML schema type 'saml2:AuthnContextType' */
+        struct saml2__AuthnContextType *saml2__AuthnContext;
+        /** Required attribute 'AuthnInstant' of XML schema type 'xsd:dateTime' */
+        struct timeval AuthnInstant;
+        /** Optional attribute 'SessionIndex' of XML schema type 'xsd:string' */
+        char *SessionIndex;
+        /** Optional attribute 'SessionNotOnOrAfter' of XML schema type 'xsd:dateTime' */
+        struct timeval *SessionNotOnOrAfter;
+      public:
+        /** Return unique type id SOAP_TYPE_saml2__AuthnStatementType */
+        long soap_type() const { return SOAP_TYPE_saml2__AuthnStatementType; }
+        /** Constructor with member initializations */
+        saml2__AuthnStatementType() : saml2__SubjectLocality(), saml2__AuthnContext(), AuthnInstant(), SessionIndex(), SessionNotOnOrAfter() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml2__AuthnStatementType * SOAP_FMAC2 soap_instantiate_saml2__AuthnStatementType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:129 */
+#ifndef SOAP_TYPE_saml2__AuthzDecisionStatementType
+#define SOAP_TYPE_saml2__AuthzDecisionStatementType (241)
+/* complex XML schema type 'saml2:AuthzDecisionStatementType': */
+struct SOAP_CMAC saml2__AuthzDecisionStatementType {
+      public:
+        /** Sequence of at least 1 elements 'saml2:Action' of XML schema type 'saml2:ActionType' stored in dynamic array saml2__Action of length __sizeAction */
+        int __sizeAction;
+        struct saml2__ActionType *saml2__Action;
+        /** Optional element 'saml2:Evidence' of XML schema type 'saml2:EvidenceType' */
+        struct saml2__EvidenceType *saml2__Evidence;
+        /** Required attribute 'Resource' of XML schema type 'xsd:string' */
+        char *Resource;
+        /** Required attribute 'Decision' of XML schema type 'saml2:DecisionType' */
+        enum saml2__DecisionType Decision;
+      public:
+        /** Return unique type id SOAP_TYPE_saml2__AuthzDecisionStatementType */
+        long soap_type() const { return SOAP_TYPE_saml2__AuthzDecisionStatementType; }
+        /** Constructor with member initializations */
+        saml2__AuthzDecisionStatementType() : __sizeAction(), saml2__Action(), saml2__Evidence(), Resource(), Decision() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml2__AuthzDecisionStatementType * SOAP_FMAC2 soap_instantiate_saml2__AuthzDecisionStatementType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:132 */
+#ifndef SOAP_TYPE_saml2__ActionType
+#define SOAP_TYPE_saml2__ActionType (242)
+/* simple XML schema type 'saml2:ActionType': */
+struct SOAP_CMAC saml2__ActionType {
+      public:
+        /** Simple content of XML schema type 'xsd:string' wrapped by this struct */
+        char *__item;
+        /** Required attribute 'Namespace' of XML schema type 'xsd:string' */
+        char *Namespace;
+      public:
+        /** Return unique type id SOAP_TYPE_saml2__ActionType */
+        long soap_type() const { return SOAP_TYPE_saml2__ActionType; }
+        /** Constructor with member initializations */
+        saml2__ActionType() : __item(), Namespace() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml2__ActionType * SOAP_FMAC2 soap_instantiate_saml2__ActionType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:729 */
+#ifndef SOAP_TYPE___saml2__union_AttributeStatementType
+#define SOAP_TYPE___saml2__union_AttributeStatementType (277)
+/* Wrapper: */
+struct SOAP_CMAC __saml2__union_AttributeStatementType {
+      public:
+        /** Optional element 'saml2:Attribute' of XML schema type 'saml2:AttributeType' */
+        struct saml2__AttributeType *saml2__Attribute;
+        /** Optional element 'saml2:EncryptedAttribute' of XML schema type 'saml2:EncryptedElementType' */
+        struct saml2__EncryptedElementType *saml2__EncryptedAttribute;
+      public:
+        /** Return unique type id SOAP_TYPE___saml2__union_AttributeStatementType */
+        long soap_type() const { return SOAP_TYPE___saml2__union_AttributeStatementType; }
+        /** Constructor with member initializations */
+        __saml2__union_AttributeStatementType() : saml2__Attribute(), saml2__EncryptedAttribute() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 __saml2__union_AttributeStatementType * SOAP_FMAC2 soap_instantiate___saml2__union_AttributeStatementType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:138 */
+#ifndef SOAP_TYPE_saml2__AttributeStatementType
+#define SOAP_TYPE_saml2__AttributeStatementType (244)
+/* complex XML schema type 'saml2:AttributeStatementType': */
+struct SOAP_CMAC saml2__AttributeStatementType {
+      public:
+        /** Sequence of elements '-union-AttributeStatementType' of XML schema type '-saml2:union-AttributeStatementType' stored in dynamic array __union_AttributeStatementType of length __size_AttributeStatementType */
+        int __size_AttributeStatementType;
+        struct __saml2__union_AttributeStatementType *__union_AttributeStatementType;
+      public:
+        /** Return unique type id SOAP_TYPE_saml2__AttributeStatementType */
+        long soap_type() const { return SOAP_TYPE_saml2__AttributeStatementType; }
+        /** Constructor with member initializations */
+        saml2__AttributeStatementType() : __size_AttributeStatementType(), __union_AttributeStatementType() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml2__AttributeStatementType * SOAP_FMAC2 soap_instantiate_saml2__AttributeStatementType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* saml2.h:96 */
+#ifndef SOAP_TYPE_saml2__KeyInfoConfirmationDataType
+#define SOAP_TYPE_saml2__KeyInfoConfirmationDataType (230)
+/* complex XML schema type 'saml2:KeyInfoConfirmationDataType': */
+struct SOAP_CMAC saml2__KeyInfoConfirmationDataType {
+      public:
+        /** Sequence of at least 1 elements 'ds:KeyInfo' of XML schema type 'ds:KeyInfo' stored in dynamic array ds__KeyInfo of length __sizeds__KeyInfo */
+        int __sizeds__KeyInfo;
+        struct ds__KeyInfoType **ds__KeyInfo;
+      public:
+        /** Return unique type id SOAP_TYPE_saml2__KeyInfoConfirmationDataType */
+        long soap_type() const { return SOAP_TYPE_saml2__KeyInfoConfirmationDataType; }
+        /** Constructor with member initializations */
+        saml2__KeyInfoConfirmationDataType() : __sizeds__KeyInfo(), ds__KeyInfo() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 saml2__KeyInfoConfirmationDataType * SOAP_FMAC2 soap_instantiate_saml2__KeyInfoConfirmationDataType(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* wsse.h:212 */
+#ifndef SOAP_TYPE__wsse__Security
+#define SOAP_TYPE__wsse__Security (314)
+/* complex XML schema type 'wsse:Security': */
+struct SOAP_CMAC _wsse__Security {
+      public:
+        /** Optional element 'wsu:Timestamp' of XML schema type 'wsu:Timestamp' */
+        struct _wsu__Timestamp *wsu__Timestamp;
+        /** Optional element 'wsse:UsernameToken' of XML schema type 'wsse:UsernameToken' */
+        struct _wsse__UsernameToken *UsernameToken;
+        /** Optional element 'wsse:BinarySecurityToken' of XML schema type 'wsse:BinarySecurityToken' */
+        struct _wsse__BinarySecurityToken *BinarySecurityToken;
+        /** Optional element 'xenc:EncryptedKey' of XML schema type 'xenc:EncryptedKeyType' */
+        struct xenc__EncryptedKeyType *xenc__EncryptedKey;
+        /** Optional element 'xenc:ReferenceList' of XML schema type 'xenc:ReferenceList' */
+        struct _xenc__ReferenceList *xenc__ReferenceList;
+        /** Optional element 'wsc:SecurityContextToken' of XML schema type 'wsc:SecurityContextTokenType' */
+        struct wsc__SecurityContextTokenType *wsc__SecurityContextToken;
+        /** Optional element 'ds:Signature' of XML schema type 'ds:SignatureType' */
+        struct ds__SignatureType *ds__Signature;
+        /** Optional element 'saml1:Assertion' of XML schema type 'saml1:AssertionType' */
+        struct saml1__AssertionType *saml1__Assertion;
+        /** Optional element 'saml2:Assertion' of XML schema type 'saml2:AssertionType' */
+        struct saml2__AssertionType *saml2__Assertion;
+        /** Optional attribute 'SOAP-ENV:actor' of XML schema type 'xsd:string' */
+        char *SOAP_ENV__actor;
+        /** Optional attribute 'SOAP-ENV:role' of XML schema type 'xsd:string' */
+        char *SOAP_ENV__role;
+      public:
+        /** Return unique type id SOAP_TYPE__wsse__Security */
+        long soap_type() const { return SOAP_TYPE__wsse__Security; }
+        /** Constructor with member initializations */
+        _wsse__Security() : wsu__Timestamp(), UsernameToken(), BinarySecurityToken(), xenc__EncryptedKey(), xenc__ReferenceList(), wsc__SecurityContextToken(), ds__Signature(), saml1__Assertion(), saml2__Assertion(), SOAP_ENV__actor(), SOAP_ENV__role() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 _wsse__Security * SOAP_FMAC2 soap_instantiate__wsse__Security(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* wsse.h:146 */
+#ifndef SOAP_TYPE__wsse__Password
+#define SOAP_TYPE__wsse__Password (62)
+/* simple XML schema type 'wsse:Password': */
+struct SOAP_CMAC _wsse__Password {
+      public:
+        /** Simple content of XML schema type 'xsd:string' wrapped by this struct */
+        char *__item;
+        /** Optional attribute 'Type' of XML schema type 'xsd:string' */
+        char *Type;
+      public:
+        /** Return unique type id SOAP_TYPE__wsse__Password */
+        long soap_type() const { return SOAP_TYPE__wsse__Password; }
+        /** Constructor with member initializations */
+        _wsse__Password() : __item(), Type() { }
+        /** Friend allocator */
+        friend SOAP_FMAC1 _wsse__Password * SOAP_FMAC2 soap_instantiate__wsse__Password(struct soap*, int, const char*, const char*, size_t*);
+};
+#endif
+
+/* onvif.h:182 */
 #ifndef SOAP_TYPE_xsd__anyType
-#define SOAP_TYPE_xsd__anyType (57)
+#define SOAP_TYPE_xsd__anyType (321)
 /* simple XML schema type 'xsd:anyType': */
 class SOAP_CMAC xsd__anyType {
       public:
@@ -647,9 +2984,9 @@ class SOAP_CMAC xsd__anyType {
 };
 #endif
 
-/* onvif.h:188 */
+/* onvif.h:189 */
 #ifndef SOAP_TYPE_SOAP_ENV__Envelope
-#define SOAP_TYPE_SOAP_ENV__Envelope (59)
+#define SOAP_TYPE_SOAP_ENV__Envelope (323)
 /* complex XML schema type 'SOAP-ENV:Envelope': */
 struct SOAP_CMAC SOAP_ENV__Envelope {
       public:
@@ -667,9 +3004,9 @@ struct SOAP_CMAC SOAP_ENV__Envelope {
 };
 #endif
 
-/* onvif.h:194 */
+/* onvif.h:195 */
 #ifndef SOAP_TYPE_xsd__base64Binary
-#define SOAP_TYPE_xsd__base64Binary (63)
+#define SOAP_TYPE_xsd__base64Binary (327)
 /* binary data attached as MTOM/MIME/DIME attachment or included as *`xsd:base64Binary`* base64: */
 class SOAP_CMAC xsd__base64Binary {
       public:
@@ -707,9 +3044,9 @@ class SOAP_CMAC xsd__base64Binary {
 };
 #endif
 
-/* onvif.h:202 */
+/* onvif.h:203 */
 #ifndef SOAP_TYPE_xsd__hexBinary
-#define SOAP_TYPE_xsd__hexBinary (64)
+#define SOAP_TYPE_xsd__hexBinary (328)
 /* hexBinary XML schema type: */
 class SOAP_CMAC xsd__hexBinary {
       public:
@@ -741,9 +3078,9 @@ class SOAP_CMAC xsd__hexBinary {
 };
 #endif
 
-/* onvif.h:244 */
+/* onvif.h:245 */
 #ifndef SOAP_TYPE_tptz__Capabilities
-#define SOAP_TYPE_tptz__Capabilities (73)
+#define SOAP_TYPE_tptz__Capabilities (337)
 /* complex XML schema type 'tptz:Capabilities': */
 class SOAP_CMAC tptz__Capabilities {
       public:
@@ -785,9 +3122,9 @@ class SOAP_CMAC tptz__Capabilities {
 };
 #endif
 
-/* onvif.h:246 */
+/* onvif.h:247 */
 #ifndef SOAP_TYPE__tptz__GetServiceCapabilities
-#define SOAP_TYPE__tptz__GetServiceCapabilities (74)
+#define SOAP_TYPE__tptz__GetServiceCapabilities (338)
 /* complex XML schema type 'tptz:GetServiceCapabilities': */
 class SOAP_CMAC _tptz__GetServiceCapabilities {
       public:
@@ -819,9 +3156,9 @@ class SOAP_CMAC _tptz__GetServiceCapabilities {
 };
 #endif
 
-/* onvif.h:248 */
+/* onvif.h:249 */
 #ifndef SOAP_TYPE__tptz__GetServiceCapabilitiesResponse
-#define SOAP_TYPE__tptz__GetServiceCapabilitiesResponse (75)
+#define SOAP_TYPE__tptz__GetServiceCapabilitiesResponse (339)
 /* complex XML schema type 'tptz:GetServiceCapabilitiesResponse': */
 class SOAP_CMAC _tptz__GetServiceCapabilitiesResponse {
       public:
@@ -855,9 +3192,9 @@ class SOAP_CMAC _tptz__GetServiceCapabilitiesResponse {
 };
 #endif
 
-/* onvif.h:250 */
+/* onvif.h:251 */
 #ifndef SOAP_TYPE__tptz__GetNodes
-#define SOAP_TYPE__tptz__GetNodes (76)
+#define SOAP_TYPE__tptz__GetNodes (340)
 /* complex XML schema type 'tptz:GetNodes': */
 class SOAP_CMAC _tptz__GetNodes {
       public:
@@ -889,9 +3226,9 @@ class SOAP_CMAC _tptz__GetNodes {
 };
 #endif
 
-/* onvif.h:252 */
+/* onvif.h:253 */
 #ifndef SOAP_TYPE__tptz__GetNodesResponse
-#define SOAP_TYPE__tptz__GetNodesResponse (77)
+#define SOAP_TYPE__tptz__GetNodesResponse (341)
 /* complex XML schema type 'tptz:GetNodesResponse': */
 class SOAP_CMAC _tptz__GetNodesResponse {
       public:
@@ -925,9 +3262,9 @@ class SOAP_CMAC _tptz__GetNodesResponse {
 };
 #endif
 
-/* onvif.h:254 */
+/* onvif.h:255 */
 #ifndef SOAP_TYPE__tptz__GetNode
-#define SOAP_TYPE__tptz__GetNode (78)
+#define SOAP_TYPE__tptz__GetNode (342)
 /* complex XML schema type 'tptz:GetNode': */
 class SOAP_CMAC _tptz__GetNode {
       public:
@@ -961,9 +3298,9 @@ class SOAP_CMAC _tptz__GetNode {
 };
 #endif
 
-/* onvif.h:256 */
+/* onvif.h:257 */
 #ifndef SOAP_TYPE__tptz__GetNodeResponse
-#define SOAP_TYPE__tptz__GetNodeResponse (79)
+#define SOAP_TYPE__tptz__GetNodeResponse (343)
 /* complex XML schema type 'tptz:GetNodeResponse': */
 class SOAP_CMAC _tptz__GetNodeResponse {
       public:
@@ -997,9 +3334,9 @@ class SOAP_CMAC _tptz__GetNodeResponse {
 };
 #endif
 
-/* onvif.h:258 */
+/* onvif.h:259 */
 #ifndef SOAP_TYPE__tptz__GetConfigurations
-#define SOAP_TYPE__tptz__GetConfigurations (80)
+#define SOAP_TYPE__tptz__GetConfigurations (344)
 /* complex XML schema type 'tptz:GetConfigurations': */
 class SOAP_CMAC _tptz__GetConfigurations {
       public:
@@ -1031,9 +3368,9 @@ class SOAP_CMAC _tptz__GetConfigurations {
 };
 #endif
 
-/* onvif.h:260 */
+/* onvif.h:261 */
 #ifndef SOAP_TYPE__tptz__GetConfigurationsResponse
-#define SOAP_TYPE__tptz__GetConfigurationsResponse (81)
+#define SOAP_TYPE__tptz__GetConfigurationsResponse (345)
 /* complex XML schema type 'tptz:GetConfigurationsResponse': */
 class SOAP_CMAC _tptz__GetConfigurationsResponse {
       public:
@@ -1067,9 +3404,9 @@ class SOAP_CMAC _tptz__GetConfigurationsResponse {
 };
 #endif
 
-/* onvif.h:262 */
+/* onvif.h:263 */
 #ifndef SOAP_TYPE__tptz__GetConfiguration
-#define SOAP_TYPE__tptz__GetConfiguration (82)
+#define SOAP_TYPE__tptz__GetConfiguration (346)
 /* complex XML schema type 'tptz:GetConfiguration': */
 class SOAP_CMAC _tptz__GetConfiguration {
       public:
@@ -1103,9 +3440,9 @@ class SOAP_CMAC _tptz__GetConfiguration {
 };
 #endif
 
-/* onvif.h:264 */
+/* onvif.h:265 */
 #ifndef SOAP_TYPE__tptz__GetConfigurationResponse
-#define SOAP_TYPE__tptz__GetConfigurationResponse (83)
+#define SOAP_TYPE__tptz__GetConfigurationResponse (347)
 /* complex XML schema type 'tptz:GetConfigurationResponse': */
 class SOAP_CMAC _tptz__GetConfigurationResponse {
       public:
@@ -1139,9 +3476,9 @@ class SOAP_CMAC _tptz__GetConfigurationResponse {
 };
 #endif
 
-/* onvif.h:266 */
+/* onvif.h:267 */
 #ifndef SOAP_TYPE__tptz__SetConfiguration
-#define SOAP_TYPE__tptz__SetConfiguration (84)
+#define SOAP_TYPE__tptz__SetConfiguration (348)
 /* complex XML schema type 'tptz:SetConfiguration': */
 class SOAP_CMAC _tptz__SetConfiguration {
       public:
@@ -1177,9 +3514,9 @@ class SOAP_CMAC _tptz__SetConfiguration {
 };
 #endif
 
-/* onvif.h:1186 */
+/* onvif.h:1187 */
 #ifndef SOAP_TYPE___tptz__SetConfigurationResponse_sequence
-#define SOAP_TYPE___tptz__SetConfigurationResponse_sequence (202)
+#define SOAP_TYPE___tptz__SetConfigurationResponse_sequence (466)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__SetConfigurationResponse_sequence {
       public:
@@ -1192,9 +3529,9 @@ struct SOAP_CMAC __tptz__SetConfigurationResponse_sequence {
 };
 #endif
 
-/* onvif.h:268 */
+/* onvif.h:269 */
 #ifndef SOAP_TYPE__tptz__SetConfigurationResponse
-#define SOAP_TYPE__tptz__SetConfigurationResponse (85)
+#define SOAP_TYPE__tptz__SetConfigurationResponse (349)
 /* complex XML schema type 'tptz:SetConfigurationResponse': */
 class SOAP_CMAC _tptz__SetConfigurationResponse {
       public:
@@ -1227,9 +3564,9 @@ class SOAP_CMAC _tptz__SetConfigurationResponse {
 };
 #endif
 
-/* onvif.h:270 */
+/* onvif.h:271 */
 #ifndef SOAP_TYPE__tptz__GetConfigurationOptions
-#define SOAP_TYPE__tptz__GetConfigurationOptions (86)
+#define SOAP_TYPE__tptz__GetConfigurationOptions (350)
 /* complex XML schema type 'tptz:GetConfigurationOptions': */
 class SOAP_CMAC _tptz__GetConfigurationOptions {
       public:
@@ -1263,9 +3600,9 @@ class SOAP_CMAC _tptz__GetConfigurationOptions {
 };
 #endif
 
-/* onvif.h:272 */
+/* onvif.h:273 */
 #ifndef SOAP_TYPE__tptz__GetConfigurationOptionsResponse
-#define SOAP_TYPE__tptz__GetConfigurationOptionsResponse (87)
+#define SOAP_TYPE__tptz__GetConfigurationOptionsResponse (351)
 /* complex XML schema type 'tptz:GetConfigurationOptionsResponse': */
 class SOAP_CMAC _tptz__GetConfigurationOptionsResponse {
       public:
@@ -1299,9 +3636,9 @@ class SOAP_CMAC _tptz__GetConfigurationOptionsResponse {
 };
 #endif
 
-/* onvif.h:274 */
+/* onvif.h:275 */
 #ifndef SOAP_TYPE__tptz__SendAuxiliaryCommand
-#define SOAP_TYPE__tptz__SendAuxiliaryCommand (88)
+#define SOAP_TYPE__tptz__SendAuxiliaryCommand (352)
 /* complex XML schema type 'tptz:SendAuxiliaryCommand': */
 class SOAP_CMAC _tptz__SendAuxiliaryCommand {
       public:
@@ -1337,9 +3674,9 @@ class SOAP_CMAC _tptz__SendAuxiliaryCommand {
 };
 #endif
 
-/* onvif.h:276 */
+/* onvif.h:277 */
 #ifndef SOAP_TYPE__tptz__SendAuxiliaryCommandResponse
-#define SOAP_TYPE__tptz__SendAuxiliaryCommandResponse (89)
+#define SOAP_TYPE__tptz__SendAuxiliaryCommandResponse (353)
 /* complex XML schema type 'tptz:SendAuxiliaryCommandResponse': */
 class SOAP_CMAC _tptz__SendAuxiliaryCommandResponse {
       public:
@@ -1373,9 +3710,9 @@ class SOAP_CMAC _tptz__SendAuxiliaryCommandResponse {
 };
 #endif
 
-/* onvif.h:278 */
+/* onvif.h:279 */
 #ifndef SOAP_TYPE__tptz__GetPresets
-#define SOAP_TYPE__tptz__GetPresets (90)
+#define SOAP_TYPE__tptz__GetPresets (354)
 /* complex XML schema type 'tptz:GetPresets': */
 class SOAP_CMAC _tptz__GetPresets {
       public:
@@ -1409,9 +3746,9 @@ class SOAP_CMAC _tptz__GetPresets {
 };
 #endif
 
-/* onvif.h:280 */
+/* onvif.h:281 */
 #ifndef SOAP_TYPE__tptz__GetPresetsResponse
-#define SOAP_TYPE__tptz__GetPresetsResponse (91)
+#define SOAP_TYPE__tptz__GetPresetsResponse (355)
 /* complex XML schema type 'tptz:GetPresetsResponse': */
 class SOAP_CMAC _tptz__GetPresetsResponse {
       public:
@@ -1445,9 +3782,9 @@ class SOAP_CMAC _tptz__GetPresetsResponse {
 };
 #endif
 
-/* onvif.h:282 */
+/* onvif.h:283 */
 #ifndef SOAP_TYPE__tptz__SetPreset
-#define SOAP_TYPE__tptz__SetPreset (92)
+#define SOAP_TYPE__tptz__SetPreset (356)
 /* complex XML schema type 'tptz:SetPreset': */
 class SOAP_CMAC _tptz__SetPreset {
       public:
@@ -1485,9 +3822,9 @@ class SOAP_CMAC _tptz__SetPreset {
 };
 #endif
 
-/* onvif.h:284 */
+/* onvif.h:285 */
 #ifndef SOAP_TYPE__tptz__SetPresetResponse
-#define SOAP_TYPE__tptz__SetPresetResponse (93)
+#define SOAP_TYPE__tptz__SetPresetResponse (357)
 /* complex XML schema type 'tptz:SetPresetResponse': */
 class SOAP_CMAC _tptz__SetPresetResponse {
       public:
@@ -1521,9 +3858,9 @@ class SOAP_CMAC _tptz__SetPresetResponse {
 };
 #endif
 
-/* onvif.h:286 */
+/* onvif.h:287 */
 #ifndef SOAP_TYPE__tptz__RemovePreset
-#define SOAP_TYPE__tptz__RemovePreset (94)
+#define SOAP_TYPE__tptz__RemovePreset (358)
 /* complex XML schema type 'tptz:RemovePreset': */
 class SOAP_CMAC _tptz__RemovePreset {
       public:
@@ -1559,9 +3896,9 @@ class SOAP_CMAC _tptz__RemovePreset {
 };
 #endif
 
-/* onvif.h:288 */
+/* onvif.h:289 */
 #ifndef SOAP_TYPE__tptz__RemovePresetResponse
-#define SOAP_TYPE__tptz__RemovePresetResponse (95)
+#define SOAP_TYPE__tptz__RemovePresetResponse (359)
 /* complex XML schema type 'tptz:RemovePresetResponse': */
 class SOAP_CMAC _tptz__RemovePresetResponse {
       public:
@@ -1593,9 +3930,9 @@ class SOAP_CMAC _tptz__RemovePresetResponse {
 };
 #endif
 
-/* onvif.h:290 */
+/* onvif.h:291 */
 #ifndef SOAP_TYPE__tptz__GotoPreset
-#define SOAP_TYPE__tptz__GotoPreset (96)
+#define SOAP_TYPE__tptz__GotoPreset (360)
 /* complex XML schema type 'tptz:GotoPreset': */
 class SOAP_CMAC _tptz__GotoPreset {
       public:
@@ -1633,9 +3970,9 @@ class SOAP_CMAC _tptz__GotoPreset {
 };
 #endif
 
-/* onvif.h:292 */
+/* onvif.h:293 */
 #ifndef SOAP_TYPE__tptz__GotoPresetResponse
-#define SOAP_TYPE__tptz__GotoPresetResponse (97)
+#define SOAP_TYPE__tptz__GotoPresetResponse (361)
 /* complex XML schema type 'tptz:GotoPresetResponse': */
 class SOAP_CMAC _tptz__GotoPresetResponse {
       public:
@@ -1667,9 +4004,9 @@ class SOAP_CMAC _tptz__GotoPresetResponse {
 };
 #endif
 
-/* onvif.h:294 */
+/* onvif.h:295 */
 #ifndef SOAP_TYPE__tptz__GetStatus
-#define SOAP_TYPE__tptz__GetStatus (98)
+#define SOAP_TYPE__tptz__GetStatus (362)
 /* complex XML schema type 'tptz:GetStatus': */
 class SOAP_CMAC _tptz__GetStatus {
       public:
@@ -1703,9 +4040,9 @@ class SOAP_CMAC _tptz__GetStatus {
 };
 #endif
 
-/* onvif.h:296 */
+/* onvif.h:297 */
 #ifndef SOAP_TYPE__tptz__GetStatusResponse
-#define SOAP_TYPE__tptz__GetStatusResponse (99)
+#define SOAP_TYPE__tptz__GetStatusResponse (363)
 /* complex XML schema type 'tptz:GetStatusResponse': */
 class SOAP_CMAC _tptz__GetStatusResponse {
       public:
@@ -1739,9 +4076,9 @@ class SOAP_CMAC _tptz__GetStatusResponse {
 };
 #endif
 
-/* onvif.h:298 */
+/* onvif.h:299 */
 #ifndef SOAP_TYPE__tptz__GotoHomePosition
-#define SOAP_TYPE__tptz__GotoHomePosition (100)
+#define SOAP_TYPE__tptz__GotoHomePosition (364)
 /* complex XML schema type 'tptz:GotoHomePosition': */
 class SOAP_CMAC _tptz__GotoHomePosition {
       public:
@@ -1777,9 +4114,9 @@ class SOAP_CMAC _tptz__GotoHomePosition {
 };
 #endif
 
-/* onvif.h:300 */
+/* onvif.h:301 */
 #ifndef SOAP_TYPE__tptz__GotoHomePositionResponse
-#define SOAP_TYPE__tptz__GotoHomePositionResponse (101)
+#define SOAP_TYPE__tptz__GotoHomePositionResponse (365)
 /* complex XML schema type 'tptz:GotoHomePositionResponse': */
 class SOAP_CMAC _tptz__GotoHomePositionResponse {
       public:
@@ -1811,9 +4148,9 @@ class SOAP_CMAC _tptz__GotoHomePositionResponse {
 };
 #endif
 
-/* onvif.h:302 */
+/* onvif.h:303 */
 #ifndef SOAP_TYPE__tptz__SetHomePosition
-#define SOAP_TYPE__tptz__SetHomePosition (102)
+#define SOAP_TYPE__tptz__SetHomePosition (366)
 /* complex XML schema type 'tptz:SetHomePosition': */
 class SOAP_CMAC _tptz__SetHomePosition {
       public:
@@ -1847,9 +4184,9 @@ class SOAP_CMAC _tptz__SetHomePosition {
 };
 #endif
 
-/* onvif.h:304 */
+/* onvif.h:305 */
 #ifndef SOAP_TYPE__tptz__SetHomePositionResponse
-#define SOAP_TYPE__tptz__SetHomePositionResponse (103)
+#define SOAP_TYPE__tptz__SetHomePositionResponse (367)
 /* complex XML schema type 'tptz:SetHomePositionResponse': */
 class SOAP_CMAC _tptz__SetHomePositionResponse {
       public:
@@ -1881,9 +4218,9 @@ class SOAP_CMAC _tptz__SetHomePositionResponse {
 };
 #endif
 
-/* onvif.h:306 */
+/* onvif.h:307 */
 #ifndef SOAP_TYPE__tptz__ContinuousMove
-#define SOAP_TYPE__tptz__ContinuousMove (104)
+#define SOAP_TYPE__tptz__ContinuousMove (368)
 /* complex XML schema type 'tptz:ContinuousMove': */
 class SOAP_CMAC _tptz__ContinuousMove {
       public:
@@ -1921,9 +4258,9 @@ class SOAP_CMAC _tptz__ContinuousMove {
 };
 #endif
 
-/* onvif.h:308 */
+/* onvif.h:309 */
 #ifndef SOAP_TYPE__tptz__ContinuousMoveResponse
-#define SOAP_TYPE__tptz__ContinuousMoveResponse (105)
+#define SOAP_TYPE__tptz__ContinuousMoveResponse (369)
 /* complex XML schema type 'tptz:ContinuousMoveResponse': */
 class SOAP_CMAC _tptz__ContinuousMoveResponse {
       public:
@@ -1955,9 +4292,9 @@ class SOAP_CMAC _tptz__ContinuousMoveResponse {
 };
 #endif
 
-/* onvif.h:310 */
+/* onvif.h:311 */
 #ifndef SOAP_TYPE__tptz__RelativeMove
-#define SOAP_TYPE__tptz__RelativeMove (106)
+#define SOAP_TYPE__tptz__RelativeMove (370)
 /* complex XML schema type 'tptz:RelativeMove': */
 class SOAP_CMAC _tptz__RelativeMove {
       public:
@@ -1995,9 +4332,9 @@ class SOAP_CMAC _tptz__RelativeMove {
 };
 #endif
 
-/* onvif.h:312 */
+/* onvif.h:313 */
 #ifndef SOAP_TYPE__tptz__RelativeMoveResponse
-#define SOAP_TYPE__tptz__RelativeMoveResponse (107)
+#define SOAP_TYPE__tptz__RelativeMoveResponse (371)
 /* complex XML schema type 'tptz:RelativeMoveResponse': */
 class SOAP_CMAC _tptz__RelativeMoveResponse {
       public:
@@ -2029,9 +4366,9 @@ class SOAP_CMAC _tptz__RelativeMoveResponse {
 };
 #endif
 
-/* onvif.h:314 */
+/* onvif.h:315 */
 #ifndef SOAP_TYPE__tptz__AbsoluteMove
-#define SOAP_TYPE__tptz__AbsoluteMove (108)
+#define SOAP_TYPE__tptz__AbsoluteMove (372)
 /* complex XML schema type 'tptz:AbsoluteMove': */
 class SOAP_CMAC _tptz__AbsoluteMove {
       public:
@@ -2069,9 +4406,9 @@ class SOAP_CMAC _tptz__AbsoluteMove {
 };
 #endif
 
-/* onvif.h:316 */
+/* onvif.h:317 */
 #ifndef SOAP_TYPE__tptz__AbsoluteMoveResponse
-#define SOAP_TYPE__tptz__AbsoluteMoveResponse (109)
+#define SOAP_TYPE__tptz__AbsoluteMoveResponse (373)
 /* complex XML schema type 'tptz:AbsoluteMoveResponse': */
 class SOAP_CMAC _tptz__AbsoluteMoveResponse {
       public:
@@ -2103,9 +4440,9 @@ class SOAP_CMAC _tptz__AbsoluteMoveResponse {
 };
 #endif
 
-/* onvif.h:318 */
+/* onvif.h:319 */
 #ifndef SOAP_TYPE__tptz__GeoMove
-#define SOAP_TYPE__tptz__GeoMove (110)
+#define SOAP_TYPE__tptz__GeoMove (374)
 /* complex XML schema type 'tptz:GeoMove': */
 class SOAP_CMAC _tptz__GeoMove {
       public:
@@ -2147,9 +4484,9 @@ class SOAP_CMAC _tptz__GeoMove {
 };
 #endif
 
-/* onvif.h:320 */
+/* onvif.h:321 */
 #ifndef SOAP_TYPE__tptz__GeoMoveResponse
-#define SOAP_TYPE__tptz__GeoMoveResponse (111)
+#define SOAP_TYPE__tptz__GeoMoveResponse (375)
 /* complex XML schema type 'tptz:GeoMoveResponse': */
 class SOAP_CMAC _tptz__GeoMoveResponse {
       public:
@@ -2181,9 +4518,9 @@ class SOAP_CMAC _tptz__GeoMoveResponse {
 };
 #endif
 
-/* onvif.h:322 */
+/* onvif.h:323 */
 #ifndef SOAP_TYPE__tptz__Stop
-#define SOAP_TYPE__tptz__Stop (112)
+#define SOAP_TYPE__tptz__Stop (376)
 /* complex XML schema type 'tptz:Stop': */
 class SOAP_CMAC _tptz__Stop {
       public:
@@ -2221,9 +4558,9 @@ class SOAP_CMAC _tptz__Stop {
 };
 #endif
 
-/* onvif.h:324 */
+/* onvif.h:325 */
 #ifndef SOAP_TYPE__tptz__StopResponse
-#define SOAP_TYPE__tptz__StopResponse (113)
+#define SOAP_TYPE__tptz__StopResponse (377)
 /* complex XML schema type 'tptz:StopResponse': */
 class SOAP_CMAC _tptz__StopResponse {
       public:
@@ -2255,9 +4592,9 @@ class SOAP_CMAC _tptz__StopResponse {
 };
 #endif
 
-/* onvif.h:326 */
+/* onvif.h:327 */
 #ifndef SOAP_TYPE__tptz__GetPresetTours
-#define SOAP_TYPE__tptz__GetPresetTours (114)
+#define SOAP_TYPE__tptz__GetPresetTours (378)
 /* complex XML schema type 'tptz:GetPresetTours': */
 class SOAP_CMAC _tptz__GetPresetTours {
       public:
@@ -2291,9 +4628,9 @@ class SOAP_CMAC _tptz__GetPresetTours {
 };
 #endif
 
-/* onvif.h:328 */
+/* onvif.h:329 */
 #ifndef SOAP_TYPE__tptz__GetPresetToursResponse
-#define SOAP_TYPE__tptz__GetPresetToursResponse (115)
+#define SOAP_TYPE__tptz__GetPresetToursResponse (379)
 /* complex XML schema type 'tptz:GetPresetToursResponse': */
 class SOAP_CMAC _tptz__GetPresetToursResponse {
       public:
@@ -2327,9 +4664,9 @@ class SOAP_CMAC _tptz__GetPresetToursResponse {
 };
 #endif
 
-/* onvif.h:330 */
+/* onvif.h:331 */
 #ifndef SOAP_TYPE__tptz__GetPresetTour
-#define SOAP_TYPE__tptz__GetPresetTour (116)
+#define SOAP_TYPE__tptz__GetPresetTour (380)
 /* complex XML schema type 'tptz:GetPresetTour': */
 class SOAP_CMAC _tptz__GetPresetTour {
       public:
@@ -2365,9 +4702,9 @@ class SOAP_CMAC _tptz__GetPresetTour {
 };
 #endif
 
-/* onvif.h:332 */
+/* onvif.h:333 */
 #ifndef SOAP_TYPE__tptz__GetPresetTourResponse
-#define SOAP_TYPE__tptz__GetPresetTourResponse (117)
+#define SOAP_TYPE__tptz__GetPresetTourResponse (381)
 /* complex XML schema type 'tptz:GetPresetTourResponse': */
 class SOAP_CMAC _tptz__GetPresetTourResponse {
       public:
@@ -2401,9 +4738,9 @@ class SOAP_CMAC _tptz__GetPresetTourResponse {
 };
 #endif
 
-/* onvif.h:334 */
+/* onvif.h:335 */
 #ifndef SOAP_TYPE__tptz__GetPresetTourOptions
-#define SOAP_TYPE__tptz__GetPresetTourOptions (118)
+#define SOAP_TYPE__tptz__GetPresetTourOptions (382)
 /* complex XML schema type 'tptz:GetPresetTourOptions': */
 class SOAP_CMAC _tptz__GetPresetTourOptions {
       public:
@@ -2439,9 +4776,9 @@ class SOAP_CMAC _tptz__GetPresetTourOptions {
 };
 #endif
 
-/* onvif.h:336 */
+/* onvif.h:337 */
 #ifndef SOAP_TYPE__tptz__GetPresetTourOptionsResponse
-#define SOAP_TYPE__tptz__GetPresetTourOptionsResponse (119)
+#define SOAP_TYPE__tptz__GetPresetTourOptionsResponse (383)
 /* complex XML schema type 'tptz:GetPresetTourOptionsResponse': */
 class SOAP_CMAC _tptz__GetPresetTourOptionsResponse {
       public:
@@ -2475,9 +4812,9 @@ class SOAP_CMAC _tptz__GetPresetTourOptionsResponse {
 };
 #endif
 
-/* onvif.h:338 */
+/* onvif.h:339 */
 #ifndef SOAP_TYPE__tptz__CreatePresetTour
-#define SOAP_TYPE__tptz__CreatePresetTour (120)
+#define SOAP_TYPE__tptz__CreatePresetTour (384)
 /* complex XML schema type 'tptz:CreatePresetTour': */
 class SOAP_CMAC _tptz__CreatePresetTour {
       public:
@@ -2511,9 +4848,9 @@ class SOAP_CMAC _tptz__CreatePresetTour {
 };
 #endif
 
-/* onvif.h:340 */
+/* onvif.h:341 */
 #ifndef SOAP_TYPE__tptz__CreatePresetTourResponse
-#define SOAP_TYPE__tptz__CreatePresetTourResponse (121)
+#define SOAP_TYPE__tptz__CreatePresetTourResponse (385)
 /* complex XML schema type 'tptz:CreatePresetTourResponse': */
 class SOAP_CMAC _tptz__CreatePresetTourResponse {
       public:
@@ -2547,9 +4884,9 @@ class SOAP_CMAC _tptz__CreatePresetTourResponse {
 };
 #endif
 
-/* onvif.h:342 */
+/* onvif.h:343 */
 #ifndef SOAP_TYPE__tptz__ModifyPresetTour
-#define SOAP_TYPE__tptz__ModifyPresetTour (122)
+#define SOAP_TYPE__tptz__ModifyPresetTour (386)
 /* complex XML schema type 'tptz:ModifyPresetTour': */
 class SOAP_CMAC _tptz__ModifyPresetTour {
       public:
@@ -2585,9 +4922,9 @@ class SOAP_CMAC _tptz__ModifyPresetTour {
 };
 #endif
 
-/* onvif.h:344 */
+/* onvif.h:345 */
 #ifndef SOAP_TYPE__tptz__ModifyPresetTourResponse
-#define SOAP_TYPE__tptz__ModifyPresetTourResponse (123)
+#define SOAP_TYPE__tptz__ModifyPresetTourResponse (387)
 /* complex XML schema type 'tptz:ModifyPresetTourResponse': */
 class SOAP_CMAC _tptz__ModifyPresetTourResponse {
       public:
@@ -2619,9 +4956,9 @@ class SOAP_CMAC _tptz__ModifyPresetTourResponse {
 };
 #endif
 
-/* onvif.h:346 */
+/* onvif.h:347 */
 #ifndef SOAP_TYPE__tptz__OperatePresetTour
-#define SOAP_TYPE__tptz__OperatePresetTour (124)
+#define SOAP_TYPE__tptz__OperatePresetTour (388)
 /* complex XML schema type 'tptz:OperatePresetTour': */
 class SOAP_CMAC _tptz__OperatePresetTour {
       public:
@@ -2659,9 +4996,9 @@ class SOAP_CMAC _tptz__OperatePresetTour {
 };
 #endif
 
-/* onvif.h:348 */
+/* onvif.h:349 */
 #ifndef SOAP_TYPE__tptz__OperatePresetTourResponse
-#define SOAP_TYPE__tptz__OperatePresetTourResponse (125)
+#define SOAP_TYPE__tptz__OperatePresetTourResponse (389)
 /* complex XML schema type 'tptz:OperatePresetTourResponse': */
 class SOAP_CMAC _tptz__OperatePresetTourResponse {
       public:
@@ -2693,9 +5030,9 @@ class SOAP_CMAC _tptz__OperatePresetTourResponse {
 };
 #endif
 
-/* onvif.h:350 */
+/* onvif.h:351 */
 #ifndef SOAP_TYPE__tptz__RemovePresetTour
-#define SOAP_TYPE__tptz__RemovePresetTour (126)
+#define SOAP_TYPE__tptz__RemovePresetTour (390)
 /* complex XML schema type 'tptz:RemovePresetTour': */
 class SOAP_CMAC _tptz__RemovePresetTour {
       public:
@@ -2731,9 +5068,9 @@ class SOAP_CMAC _tptz__RemovePresetTour {
 };
 #endif
 
-/* onvif.h:352 */
+/* onvif.h:353 */
 #ifndef SOAP_TYPE__tptz__RemovePresetTourResponse
-#define SOAP_TYPE__tptz__RemovePresetTourResponse (127)
+#define SOAP_TYPE__tptz__RemovePresetTourResponse (391)
 /* complex XML schema type 'tptz:RemovePresetTourResponse': */
 class SOAP_CMAC _tptz__RemovePresetTourResponse {
       public:
@@ -2765,9 +5102,9 @@ class SOAP_CMAC _tptz__RemovePresetTourResponse {
 };
 #endif
 
-/* onvif.h:354 */
+/* onvif.h:355 */
 #ifndef SOAP_TYPE__tptz__GetCompatibleConfigurations
-#define SOAP_TYPE__tptz__GetCompatibleConfigurations (128)
+#define SOAP_TYPE__tptz__GetCompatibleConfigurations (392)
 /* complex XML schema type 'tptz:GetCompatibleConfigurations': */
 class SOAP_CMAC _tptz__GetCompatibleConfigurations {
       public:
@@ -2801,9 +5138,9 @@ class SOAP_CMAC _tptz__GetCompatibleConfigurations {
 };
 #endif
 
-/* onvif.h:356 */
+/* onvif.h:357 */
 #ifndef SOAP_TYPE__tptz__GetCompatibleConfigurationsResponse
-#define SOAP_TYPE__tptz__GetCompatibleConfigurationsResponse (129)
+#define SOAP_TYPE__tptz__GetCompatibleConfigurationsResponse (393)
 /* complex XML schema type 'tptz:GetCompatibleConfigurationsResponse': */
 class SOAP_CMAC _tptz__GetCompatibleConfigurationsResponse {
       public:
@@ -2837,9 +5174,9 @@ class SOAP_CMAC _tptz__GetCompatibleConfigurationsResponse {
 };
 #endif
 
-/* onvif.h:358 */
+/* onvif.h:359 */
 #ifndef SOAP_TYPE_tt__DeviceEntity
-#define SOAP_TYPE_tt__DeviceEntity (130)
+#define SOAP_TYPE_tt__DeviceEntity (394)
 /* complex XML schema type 'tt:DeviceEntity': */
 class SOAP_CMAC tt__DeviceEntity {
       public:
@@ -2873,9 +5210,9 @@ class SOAP_CMAC tt__DeviceEntity {
 };
 #endif
 
-/* onvif.h:360 */
+/* onvif.h:361 */
 #ifndef SOAP_TYPE_tt__FloatRange
-#define SOAP_TYPE_tt__FloatRange (131)
+#define SOAP_TYPE_tt__FloatRange (395)
 /* complex XML schema type 'tt:FloatRange': */
 class SOAP_CMAC tt__FloatRange {
       public:
@@ -2911,9 +5248,9 @@ class SOAP_CMAC tt__FloatRange {
 };
 #endif
 
-/* onvif.h:362 */
+/* onvif.h:363 */
 #ifndef SOAP_TYPE_tt__DurationRange
-#define SOAP_TYPE_tt__DurationRange (132)
+#define SOAP_TYPE_tt__DurationRange (396)
 /* complex XML schema type 'tt:DurationRange': */
 class SOAP_CMAC tt__DurationRange {
       public:
@@ -2949,9 +5286,9 @@ class SOAP_CMAC tt__DurationRange {
 };
 #endif
 
-/* onvif.h:364 */
+/* onvif.h:365 */
 #ifndef SOAP_TYPE_tt__ConfigurationEntity
-#define SOAP_TYPE_tt__ConfigurationEntity (133)
+#define SOAP_TYPE_tt__ConfigurationEntity (397)
 /* complex XML schema type 'tt:ConfigurationEntity': */
 class SOAP_CMAC tt__ConfigurationEntity {
       public:
@@ -2989,9 +5326,9 @@ class SOAP_CMAC tt__ConfigurationEntity {
 };
 #endif
 
-/* onvif.h:368 */
+/* onvif.h:369 */
 #ifndef SOAP_TYPE_tt__PTZNodeExtension
-#define SOAP_TYPE_tt__PTZNodeExtension (135)
+#define SOAP_TYPE_tt__PTZNodeExtension (399)
 /* complex XML schema type 'tt:PTZNodeExtension': */
 class SOAP_CMAC tt__PTZNodeExtension {
       public:
@@ -3027,9 +5364,9 @@ class SOAP_CMAC tt__PTZNodeExtension {
 };
 #endif
 
-/* onvif.h:370 */
+/* onvif.h:371 */
 #ifndef SOAP_TYPE_tt__PTZNodeExtension2
-#define SOAP_TYPE_tt__PTZNodeExtension2 (136)
+#define SOAP_TYPE_tt__PTZNodeExtension2 (400)
 /* complex XML schema type 'tt:PTZNodeExtension2': */
 class SOAP_CMAC tt__PTZNodeExtension2 {
       public:
@@ -3061,9 +5398,9 @@ class SOAP_CMAC tt__PTZNodeExtension2 {
 };
 #endif
 
-/* onvif.h:372 */
+/* onvif.h:373 */
 #ifndef SOAP_TYPE_tt__PTZPresetTourSupported
-#define SOAP_TYPE_tt__PTZPresetTourSupported (137)
+#define SOAP_TYPE_tt__PTZPresetTourSupported (401)
 /* complex XML schema type 'tt:PTZPresetTourSupported': */
 class SOAP_CMAC tt__PTZPresetTourSupported {
       public:
@@ -3101,9 +5438,9 @@ class SOAP_CMAC tt__PTZPresetTourSupported {
 };
 #endif
 
-/* onvif.h:374 */
+/* onvif.h:375 */
 #ifndef SOAP_TYPE_tt__PTZPresetTourSupportedExtension
-#define SOAP_TYPE_tt__PTZPresetTourSupportedExtension (138)
+#define SOAP_TYPE_tt__PTZPresetTourSupportedExtension (402)
 /* complex XML schema type 'tt:PTZPresetTourSupportedExtension': */
 class SOAP_CMAC tt__PTZPresetTourSupportedExtension {
       public:
@@ -3135,9 +5472,9 @@ class SOAP_CMAC tt__PTZPresetTourSupportedExtension {
 };
 #endif
 
-/* onvif.h:378 */
+/* onvif.h:379 */
 #ifndef SOAP_TYPE_tt__PTZConfigurationExtension
-#define SOAP_TYPE_tt__PTZConfigurationExtension (140)
+#define SOAP_TYPE_tt__PTZConfigurationExtension (404)
 /* complex XML schema type 'tt:PTZConfigurationExtension': */
 class SOAP_CMAC tt__PTZConfigurationExtension {
       public:
@@ -3173,9 +5510,9 @@ class SOAP_CMAC tt__PTZConfigurationExtension {
 };
 #endif
 
-/* onvif.h:380 */
+/* onvif.h:381 */
 #ifndef SOAP_TYPE_tt__PTZConfigurationExtension2
-#define SOAP_TYPE_tt__PTZConfigurationExtension2 (141)
+#define SOAP_TYPE_tt__PTZConfigurationExtension2 (405)
 /* complex XML schema type 'tt:PTZConfigurationExtension2': */
 class SOAP_CMAC tt__PTZConfigurationExtension2 {
       public:
@@ -3207,9 +5544,9 @@ class SOAP_CMAC tt__PTZConfigurationExtension2 {
 };
 #endif
 
-/* onvif.h:382 */
+/* onvif.h:383 */
 #ifndef SOAP_TYPE_tt__PTControlDirection
-#define SOAP_TYPE_tt__PTControlDirection (142)
+#define SOAP_TYPE_tt__PTControlDirection (406)
 /* complex XML schema type 'tt:PTControlDirection': */
 class SOAP_CMAC tt__PTControlDirection {
       public:
@@ -3247,9 +5584,9 @@ class SOAP_CMAC tt__PTControlDirection {
 };
 #endif
 
-/* onvif.h:384 */
+/* onvif.h:385 */
 #ifndef SOAP_TYPE_tt__PTControlDirectionExtension
-#define SOAP_TYPE_tt__PTControlDirectionExtension (143)
+#define SOAP_TYPE_tt__PTControlDirectionExtension (407)
 /* complex XML schema type 'tt:PTControlDirectionExtension': */
 class SOAP_CMAC tt__PTControlDirectionExtension {
       public:
@@ -3281,9 +5618,9 @@ class SOAP_CMAC tt__PTControlDirectionExtension {
 };
 #endif
 
-/* onvif.h:386 */
+/* onvif.h:387 */
 #ifndef SOAP_TYPE_tt__EFlip
-#define SOAP_TYPE_tt__EFlip (144)
+#define SOAP_TYPE_tt__EFlip (408)
 /* complex XML schema type 'tt:EFlip': */
 class SOAP_CMAC tt__EFlip {
       public:
@@ -3317,9 +5654,9 @@ class SOAP_CMAC tt__EFlip {
 };
 #endif
 
-/* onvif.h:388 */
+/* onvif.h:389 */
 #ifndef SOAP_TYPE_tt__Reverse
-#define SOAP_TYPE_tt__Reverse (145)
+#define SOAP_TYPE_tt__Reverse (409)
 /* complex XML schema type 'tt:Reverse': */
 class SOAP_CMAC tt__Reverse {
       public:
@@ -3353,9 +5690,9 @@ class SOAP_CMAC tt__Reverse {
 };
 #endif
 
-/* onvif.h:390 */
+/* onvif.h:391 */
 #ifndef SOAP_TYPE_tt__PTZConfigurationOptions
-#define SOAP_TYPE_tt__PTZConfigurationOptions (146)
+#define SOAP_TYPE_tt__PTZConfigurationOptions (410)
 /* complex XML schema type 'tt:PTZConfigurationOptions': */
 class SOAP_CMAC tt__PTZConfigurationOptions {
       public:
@@ -3397,9 +5734,9 @@ class SOAP_CMAC tt__PTZConfigurationOptions {
 };
 #endif
 
-/* onvif.h:392 */
+/* onvif.h:393 */
 #ifndef SOAP_TYPE_tt__PTZConfigurationOptions2
-#define SOAP_TYPE_tt__PTZConfigurationOptions2 (147)
+#define SOAP_TYPE_tt__PTZConfigurationOptions2 (411)
 /* complex XML schema type 'tt:PTZConfigurationOptions2': */
 class SOAP_CMAC tt__PTZConfigurationOptions2 {
       public:
@@ -3431,9 +5768,9 @@ class SOAP_CMAC tt__PTZConfigurationOptions2 {
 };
 #endif
 
-/* onvif.h:394 */
+/* onvif.h:395 */
 #ifndef SOAP_TYPE_tt__PTControlDirectionOptions
-#define SOAP_TYPE_tt__PTControlDirectionOptions (148)
+#define SOAP_TYPE_tt__PTControlDirectionOptions (412)
 /* complex XML schema type 'tt:PTControlDirectionOptions': */
 class SOAP_CMAC tt__PTControlDirectionOptions {
       public:
@@ -3471,9 +5808,9 @@ class SOAP_CMAC tt__PTControlDirectionOptions {
 };
 #endif
 
-/* onvif.h:396 */
+/* onvif.h:397 */
 #ifndef SOAP_TYPE_tt__PTControlDirectionOptionsExtension
-#define SOAP_TYPE_tt__PTControlDirectionOptionsExtension (149)
+#define SOAP_TYPE_tt__PTControlDirectionOptionsExtension (413)
 /* complex XML schema type 'tt:PTControlDirectionOptionsExtension': */
 class SOAP_CMAC tt__PTControlDirectionOptionsExtension {
       public:
@@ -3505,9 +5842,9 @@ class SOAP_CMAC tt__PTControlDirectionOptionsExtension {
 };
 #endif
 
-/* onvif.h:398 */
+/* onvif.h:399 */
 #ifndef SOAP_TYPE_tt__EFlipOptions
-#define SOAP_TYPE_tt__EFlipOptions (150)
+#define SOAP_TYPE_tt__EFlipOptions (414)
 /* complex XML schema type 'tt:EFlipOptions': */
 class SOAP_CMAC tt__EFlipOptions {
       public:
@@ -3543,9 +5880,9 @@ class SOAP_CMAC tt__EFlipOptions {
 };
 #endif
 
-/* onvif.h:400 */
+/* onvif.h:401 */
 #ifndef SOAP_TYPE_tt__EFlipOptionsExtension
-#define SOAP_TYPE_tt__EFlipOptionsExtension (151)
+#define SOAP_TYPE_tt__EFlipOptionsExtension (415)
 /* complex XML schema type 'tt:EFlipOptionsExtension': */
 class SOAP_CMAC tt__EFlipOptionsExtension {
       public:
@@ -3577,9 +5914,9 @@ class SOAP_CMAC tt__EFlipOptionsExtension {
 };
 #endif
 
-/* onvif.h:402 */
+/* onvif.h:403 */
 #ifndef SOAP_TYPE_tt__ReverseOptions
-#define SOAP_TYPE_tt__ReverseOptions (152)
+#define SOAP_TYPE_tt__ReverseOptions (416)
 /* complex XML schema type 'tt:ReverseOptions': */
 class SOAP_CMAC tt__ReverseOptions {
       public:
@@ -3615,9 +5952,9 @@ class SOAP_CMAC tt__ReverseOptions {
 };
 #endif
 
-/* onvif.h:404 */
+/* onvif.h:405 */
 #ifndef SOAP_TYPE_tt__ReverseOptionsExtension
-#define SOAP_TYPE_tt__ReverseOptionsExtension (153)
+#define SOAP_TYPE_tt__ReverseOptionsExtension (417)
 /* complex XML schema type 'tt:ReverseOptionsExtension': */
 class SOAP_CMAC tt__ReverseOptionsExtension {
       public:
@@ -3649,9 +5986,9 @@ class SOAP_CMAC tt__ReverseOptionsExtension {
 };
 #endif
 
-/* onvif.h:406 */
+/* onvif.h:407 */
 #ifndef SOAP_TYPE_tt__PanTiltLimits
-#define SOAP_TYPE_tt__PanTiltLimits (154)
+#define SOAP_TYPE_tt__PanTiltLimits (418)
 /* complex XML schema type 'tt:PanTiltLimits': */
 class SOAP_CMAC tt__PanTiltLimits {
       public:
@@ -3685,9 +6022,9 @@ class SOAP_CMAC tt__PanTiltLimits {
 };
 #endif
 
-/* onvif.h:408 */
+/* onvif.h:409 */
 #ifndef SOAP_TYPE_tt__ZoomLimits
-#define SOAP_TYPE_tt__ZoomLimits (155)
+#define SOAP_TYPE_tt__ZoomLimits (419)
 /* complex XML schema type 'tt:ZoomLimits': */
 class SOAP_CMAC tt__ZoomLimits {
       public:
@@ -3721,9 +6058,9 @@ class SOAP_CMAC tt__ZoomLimits {
 };
 #endif
 
-/* onvif.h:410 */
+/* onvif.h:411 */
 #ifndef SOAP_TYPE_tt__PTZSpaces
-#define SOAP_TYPE_tt__PTZSpaces (156)
+#define SOAP_TYPE_tt__PTZSpaces (420)
 /* complex XML schema type 'tt:PTZSpaces': */
 class SOAP_CMAC tt__PTZSpaces {
       public:
@@ -3773,9 +6110,9 @@ class SOAP_CMAC tt__PTZSpaces {
 };
 #endif
 
-/* onvif.h:412 */
+/* onvif.h:413 */
 #ifndef SOAP_TYPE_tt__PTZSpacesExtension
-#define SOAP_TYPE_tt__PTZSpacesExtension (157)
+#define SOAP_TYPE_tt__PTZSpacesExtension (421)
 /* complex XML schema type 'tt:PTZSpacesExtension': */
 class SOAP_CMAC tt__PTZSpacesExtension {
       public:
@@ -3807,9 +6144,9 @@ class SOAP_CMAC tt__PTZSpacesExtension {
 };
 #endif
 
-/* onvif.h:414 */
+/* onvif.h:415 */
 #ifndef SOAP_TYPE_tt__Space2DDescription
-#define SOAP_TYPE_tt__Space2DDescription (158)
+#define SOAP_TYPE_tt__Space2DDescription (422)
 /* complex XML schema type 'tt:Space2DDescription': */
 class SOAP_CMAC tt__Space2DDescription {
       public:
@@ -3847,9 +6184,9 @@ class SOAP_CMAC tt__Space2DDescription {
 };
 #endif
 
-/* onvif.h:416 */
+/* onvif.h:417 */
 #ifndef SOAP_TYPE_tt__Space1DDescription
-#define SOAP_TYPE_tt__Space1DDescription (159)
+#define SOAP_TYPE_tt__Space1DDescription (423)
 /* complex XML schema type 'tt:Space1DDescription': */
 class SOAP_CMAC tt__Space1DDescription {
       public:
@@ -3885,9 +6222,9 @@ class SOAP_CMAC tt__Space1DDescription {
 };
 #endif
 
-/* onvif.h:418 */
+/* onvif.h:419 */
 #ifndef SOAP_TYPE_tt__PTZSpeed
-#define SOAP_TYPE_tt__PTZSpeed (160)
+#define SOAP_TYPE_tt__PTZSpeed (424)
 /* complex XML schema type 'tt:PTZSpeed': */
 class SOAP_CMAC tt__PTZSpeed {
       public:
@@ -3923,9 +6260,9 @@ class SOAP_CMAC tt__PTZSpeed {
 };
 #endif
 
-/* onvif.h:420 */
+/* onvif.h:421 */
 #ifndef SOAP_TYPE_tt__PTZPreset
-#define SOAP_TYPE_tt__PTZPreset (161)
+#define SOAP_TYPE_tt__PTZPreset (425)
 /* complex XML schema type 'tt:PTZPreset': */
 class SOAP_CMAC tt__PTZPreset {
       public:
@@ -3963,9 +6300,9 @@ class SOAP_CMAC tt__PTZPreset {
 };
 #endif
 
-/* onvif.h:422 */
+/* onvif.h:423 */
 #ifndef SOAP_TYPE_tt__PresetTour
-#define SOAP_TYPE_tt__PresetTour (162)
+#define SOAP_TYPE_tt__PresetTour (426)
 /* complex XML schema type 'tt:PresetTour': */
 class SOAP_CMAC tt__PresetTour {
       public:
@@ -4011,9 +6348,9 @@ class SOAP_CMAC tt__PresetTour {
 };
 #endif
 
-/* onvif.h:424 */
+/* onvif.h:425 */
 #ifndef SOAP_TYPE_tt__PTZPresetTourExtension
-#define SOAP_TYPE_tt__PTZPresetTourExtension (163)
+#define SOAP_TYPE_tt__PTZPresetTourExtension (427)
 /* complex XML schema type 'tt:PTZPresetTourExtension': */
 class SOAP_CMAC tt__PTZPresetTourExtension {
       public:
@@ -4045,9 +6382,9 @@ class SOAP_CMAC tt__PTZPresetTourExtension {
 };
 #endif
 
-/* onvif.h:426 */
+/* onvif.h:427 */
 #ifndef SOAP_TYPE_tt__PTZPresetTourSpot
-#define SOAP_TYPE_tt__PTZPresetTourSpot (164)
+#define SOAP_TYPE_tt__PTZPresetTourSpot (428)
 /* complex XML schema type 'tt:PTZPresetTourSpot': */
 class SOAP_CMAC tt__PTZPresetTourSpot {
       public:
@@ -4087,9 +6424,9 @@ class SOAP_CMAC tt__PTZPresetTourSpot {
 };
 #endif
 
-/* onvif.h:428 */
+/* onvif.h:429 */
 #ifndef SOAP_TYPE_tt__PTZPresetTourSpotExtension
-#define SOAP_TYPE_tt__PTZPresetTourSpotExtension (165)
+#define SOAP_TYPE_tt__PTZPresetTourSpotExtension (429)
 /* complex XML schema type 'tt:PTZPresetTourSpotExtension': */
 class SOAP_CMAC tt__PTZPresetTourSpotExtension {
       public:
@@ -4121,9 +6458,9 @@ class SOAP_CMAC tt__PTZPresetTourSpotExtension {
 };
 #endif
 
-/* onvif.h:3905 */
+/* onvif.h:3906 */
 #ifndef SOAP_TYPE__tt__union_PTZPresetTourPresetDetail
-#define SOAP_TYPE__tt__union_PTZPresetTourPresetDetail (256)
+#define SOAP_TYPE__tt__union_PTZPresetTourPresetDetail (520)
 /* union serializable only when used as a member of a struct or class with a union variant selector */
 union _tt__union_PTZPresetTourPresetDetail
 {
@@ -4138,9 +6475,9 @@ union _tt__union_PTZPresetTourPresetDetail
 };
 #endif
 
-/* onvif.h:430 */
+/* onvif.h:431 */
 #ifndef SOAP_TYPE_tt__PTZPresetTourPresetDetail
-#define SOAP_TYPE_tt__PTZPresetTourPresetDetail (166)
+#define SOAP_TYPE_tt__PTZPresetTourPresetDetail (430)
 /* Choice: */
 class SOAP_CMAC tt__PTZPresetTourPresetDetail {
       public:
@@ -4175,9 +6512,9 @@ class SOAP_CMAC tt__PTZPresetTourPresetDetail {
 };
 #endif
 
-/* onvif.h:432 */
+/* onvif.h:433 */
 #ifndef SOAP_TYPE_tt__PTZPresetTourTypeExtension
-#define SOAP_TYPE_tt__PTZPresetTourTypeExtension (167)
+#define SOAP_TYPE_tt__PTZPresetTourTypeExtension (431)
 /* complex XML schema type 'tt:PTZPresetTourTypeExtension': */
 class SOAP_CMAC tt__PTZPresetTourTypeExtension {
       public:
@@ -4209,9 +6546,9 @@ class SOAP_CMAC tt__PTZPresetTourTypeExtension {
 };
 #endif
 
-/* onvif.h:434 */
+/* onvif.h:435 */
 #ifndef SOAP_TYPE_tt__PTZPresetTourStatus
-#define SOAP_TYPE_tt__PTZPresetTourStatus (168)
+#define SOAP_TYPE_tt__PTZPresetTourStatus (432)
 /* complex XML schema type 'tt:PTZPresetTourStatus': */
 class SOAP_CMAC tt__PTZPresetTourStatus {
       public:
@@ -4249,9 +6586,9 @@ class SOAP_CMAC tt__PTZPresetTourStatus {
 };
 #endif
 
-/* onvif.h:436 */
+/* onvif.h:437 */
 #ifndef SOAP_TYPE_tt__PTZPresetTourStatusExtension
-#define SOAP_TYPE_tt__PTZPresetTourStatusExtension (169)
+#define SOAP_TYPE_tt__PTZPresetTourStatusExtension (433)
 /* complex XML schema type 'tt:PTZPresetTourStatusExtension': */
 class SOAP_CMAC tt__PTZPresetTourStatusExtension {
       public:
@@ -4283,9 +6620,9 @@ class SOAP_CMAC tt__PTZPresetTourStatusExtension {
 };
 #endif
 
-/* onvif.h:438 */
+/* onvif.h:439 */
 #ifndef SOAP_TYPE_tt__PTZPresetTourStartingCondition
-#define SOAP_TYPE_tt__PTZPresetTourStartingCondition (170)
+#define SOAP_TYPE_tt__PTZPresetTourStartingCondition (434)
 /* complex XML schema type 'tt:PTZPresetTourStartingCondition': */
 class SOAP_CMAC tt__PTZPresetTourStartingCondition {
       public:
@@ -4327,9 +6664,9 @@ class SOAP_CMAC tt__PTZPresetTourStartingCondition {
 };
 #endif
 
-/* onvif.h:440 */
+/* onvif.h:441 */
 #ifndef SOAP_TYPE_tt__PTZPresetTourStartingConditionExtension
-#define SOAP_TYPE_tt__PTZPresetTourStartingConditionExtension (171)
+#define SOAP_TYPE_tt__PTZPresetTourStartingConditionExtension (435)
 /* complex XML schema type 'tt:PTZPresetTourStartingConditionExtension': */
 class SOAP_CMAC tt__PTZPresetTourStartingConditionExtension {
       public:
@@ -4361,9 +6698,9 @@ class SOAP_CMAC tt__PTZPresetTourStartingConditionExtension {
 };
 #endif
 
-/* onvif.h:442 */
+/* onvif.h:443 */
 #ifndef SOAP_TYPE_tt__PTZPresetTourOptions
-#define SOAP_TYPE_tt__PTZPresetTourOptions (172)
+#define SOAP_TYPE_tt__PTZPresetTourOptions (436)
 /* complex XML schema type 'tt:PTZPresetTourOptions': */
 class SOAP_CMAC tt__PTZPresetTourOptions {
       public:
@@ -4401,9 +6738,9 @@ class SOAP_CMAC tt__PTZPresetTourOptions {
 };
 #endif
 
-/* onvif.h:444 */
+/* onvif.h:445 */
 #ifndef SOAP_TYPE_tt__PTZPresetTourSpotOptions
-#define SOAP_TYPE_tt__PTZPresetTourSpotOptions (173)
+#define SOAP_TYPE_tt__PTZPresetTourSpotOptions (437)
 /* complex XML schema type 'tt:PTZPresetTourSpotOptions': */
 class SOAP_CMAC tt__PTZPresetTourSpotOptions {
       public:
@@ -4439,9 +6776,9 @@ class SOAP_CMAC tt__PTZPresetTourSpotOptions {
 };
 #endif
 
-/* onvif.h:446 */
+/* onvif.h:447 */
 #ifndef SOAP_TYPE_tt__PTZPresetTourPresetDetailOptions
-#define SOAP_TYPE_tt__PTZPresetTourPresetDetailOptions (174)
+#define SOAP_TYPE_tt__PTZPresetTourPresetDetailOptions (438)
 /* complex XML schema type 'tt:PTZPresetTourPresetDetailOptions': */
 class SOAP_CMAC tt__PTZPresetTourPresetDetailOptions {
       public:
@@ -4483,9 +6820,9 @@ class SOAP_CMAC tt__PTZPresetTourPresetDetailOptions {
 };
 #endif
 
-/* onvif.h:448 */
+/* onvif.h:449 */
 #ifndef SOAP_TYPE_tt__PTZPresetTourPresetDetailOptionsExtension
-#define SOAP_TYPE_tt__PTZPresetTourPresetDetailOptionsExtension (175)
+#define SOAP_TYPE_tt__PTZPresetTourPresetDetailOptionsExtension (439)
 /* complex XML schema type 'tt:PTZPresetTourPresetDetailOptionsExtension': */
 class SOAP_CMAC tt__PTZPresetTourPresetDetailOptionsExtension {
       public:
@@ -4517,9 +6854,9 @@ class SOAP_CMAC tt__PTZPresetTourPresetDetailOptionsExtension {
 };
 #endif
 
-/* onvif.h:450 */
+/* onvif.h:451 */
 #ifndef SOAP_TYPE_tt__PTZPresetTourStartingConditionOptions
-#define SOAP_TYPE_tt__PTZPresetTourStartingConditionOptions (176)
+#define SOAP_TYPE_tt__PTZPresetTourStartingConditionOptions (440)
 /* complex XML schema type 'tt:PTZPresetTourStartingConditionOptions': */
 class SOAP_CMAC tt__PTZPresetTourStartingConditionOptions {
       public:
@@ -4559,9 +6896,9 @@ class SOAP_CMAC tt__PTZPresetTourStartingConditionOptions {
 };
 #endif
 
-/* onvif.h:452 */
+/* onvif.h:453 */
 #ifndef SOAP_TYPE_tt__PTZPresetTourStartingConditionOptionsExtension
-#define SOAP_TYPE_tt__PTZPresetTourStartingConditionOptionsExtension (177)
+#define SOAP_TYPE_tt__PTZPresetTourStartingConditionOptionsExtension (441)
 /* complex XML schema type 'tt:PTZPresetTourStartingConditionOptionsExtension': */
 class SOAP_CMAC tt__PTZPresetTourStartingConditionOptionsExtension {
       public:
@@ -4593,9 +6930,9 @@ class SOAP_CMAC tt__PTZPresetTourStartingConditionOptionsExtension {
 };
 #endif
 
-/* onvif.h:454 */
+/* onvif.h:455 */
 #ifndef SOAP_TYPE_tt__IntRange
-#define SOAP_TYPE_tt__IntRange (178)
+#define SOAP_TYPE_tt__IntRange (442)
 /* complex XML schema type 'tt:IntRange': */
 class SOAP_CMAC tt__IntRange {
       public:
@@ -4631,9 +6968,9 @@ class SOAP_CMAC tt__IntRange {
 };
 #endif
 
-/* onvif.h:456 */
+/* onvif.h:457 */
 #ifndef SOAP_TYPE_tt__Vector2D
-#define SOAP_TYPE_tt__Vector2D (179)
+#define SOAP_TYPE_tt__Vector2D (443)
 /* complex XML schema type 'tt:Vector2D': */
 class SOAP_CMAC tt__Vector2D {
       public:
@@ -4671,9 +7008,9 @@ class SOAP_CMAC tt__Vector2D {
 };
 #endif
 
-/* onvif.h:458 */
+/* onvif.h:459 */
 #ifndef SOAP_TYPE_tt__Vector1D
-#define SOAP_TYPE_tt__Vector1D (180)
+#define SOAP_TYPE_tt__Vector1D (444)
 /* complex XML schema type 'tt:Vector1D': */
 class SOAP_CMAC tt__Vector1D {
       public:
@@ -4709,9 +7046,9 @@ class SOAP_CMAC tt__Vector1D {
 };
 #endif
 
-/* onvif.h:460 */
+/* onvif.h:461 */
 #ifndef SOAP_TYPE_tt__PTZVector
-#define SOAP_TYPE_tt__PTZVector (181)
+#define SOAP_TYPE_tt__PTZVector (445)
 /* complex XML schema type 'tt:PTZVector': */
 class SOAP_CMAC tt__PTZVector {
       public:
@@ -4747,9 +7084,9 @@ class SOAP_CMAC tt__PTZVector {
 };
 #endif
 
-/* onvif.h:462 */
+/* onvif.h:463 */
 #ifndef SOAP_TYPE_tt__PTZStatus
-#define SOAP_TYPE_tt__PTZStatus (182)
+#define SOAP_TYPE_tt__PTZStatus (446)
 /* complex XML schema type 'tt:PTZStatus': */
 class SOAP_CMAC tt__PTZStatus {
       public:
@@ -4789,9 +7126,9 @@ class SOAP_CMAC tt__PTZStatus {
 };
 #endif
 
-/* onvif.h:464 */
+/* onvif.h:465 */
 #ifndef SOAP_TYPE_tt__PTZMoveStatus
-#define SOAP_TYPE_tt__PTZMoveStatus (183)
+#define SOAP_TYPE_tt__PTZMoveStatus (447)
 /* complex XML schema type 'tt:PTZMoveStatus': */
 class SOAP_CMAC tt__PTZMoveStatus {
       public:
@@ -4827,9 +7164,9 @@ class SOAP_CMAC tt__PTZMoveStatus {
 };
 #endif
 
-/* onvif.h:466 */
+/* onvif.h:467 */
 #ifndef SOAP_TYPE_tt__GeoLocation
-#define SOAP_TYPE_tt__GeoLocation (184)
+#define SOAP_TYPE_tt__GeoLocation (448)
 /* complex XML schema type 'tt:GeoLocation': */
 class SOAP_CMAC tt__GeoLocation {
       public:
@@ -4867,9 +7204,9 @@ class SOAP_CMAC tt__GeoLocation {
 };
 #endif
 
-/* onvif.h:366 */
+/* onvif.h:367 */
 #ifndef SOAP_TYPE_tt__PTZNode
-#define SOAP_TYPE_tt__PTZNode (134)
+#define SOAP_TYPE_tt__PTZNode (398)
 /* complex XML schema type 'tt:PTZNode': */
 class SOAP_CMAC tt__PTZNode : public tt__DeviceEntity {
       public:
@@ -4915,9 +7252,9 @@ class SOAP_CMAC tt__PTZNode : public tt__DeviceEntity {
 };
 #endif
 
-/* onvif.h:376 */
+/* onvif.h:377 */
 #ifndef SOAP_TYPE_tt__PTZConfiguration
-#define SOAP_TYPE_tt__PTZConfiguration (139)
+#define SOAP_TYPE_tt__PTZConfiguration (403)
 /* complex XML schema type 'tt:PTZConfiguration': */
 class SOAP_CMAC tt__PTZConfiguration : public tt__ConfigurationEntity {
       public:
@@ -4977,9 +7314,9 @@ class SOAP_CMAC tt__PTZConfiguration : public tt__ConfigurationEntity {
 };
 #endif
 
-/* onvif.h:5852 */
+/* onvif.h:5853 */
 #ifndef SOAP_TYPE___tptz__GetServiceCapabilities
-#define SOAP_TYPE___tptz__GetServiceCapabilities (283)
+#define SOAP_TYPE___tptz__GetServiceCapabilities (547)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__GetServiceCapabilities {
       public:
@@ -4995,9 +7332,9 @@ struct SOAP_CMAC __tptz__GetServiceCapabilities {
 };
 #endif
 
-/* onvif.h:5949 */
+/* onvif.h:5950 */
 #ifndef SOAP_TYPE___tptz__GetConfigurations
-#define SOAP_TYPE___tptz__GetConfigurations (287)
+#define SOAP_TYPE___tptz__GetConfigurations (551)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__GetConfigurations {
       public:
@@ -5013,9 +7350,9 @@ struct SOAP_CMAC __tptz__GetConfigurations {
 };
 #endif
 
-/* onvif.h:6020 */
+/* onvif.h:6021 */
 #ifndef SOAP_TYPE___tptz__GetPresets
-#define SOAP_TYPE___tptz__GetPresets (291)
+#define SOAP_TYPE___tptz__GetPresets (555)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__GetPresets {
       public:
@@ -5031,9 +7368,9 @@ struct SOAP_CMAC __tptz__GetPresets {
 };
 #endif
 
-/* onvif.h:6106 */
+/* onvif.h:6107 */
 #ifndef SOAP_TYPE___tptz__SetPreset
-#define SOAP_TYPE___tptz__SetPreset (295)
+#define SOAP_TYPE___tptz__SetPreset (559)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__SetPreset {
       public:
@@ -5049,9 +7386,9 @@ struct SOAP_CMAC __tptz__SetPreset {
 };
 #endif
 
-/* onvif.h:6181 */
+/* onvif.h:6182 */
 #ifndef SOAP_TYPE___tptz__RemovePreset
-#define SOAP_TYPE___tptz__RemovePreset (299)
+#define SOAP_TYPE___tptz__RemovePreset (563)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__RemovePreset {
       public:
@@ -5067,9 +7404,9 @@ struct SOAP_CMAC __tptz__RemovePreset {
 };
 #endif
 
-/* onvif.h:6252 */
+/* onvif.h:6253 */
 #ifndef SOAP_TYPE___tptz__GotoPreset
-#define SOAP_TYPE___tptz__GotoPreset (303)
+#define SOAP_TYPE___tptz__GotoPreset (567)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__GotoPreset {
       public:
@@ -5085,9 +7422,9 @@ struct SOAP_CMAC __tptz__GotoPreset {
 };
 #endif
 
-/* onvif.h:6323 */
+/* onvif.h:6324 */
 #ifndef SOAP_TYPE___tptz__GetStatus
-#define SOAP_TYPE___tptz__GetStatus (307)
+#define SOAP_TYPE___tptz__GetStatus (571)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__GetStatus {
       public:
@@ -5103,9 +7440,9 @@ struct SOAP_CMAC __tptz__GetStatus {
 };
 #endif
 
-/* onvif.h:6420 */
+/* onvif.h:6421 */
 #ifndef SOAP_TYPE___tptz__GetConfiguration
-#define SOAP_TYPE___tptz__GetConfiguration (311)
+#define SOAP_TYPE___tptz__GetConfiguration (575)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__GetConfiguration {
       public:
@@ -5121,9 +7458,9 @@ struct SOAP_CMAC __tptz__GetConfiguration {
 };
 #endif
 
-/* onvif.h:6499 */
+/* onvif.h:6500 */
 #ifndef SOAP_TYPE___tptz__GetNodes
-#define SOAP_TYPE___tptz__GetNodes (315)
+#define SOAP_TYPE___tptz__GetNodes (579)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__GetNodes {
       public:
@@ -5139,9 +7476,9 @@ struct SOAP_CMAC __tptz__GetNodes {
 };
 #endif
 
-/* onvif.h:6569 */
+/* onvif.h:6570 */
 #ifndef SOAP_TYPE___tptz__GetNode
-#define SOAP_TYPE___tptz__GetNode (319)
+#define SOAP_TYPE___tptz__GetNode (583)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__GetNode {
       public:
@@ -5157,9 +7494,9 @@ struct SOAP_CMAC __tptz__GetNode {
 };
 #endif
 
-/* onvif.h:6639 */
+/* onvif.h:6640 */
 #ifndef SOAP_TYPE___tptz__SetConfiguration
-#define SOAP_TYPE___tptz__SetConfiguration (323)
+#define SOAP_TYPE___tptz__SetConfiguration (587)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__SetConfiguration {
       public:
@@ -5175,9 +7512,9 @@ struct SOAP_CMAC __tptz__SetConfiguration {
 };
 #endif
 
-/* onvif.h:6719 */
+/* onvif.h:6720 */
 #ifndef SOAP_TYPE___tptz__GetConfigurationOptions
-#define SOAP_TYPE___tptz__GetConfigurationOptions (327)
+#define SOAP_TYPE___tptz__GetConfigurationOptions (591)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__GetConfigurationOptions {
       public:
@@ -5193,9 +7530,9 @@ struct SOAP_CMAC __tptz__GetConfigurationOptions {
 };
 #endif
 
-/* onvif.h:6789 */
+/* onvif.h:6790 */
 #ifndef SOAP_TYPE___tptz__GotoHomePosition
-#define SOAP_TYPE___tptz__GotoHomePosition (331)
+#define SOAP_TYPE___tptz__GotoHomePosition (595)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__GotoHomePosition {
       public:
@@ -5211,9 +7548,9 @@ struct SOAP_CMAC __tptz__GotoHomePosition {
 };
 #endif
 
-/* onvif.h:6862 */
+/* onvif.h:6863 */
 #ifndef SOAP_TYPE___tptz__SetHomePosition
-#define SOAP_TYPE___tptz__SetHomePosition (335)
+#define SOAP_TYPE___tptz__SetHomePosition (599)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__SetHomePosition {
       public:
@@ -5229,9 +7566,9 @@ struct SOAP_CMAC __tptz__SetHomePosition {
 };
 #endif
 
-/* onvif.h:6933 */
+/* onvif.h:6934 */
 #ifndef SOAP_TYPE___tptz__ContinuousMove
-#define SOAP_TYPE___tptz__ContinuousMove (339)
+#define SOAP_TYPE___tptz__ContinuousMove (603)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__ContinuousMove {
       public:
@@ -5247,9 +7584,9 @@ struct SOAP_CMAC __tptz__ContinuousMove {
 };
 #endif
 
-/* onvif.h:7009 */
+/* onvif.h:7010 */
 #ifndef SOAP_TYPE___tptz__RelativeMove
-#define SOAP_TYPE___tptz__RelativeMove (343)
+#define SOAP_TYPE___tptz__RelativeMove (607)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__RelativeMove {
       public:
@@ -5265,9 +7602,9 @@ struct SOAP_CMAC __tptz__RelativeMove {
 };
 #endif
 
-/* onvif.h:7082 */
+/* onvif.h:7083 */
 #ifndef SOAP_TYPE___tptz__SendAuxiliaryCommand
-#define SOAP_TYPE___tptz__SendAuxiliaryCommand (347)
+#define SOAP_TYPE___tptz__SendAuxiliaryCommand (611)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__SendAuxiliaryCommand {
       public:
@@ -5283,9 +7620,9 @@ struct SOAP_CMAC __tptz__SendAuxiliaryCommand {
 };
 #endif
 
-/* onvif.h:7157 */
+/* onvif.h:7158 */
 #ifndef SOAP_TYPE___tptz__AbsoluteMove
-#define SOAP_TYPE___tptz__AbsoluteMove (351)
+#define SOAP_TYPE___tptz__AbsoluteMove (615)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__AbsoluteMove {
       public:
@@ -5301,9 +7638,9 @@ struct SOAP_CMAC __tptz__AbsoluteMove {
 };
 #endif
 
-/* onvif.h:7237 */
+/* onvif.h:7238 */
 #ifndef SOAP_TYPE___tptz__GeoMove
-#define SOAP_TYPE___tptz__GeoMove (355)
+#define SOAP_TYPE___tptz__GeoMove (619)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__GeoMove {
       public:
@@ -5319,9 +7656,9 @@ struct SOAP_CMAC __tptz__GeoMove {
 };
 #endif
 
-/* onvif.h:7308 */
+/* onvif.h:7309 */
 #ifndef SOAP_TYPE___tptz__Stop
-#define SOAP_TYPE___tptz__Stop (359)
+#define SOAP_TYPE___tptz__Stop (623)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__Stop {
       public:
@@ -5337,9 +7674,9 @@ struct SOAP_CMAC __tptz__Stop {
 };
 #endif
 
-/* onvif.h:7376 */
+/* onvif.h:7377 */
 #ifndef SOAP_TYPE___tptz__GetPresetTours
-#define SOAP_TYPE___tptz__GetPresetTours (363)
+#define SOAP_TYPE___tptz__GetPresetTours (627)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__GetPresetTours {
       public:
@@ -5355,9 +7692,9 @@ struct SOAP_CMAC __tptz__GetPresetTours {
 };
 #endif
 
-/* onvif.h:7444 */
+/* onvif.h:7445 */
 #ifndef SOAP_TYPE___tptz__GetPresetTour
-#define SOAP_TYPE___tptz__GetPresetTour (367)
+#define SOAP_TYPE___tptz__GetPresetTour (631)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__GetPresetTour {
       public:
@@ -5373,9 +7710,9 @@ struct SOAP_CMAC __tptz__GetPresetTour {
 };
 #endif
 
-/* onvif.h:7512 */
+/* onvif.h:7513 */
 #ifndef SOAP_TYPE___tptz__GetPresetTourOptions
-#define SOAP_TYPE___tptz__GetPresetTourOptions (371)
+#define SOAP_TYPE___tptz__GetPresetTourOptions (635)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__GetPresetTourOptions {
       public:
@@ -5391,9 +7728,9 @@ struct SOAP_CMAC __tptz__GetPresetTourOptions {
 };
 #endif
 
-/* onvif.h:7580 */
+/* onvif.h:7581 */
 #ifndef SOAP_TYPE___tptz__CreatePresetTour
-#define SOAP_TYPE___tptz__CreatePresetTour (375)
+#define SOAP_TYPE___tptz__CreatePresetTour (639)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__CreatePresetTour {
       public:
@@ -5409,9 +7746,9 @@ struct SOAP_CMAC __tptz__CreatePresetTour {
 };
 #endif
 
-/* onvif.h:7648 */
+/* onvif.h:7649 */
 #ifndef SOAP_TYPE___tptz__ModifyPresetTour
-#define SOAP_TYPE___tptz__ModifyPresetTour (379)
+#define SOAP_TYPE___tptz__ModifyPresetTour (643)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__ModifyPresetTour {
       public:
@@ -5427,9 +7764,9 @@ struct SOAP_CMAC __tptz__ModifyPresetTour {
 };
 #endif
 
-/* onvif.h:7716 */
+/* onvif.h:7717 */
 #ifndef SOAP_TYPE___tptz__OperatePresetTour
-#define SOAP_TYPE___tptz__OperatePresetTour (383)
+#define SOAP_TYPE___tptz__OperatePresetTour (647)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__OperatePresetTour {
       public:
@@ -5445,9 +7782,9 @@ struct SOAP_CMAC __tptz__OperatePresetTour {
 };
 #endif
 
-/* onvif.h:7784 */
+/* onvif.h:7785 */
 #ifndef SOAP_TYPE___tptz__RemovePresetTour
-#define SOAP_TYPE___tptz__RemovePresetTour (387)
+#define SOAP_TYPE___tptz__RemovePresetTour (651)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__RemovePresetTour {
       public:
@@ -5463,9 +7800,9 @@ struct SOAP_CMAC __tptz__RemovePresetTour {
 };
 #endif
 
-/* onvif.h:7860 */
+/* onvif.h:7861 */
 #ifndef SOAP_TYPE___tptz__GetCompatibleConfigurations
-#define SOAP_TYPE___tptz__GetCompatibleConfigurations (391)
+#define SOAP_TYPE___tptz__GetCompatibleConfigurations (655)
 /* Wrapper: */
 struct SOAP_CMAC __tptz__GetCompatibleConfigurations {
       public:
@@ -5596,75 +7933,453 @@ typedef char *_wsa5__ProblemIRI;
 typedef struct wsa5__ProblemActionType _wsa5__ProblemAction;
 #endif
 
-/* onvif.h:211 */
+/* ds.h:48 */
+#ifndef SOAP_TYPE__ds__SignatureValue
+#define SOAP_TYPE__ds__SignatureValue (79)
+typedef char *_ds__SignatureValue;
+#endif
+
+/* ds.h:54 */
+#ifndef SOAP_TYPE__ds__Signature
+#define SOAP_TYPE__ds__Signature (84)
+typedef struct ds__SignatureType _ds__Signature;
+#endif
+
+/* ds.h:80 */
+#ifndef SOAP_TYPE__ds__Transform
+#define SOAP_TYPE__ds__Transform (92)
+typedef struct ds__TransformType _ds__Transform;
+#endif
+
+/* ds.h:94 */
+#ifndef SOAP_TYPE__ds__KeyInfo
+#define SOAP_TYPE__ds__KeyInfo (99)
+typedef struct ds__KeyInfoType _ds__KeyInfo;
+#endif
+
+/* wsc.h:58 */
+#ifndef SOAP_TYPE_wsc__FaultCodeOpenEnumType
+#define SOAP_TYPE_wsc__FaultCodeOpenEnumType (135)
+typedef char *wsc__FaultCodeOpenEnumType;
+#endif
+
+/* saml1.h:628 */
+#ifndef SOAP_TYPE__saml1__AssertionIDReference
+#define SOAP_TYPE__saml1__AssertionIDReference (198)
+typedef char *_saml1__AssertionIDReference;
+#endif
+
+/* saml1.h:631 */
+#ifndef SOAP_TYPE__saml1__Assertion
+#define SOAP_TYPE__saml1__Assertion (199)
+typedef struct saml1__AssertionType _saml1__Assertion;
+#endif
+
+/* saml1.h:634 */
+#ifndef SOAP_TYPE__saml1__Conditions
+#define SOAP_TYPE__saml1__Conditions (200)
+typedef struct saml1__ConditionsType _saml1__Conditions;
+#endif
+
+/* saml1.h:637 */
+#ifndef SOAP_TYPE__saml1__Condition
+#define SOAP_TYPE__saml1__Condition (201)
+typedef struct saml1__ConditionAbstractType _saml1__Condition;
+#endif
+
+/* saml1.h:640 */
+#ifndef SOAP_TYPE__saml1__AudienceRestrictionCondition
+#define SOAP_TYPE__saml1__AudienceRestrictionCondition (202)
+typedef struct saml1__AudienceRestrictionConditionType _saml1__AudienceRestrictionCondition;
+#endif
+
+/* saml1.h:643 */
+#ifndef SOAP_TYPE__saml1__Audience
+#define SOAP_TYPE__saml1__Audience (203)
+typedef char *_saml1__Audience;
+#endif
+
+/* saml1.h:646 */
+#ifndef SOAP_TYPE__saml1__DoNotCacheCondition
+#define SOAP_TYPE__saml1__DoNotCacheCondition (204)
+typedef struct saml1__DoNotCacheConditionType _saml1__DoNotCacheCondition;
+#endif
+
+/* saml1.h:649 */
+#ifndef SOAP_TYPE__saml1__Advice
+#define SOAP_TYPE__saml1__Advice (205)
+typedef struct saml1__AdviceType _saml1__Advice;
+#endif
+
+/* saml1.h:652 */
+#ifndef SOAP_TYPE__saml1__Statement
+#define SOAP_TYPE__saml1__Statement (206)
+typedef struct saml1__StatementAbstractType _saml1__Statement;
+#endif
+
+/* saml1.h:655 */
+#ifndef SOAP_TYPE__saml1__SubjectStatement
+#define SOAP_TYPE__saml1__SubjectStatement (207)
+typedef struct saml1__SubjectStatementAbstractType _saml1__SubjectStatement;
+#endif
+
+/* saml1.h:658 */
+#ifndef SOAP_TYPE__saml1__Subject
+#define SOAP_TYPE__saml1__Subject (208)
+typedef struct saml1__SubjectType _saml1__Subject;
+#endif
+
+/* saml1.h:661 */
+#ifndef SOAP_TYPE__saml1__NameIdentifier
+#define SOAP_TYPE__saml1__NameIdentifier (209)
+typedef struct saml1__NameIdentifierType _saml1__NameIdentifier;
+#endif
+
+/* saml1.h:664 */
+#ifndef SOAP_TYPE__saml1__SubjectConfirmation
+#define SOAP_TYPE__saml1__SubjectConfirmation (210)
+typedef struct saml1__SubjectConfirmationType _saml1__SubjectConfirmation;
+#endif
+
+/* saml1.h:667 */
+#ifndef SOAP_TYPE__saml1__SubjectConfirmationData
+#define SOAP_TYPE__saml1__SubjectConfirmationData (211)
+typedef _XML _saml1__SubjectConfirmationData;
+#endif
+
+/* saml1.h:670 */
+#ifndef SOAP_TYPE__saml1__ConfirmationMethod
+#define SOAP_TYPE__saml1__ConfirmationMethod (212)
+typedef char *_saml1__ConfirmationMethod;
+#endif
+
+/* saml1.h:673 */
+#ifndef SOAP_TYPE__saml1__AuthenticationStatement
+#define SOAP_TYPE__saml1__AuthenticationStatement (213)
+typedef struct saml1__AuthenticationStatementType _saml1__AuthenticationStatement;
+#endif
+
+/* saml1.h:676 */
+#ifndef SOAP_TYPE__saml1__SubjectLocality
+#define SOAP_TYPE__saml1__SubjectLocality (214)
+typedef struct saml1__SubjectLocalityType _saml1__SubjectLocality;
+#endif
+
+/* saml1.h:679 */
+#ifndef SOAP_TYPE__saml1__AuthorityBinding
+#define SOAP_TYPE__saml1__AuthorityBinding (215)
+typedef struct saml1__AuthorityBindingType _saml1__AuthorityBinding;
+#endif
+
+/* saml1.h:682 */
+#ifndef SOAP_TYPE__saml1__AuthorizationDecisionStatement
+#define SOAP_TYPE__saml1__AuthorizationDecisionStatement (216)
+typedef struct saml1__AuthorizationDecisionStatementType _saml1__AuthorizationDecisionStatement;
+#endif
+
+/* saml1.h:685 */
+#ifndef SOAP_TYPE__saml1__Action
+#define SOAP_TYPE__saml1__Action (217)
+typedef struct saml1__ActionType _saml1__Action;
+#endif
+
+/* saml1.h:688 */
+#ifndef SOAP_TYPE__saml1__Evidence
+#define SOAP_TYPE__saml1__Evidence (218)
+typedef struct saml1__EvidenceType _saml1__Evidence;
+#endif
+
+/* saml1.h:691 */
+#ifndef SOAP_TYPE__saml1__AttributeStatement
+#define SOAP_TYPE__saml1__AttributeStatement (219)
+typedef struct saml1__AttributeStatementType _saml1__AttributeStatement;
+#endif
+
+/* saml1.h:694 */
+#ifndef SOAP_TYPE__saml1__AttributeDesignator
+#define SOAP_TYPE__saml1__AttributeDesignator (220)
+typedef struct saml1__AttributeDesignatorType _saml1__AttributeDesignator;
+#endif
+
+/* saml1.h:697 */
+#ifndef SOAP_TYPE__saml1__Attribute
+#define SOAP_TYPE__saml1__Attribute (221)
+typedef struct saml1__AttributeType _saml1__Attribute;
+#endif
+
+/* saml1.h:700 */
+#ifndef SOAP_TYPE__saml1__AttributeValue
+#define SOAP_TYPE__saml1__AttributeValue (222)
+typedef _XML _saml1__AttributeValue;
+#endif
+
+/* saml2.h:781 */
+#ifndef SOAP_TYPE__saml2__BaseID
+#define SOAP_TYPE__saml2__BaseID (281)
+typedef struct saml2__BaseIDAbstractType _saml2__BaseID;
+#endif
+
+/* saml2.h:784 */
+#ifndef SOAP_TYPE__saml2__NameID
+#define SOAP_TYPE__saml2__NameID (282)
+typedef struct saml2__NameIDType _saml2__NameID;
+#endif
+
+/* saml2.h:787 */
+#ifndef SOAP_TYPE__saml2__EncryptedID
+#define SOAP_TYPE__saml2__EncryptedID (283)
+typedef struct saml2__EncryptedElementType _saml2__EncryptedID;
+#endif
+
+/* saml2.h:790 */
+#ifndef SOAP_TYPE__saml2__Issuer
+#define SOAP_TYPE__saml2__Issuer (284)
+typedef struct saml2__NameIDType _saml2__Issuer;
+#endif
+
+/* saml2.h:793 */
+#ifndef SOAP_TYPE__saml2__AssertionIDRef
+#define SOAP_TYPE__saml2__AssertionIDRef (285)
+typedef char *_saml2__AssertionIDRef;
+#endif
+
+/* saml2.h:796 */
+#ifndef SOAP_TYPE__saml2__AssertionURIRef
+#define SOAP_TYPE__saml2__AssertionURIRef (286)
+typedef char *_saml2__AssertionURIRef;
+#endif
+
+/* saml2.h:799 */
+#ifndef SOAP_TYPE__saml2__Assertion
+#define SOAP_TYPE__saml2__Assertion (287)
+typedef struct saml2__AssertionType _saml2__Assertion;
+#endif
+
+/* saml2.h:802 */
+#ifndef SOAP_TYPE__saml2__Subject
+#define SOAP_TYPE__saml2__Subject (288)
+typedef struct saml2__SubjectType _saml2__Subject;
+#endif
+
+/* saml2.h:805 */
+#ifndef SOAP_TYPE__saml2__SubjectConfirmation
+#define SOAP_TYPE__saml2__SubjectConfirmation (289)
+typedef struct saml2__SubjectConfirmationType _saml2__SubjectConfirmation;
+#endif
+
+/* saml2.h:808 */
+#ifndef SOAP_TYPE__saml2__SubjectConfirmationData
+#define SOAP_TYPE__saml2__SubjectConfirmationData (290)
+typedef struct saml2__SubjectConfirmationDataType _saml2__SubjectConfirmationData;
+#endif
+
+/* saml2.h:811 */
+#ifndef SOAP_TYPE__saml2__Conditions
+#define SOAP_TYPE__saml2__Conditions (291)
+typedef struct saml2__ConditionsType _saml2__Conditions;
+#endif
+
+/* saml2.h:814 */
+#ifndef SOAP_TYPE__saml2__Condition
+#define SOAP_TYPE__saml2__Condition (292)
+typedef struct saml2__ConditionAbstractType _saml2__Condition;
+#endif
+
+/* saml2.h:817 */
+#ifndef SOAP_TYPE__saml2__AudienceRestriction
+#define SOAP_TYPE__saml2__AudienceRestriction (293)
+typedef struct saml2__AudienceRestrictionType _saml2__AudienceRestriction;
+#endif
+
+/* saml2.h:820 */
+#ifndef SOAP_TYPE__saml2__Audience
+#define SOAP_TYPE__saml2__Audience (294)
+typedef char *_saml2__Audience;
+#endif
+
+/* saml2.h:823 */
+#ifndef SOAP_TYPE__saml2__OneTimeUse
+#define SOAP_TYPE__saml2__OneTimeUse (295)
+typedef struct saml2__OneTimeUseType _saml2__OneTimeUse;
+#endif
+
+/* saml2.h:826 */
+#ifndef SOAP_TYPE__saml2__ProxyRestriction
+#define SOAP_TYPE__saml2__ProxyRestriction (296)
+typedef struct saml2__ProxyRestrictionType _saml2__ProxyRestriction;
+#endif
+
+/* saml2.h:829 */
+#ifndef SOAP_TYPE__saml2__Advice
+#define SOAP_TYPE__saml2__Advice (297)
+typedef struct saml2__AdviceType _saml2__Advice;
+#endif
+
+/* saml2.h:832 */
+#ifndef SOAP_TYPE__saml2__EncryptedAssertion
+#define SOAP_TYPE__saml2__EncryptedAssertion (298)
+typedef struct saml2__EncryptedElementType _saml2__EncryptedAssertion;
+#endif
+
+/* saml2.h:835 */
+#ifndef SOAP_TYPE__saml2__Statement
+#define SOAP_TYPE__saml2__Statement (299)
+typedef struct saml2__StatementAbstractType _saml2__Statement;
+#endif
+
+/* saml2.h:838 */
+#ifndef SOAP_TYPE__saml2__AuthnStatement
+#define SOAP_TYPE__saml2__AuthnStatement (300)
+typedef struct saml2__AuthnStatementType _saml2__AuthnStatement;
+#endif
+
+/* saml2.h:841 */
+#ifndef SOAP_TYPE__saml2__SubjectLocality
+#define SOAP_TYPE__saml2__SubjectLocality (301)
+typedef struct saml2__SubjectLocalityType _saml2__SubjectLocality;
+#endif
+
+/* saml2.h:844 */
+#ifndef SOAP_TYPE__saml2__AuthnContext
+#define SOAP_TYPE__saml2__AuthnContext (302)
+typedef struct saml2__AuthnContextType _saml2__AuthnContext;
+#endif
+
+/* saml2.h:847 */
+#ifndef SOAP_TYPE__saml2__AuthnContextClassRef
+#define SOAP_TYPE__saml2__AuthnContextClassRef (303)
+typedef char *_saml2__AuthnContextClassRef;
+#endif
+
+/* saml2.h:850 */
+#ifndef SOAP_TYPE__saml2__AuthnContextDeclRef
+#define SOAP_TYPE__saml2__AuthnContextDeclRef (304)
+typedef char *_saml2__AuthnContextDeclRef;
+#endif
+
+/* saml2.h:853 */
+#ifndef SOAP_TYPE__saml2__AuthnContextDecl
+#define SOAP_TYPE__saml2__AuthnContextDecl (305)
+typedef _XML _saml2__AuthnContextDecl;
+#endif
+
+/* saml2.h:856 */
+#ifndef SOAP_TYPE__saml2__AuthenticatingAuthority
+#define SOAP_TYPE__saml2__AuthenticatingAuthority (306)
+typedef char *_saml2__AuthenticatingAuthority;
+#endif
+
+/* saml2.h:859 */
+#ifndef SOAP_TYPE__saml2__AuthzDecisionStatement
+#define SOAP_TYPE__saml2__AuthzDecisionStatement (307)
+typedef struct saml2__AuthzDecisionStatementType _saml2__AuthzDecisionStatement;
+#endif
+
+/* saml2.h:862 */
+#ifndef SOAP_TYPE__saml2__Action
+#define SOAP_TYPE__saml2__Action (308)
+typedef struct saml2__ActionType _saml2__Action;
+#endif
+
+/* saml2.h:865 */
+#ifndef SOAP_TYPE__saml2__Evidence
+#define SOAP_TYPE__saml2__Evidence (309)
+typedef struct saml2__EvidenceType _saml2__Evidence;
+#endif
+
+/* saml2.h:868 */
+#ifndef SOAP_TYPE__saml2__AttributeStatement
+#define SOAP_TYPE__saml2__AttributeStatement (310)
+typedef struct saml2__AttributeStatementType _saml2__AttributeStatement;
+#endif
+
+/* saml2.h:871 */
+#ifndef SOAP_TYPE__saml2__Attribute
+#define SOAP_TYPE__saml2__Attribute (311)
+typedef struct saml2__AttributeType _saml2__Attribute;
+#endif
+
+/* saml2.h:874 */
+#ifndef SOAP_TYPE__saml2__AttributeValue
+#define SOAP_TYPE__saml2__AttributeValue (312)
+typedef _XML _saml2__AttributeValue;
+#endif
+
+/* saml2.h:877 */
+#ifndef SOAP_TYPE__saml2__EncryptedAttribute
+#define SOAP_TYPE__saml2__EncryptedAttribute (313)
+typedef struct saml2__EncryptedElementType _saml2__EncryptedAttribute;
+#endif
+
+/* onvif.h:212 */
 #ifndef SOAP_TYPE_xsd__NCName
-#define SOAP_TYPE_xsd__NCName (65)
+#define SOAP_TYPE_xsd__NCName (329)
 typedef std::string xsd__NCName;
 #endif
 
-/* onvif.h:214 */
+/* onvif.h:215 */
 #ifndef SOAP_TYPE_xsd__anySimpleType
-#define SOAP_TYPE_xsd__anySimpleType (66)
+#define SOAP_TYPE_xsd__anySimpleType (330)
 typedef std::string xsd__anySimpleType;
 #endif
 
-/* onvif.h:217 */
+/* onvif.h:218 */
 #ifndef SOAP_TYPE_xsd__anyURI
-#define SOAP_TYPE_xsd__anyURI (67)
+#define SOAP_TYPE_xsd__anyURI (331)
 typedef std::string xsd__anyURI;
 #endif
 
-/* onvif.h:220 */
+/* onvif.h:221 */
 #ifndef SOAP_TYPE_xsd__duration
-#define SOAP_TYPE_xsd__duration (68)
+#define SOAP_TYPE_xsd__duration (332)
 typedef std::string xsd__duration;
 #endif
 
-/* onvif.h:223 */
+/* onvif.h:224 */
 #ifndef SOAP_TYPE_xsd__integer
-#define SOAP_TYPE_xsd__integer (69)
+#define SOAP_TYPE_xsd__integer (333)
 typedef std::string xsd__integer;
 #endif
 
-/* onvif.h:226 */
+/* onvif.h:227 */
 #ifndef SOAP_TYPE_xsd__nonNegativeInteger
-#define SOAP_TYPE_xsd__nonNegativeInteger (70)
+#define SOAP_TYPE_xsd__nonNegativeInteger (334)
 typedef std::string xsd__nonNegativeInteger;
 #endif
 
-/* onvif.h:229 */
+/* onvif.h:230 */
 #ifndef SOAP_TYPE_xsd__token
-#define SOAP_TYPE_xsd__token (71)
+#define SOAP_TYPE_xsd__token (335)
 typedef std::string xsd__token;
 #endif
 
-/* onvif.h:234 */
+/* onvif.h:235 */
 #ifndef SOAP_TYPE__xml__lang
-#define SOAP_TYPE__xml__lang (72)
+#define SOAP_TYPE__xml__lang (336)
 typedef std::string _xml__lang;
 #endif
 
-/* onvif.h:486 */
+/* onvif.h:487 */
 #ifndef SOAP_TYPE_tt__IntAttrList
-#define SOAP_TYPE_tt__IntAttrList (185)
+#define SOAP_TYPE_tt__IntAttrList (449)
 typedef std::string tt__IntAttrList;
 #endif
 
-/* onvif.h:529 */
+/* onvif.h:530 */
 #ifndef SOAP_TYPE_tt__Name
-#define SOAP_TYPE_tt__Name (186)
+#define SOAP_TYPE_tt__Name (450)
 typedef std::string tt__Name;
 #endif
 
-/* onvif.h:649 */
+/* onvif.h:650 */
 #ifndef SOAP_TYPE_tt__AuxiliaryData
-#define SOAP_TYPE_tt__AuxiliaryData (189)
+#define SOAP_TYPE_tt__AuxiliaryData (453)
 typedef std::string tt__AuxiliaryData;
 #endif
 
-/* onvif.h:749 */
+/* onvif.h:750 */
 #ifndef SOAP_TYPE_tt__ReferenceToken
-#define SOAP_TYPE_tt__ReferenceToken (193)
+#define SOAP_TYPE_tt__ReferenceToken (457)
 typedef std::string tt__ReferenceToken;
 #endif
 
@@ -5687,12 +8402,12 @@ typedef std::string tt__ReferenceToken;
 
 /* float has binding name 'float' for type 'xsd:float' */
 #ifndef SOAP_TYPE_float
-#define SOAP_TYPE_float (214)
+#define SOAP_TYPE_float (478)
 #endif
 
 /* double has binding name 'double' for type 'xsd:double' */
 #ifndef SOAP_TYPE_double
-#define SOAP_TYPE_double (273)
+#define SOAP_TYPE_double (537)
 #endif
 
 /* unsigned char has binding name 'unsignedByte' for type 'xsd:unsignedByte' */
@@ -5717,42 +8432,67 @@ typedef std::string tt__ReferenceToken;
 
 /* time_t has binding name 'dateTime' for type 'xsd:dateTime' */
 #ifndef SOAP_TYPE_dateTime
-#define SOAP_TYPE_dateTime (271)
+#define SOAP_TYPE_dateTime (535)
 #endif
 
 /* bool has binding name 'bool' for type 'xsd:boolean' */
 #ifndef SOAP_TYPE_bool
-#define SOAP_TYPE_bool (195)
+#define SOAP_TYPE_bool (459)
 #endif
 
 /* enum tt__MoveStatus has binding name 'tt__MoveStatus' for type 'tt:MoveStatus' */
 #ifndef SOAP_TYPE_tt__MoveStatus
-#define SOAP_TYPE_tt__MoveStatus (194)
+#define SOAP_TYPE_tt__MoveStatus (458)
 #endif
 
 /* enum tt__PTZPresetTourOperation has binding name 'tt__PTZPresetTourOperation' for type 'tt:PTZPresetTourOperation' */
 #ifndef SOAP_TYPE_tt__PTZPresetTourOperation
-#define SOAP_TYPE_tt__PTZPresetTourOperation (192)
+#define SOAP_TYPE_tt__PTZPresetTourOperation (456)
 #endif
 
 /* enum tt__PTZPresetTourDirection has binding name 'tt__PTZPresetTourDirection' for type 'tt:PTZPresetTourDirection' */
 #ifndef SOAP_TYPE_tt__PTZPresetTourDirection
-#define SOAP_TYPE_tt__PTZPresetTourDirection (191)
+#define SOAP_TYPE_tt__PTZPresetTourDirection (455)
 #endif
 
 /* enum tt__PTZPresetTourState has binding name 'tt__PTZPresetTourState' for type 'tt:PTZPresetTourState' */
 #ifndef SOAP_TYPE_tt__PTZPresetTourState
-#define SOAP_TYPE_tt__PTZPresetTourState (190)
+#define SOAP_TYPE_tt__PTZPresetTourState (454)
 #endif
 
 /* enum tt__ReverseMode has binding name 'tt__ReverseMode' for type 'tt:ReverseMode' */
 #ifndef SOAP_TYPE_tt__ReverseMode
-#define SOAP_TYPE_tt__ReverseMode (188)
+#define SOAP_TYPE_tt__ReverseMode (452)
 #endif
 
 /* enum tt__EFlipMode has binding name 'tt__EFlipMode' for type 'tt:EFlipMode' */
 #ifndef SOAP_TYPE_tt__EFlipMode
-#define SOAP_TYPE_tt__EFlipMode (187)
+#define SOAP_TYPE_tt__EFlipMode (451)
+#endif
+
+/* enum saml2__DecisionType has binding name 'saml2__DecisionType' for type 'saml2:DecisionType' */
+#ifndef SOAP_TYPE_saml2__DecisionType
+#define SOAP_TYPE_saml2__DecisionType (246)
+#endif
+
+/* enum saml1__DecisionType has binding name 'saml1__DecisionType' for type 'saml1:DecisionType' */
+#ifndef SOAP_TYPE_saml1__DecisionType
+#define SOAP_TYPE_saml1__DecisionType (167)
+#endif
+
+/* enum wsc__FaultCodeType has binding name 'wsc__FaultCodeType' for type 'wsc:FaultCodeType' */
+#ifndef SOAP_TYPE_wsc__FaultCodeType
+#define SOAP_TYPE_wsc__FaultCodeType (136)
+#endif
+
+/* enum wsse__FaultcodeEnum has binding name 'wsse__FaultcodeEnum' for type 'wsse:FaultcodeEnum' */
+#ifndef SOAP_TYPE_wsse__FaultcodeEnum
+#define SOAP_TYPE_wsse__FaultcodeEnum (60)
+#endif
+
+/* enum wsu__tTimestampFault has binding name 'wsu__tTimestampFault' for type 'wsu:tTimestampFault' */
+#ifndef SOAP_TYPE_wsu__tTimestampFault
+#define SOAP_TYPE_wsu__tTimestampFault (57)
 #endif
 
 /* enum _wsa5__IsReferenceParameter has binding name '_wsa5__IsReferenceParameter' for type 'wsa5:IsReferenceParameter' */
@@ -5772,652 +8512,1317 @@ typedef std::string tt__ReferenceToken;
 
 /* tt__ReferenceToken has binding name 'tt__ReferenceToken' for type 'tt:ReferenceToken' */
 #ifndef SOAP_TYPE_tt__ReferenceToken
-#define SOAP_TYPE_tt__ReferenceToken (193)
+#define SOAP_TYPE_tt__ReferenceToken (457)
 #endif
 
 /* tt__AuxiliaryData has binding name 'tt__AuxiliaryData' for type 'tt:AuxiliaryData' */
 #ifndef SOAP_TYPE_tt__AuxiliaryData
-#define SOAP_TYPE_tt__AuxiliaryData (189)
+#define SOAP_TYPE_tt__AuxiliaryData (453)
 #endif
 
 /* tt__Name has binding name 'tt__Name' for type 'tt:Name' */
 #ifndef SOAP_TYPE_tt__Name
-#define SOAP_TYPE_tt__Name (186)
+#define SOAP_TYPE_tt__Name (450)
 #endif
 
 /* tt__IntAttrList has binding name 'tt__IntAttrList' for type 'tt:IntAttrList' */
 #ifndef SOAP_TYPE_tt__IntAttrList
-#define SOAP_TYPE_tt__IntAttrList (185)
+#define SOAP_TYPE_tt__IntAttrList (449)
 #endif
 
 /* tt__GeoLocation has binding name 'tt__GeoLocation' for type 'tt:GeoLocation' */
 #ifndef SOAP_TYPE_tt__GeoLocation
-#define SOAP_TYPE_tt__GeoLocation (184)
+#define SOAP_TYPE_tt__GeoLocation (448)
 #endif
 
 /* tt__PTZMoveStatus has binding name 'tt__PTZMoveStatus' for type 'tt:PTZMoveStatus' */
 #ifndef SOAP_TYPE_tt__PTZMoveStatus
-#define SOAP_TYPE_tt__PTZMoveStatus (183)
+#define SOAP_TYPE_tt__PTZMoveStatus (447)
 #endif
 
 /* tt__PTZStatus has binding name 'tt__PTZStatus' for type 'tt:PTZStatus' */
 #ifndef SOAP_TYPE_tt__PTZStatus
-#define SOAP_TYPE_tt__PTZStatus (182)
+#define SOAP_TYPE_tt__PTZStatus (446)
 #endif
 
 /* tt__PTZVector has binding name 'tt__PTZVector' for type 'tt:PTZVector' */
 #ifndef SOAP_TYPE_tt__PTZVector
-#define SOAP_TYPE_tt__PTZVector (181)
+#define SOAP_TYPE_tt__PTZVector (445)
 #endif
 
 /* tt__Vector1D has binding name 'tt__Vector1D' for type 'tt:Vector1D' */
 #ifndef SOAP_TYPE_tt__Vector1D
-#define SOAP_TYPE_tt__Vector1D (180)
+#define SOAP_TYPE_tt__Vector1D (444)
 #endif
 
 /* tt__Vector2D has binding name 'tt__Vector2D' for type 'tt:Vector2D' */
 #ifndef SOAP_TYPE_tt__Vector2D
-#define SOAP_TYPE_tt__Vector2D (179)
+#define SOAP_TYPE_tt__Vector2D (443)
 #endif
 
 /* tt__IntRange has binding name 'tt__IntRange' for type 'tt:IntRange' */
 #ifndef SOAP_TYPE_tt__IntRange
-#define SOAP_TYPE_tt__IntRange (178)
+#define SOAP_TYPE_tt__IntRange (442)
 #endif
 
 /* tt__PTZPresetTourStartingConditionOptionsExtension has binding name 'tt__PTZPresetTourStartingConditionOptionsExtension' for type 'tt:PTZPresetTourStartingConditionOptionsExtension' */
 #ifndef SOAP_TYPE_tt__PTZPresetTourStartingConditionOptionsExtension
-#define SOAP_TYPE_tt__PTZPresetTourStartingConditionOptionsExtension (177)
+#define SOAP_TYPE_tt__PTZPresetTourStartingConditionOptionsExtension (441)
 #endif
 
 /* tt__PTZPresetTourStartingConditionOptions has binding name 'tt__PTZPresetTourStartingConditionOptions' for type 'tt:PTZPresetTourStartingConditionOptions' */
 #ifndef SOAP_TYPE_tt__PTZPresetTourStartingConditionOptions
-#define SOAP_TYPE_tt__PTZPresetTourStartingConditionOptions (176)
+#define SOAP_TYPE_tt__PTZPresetTourStartingConditionOptions (440)
 #endif
 
 /* tt__PTZPresetTourPresetDetailOptionsExtension has binding name 'tt__PTZPresetTourPresetDetailOptionsExtension' for type 'tt:PTZPresetTourPresetDetailOptionsExtension' */
 #ifndef SOAP_TYPE_tt__PTZPresetTourPresetDetailOptionsExtension
-#define SOAP_TYPE_tt__PTZPresetTourPresetDetailOptionsExtension (175)
+#define SOAP_TYPE_tt__PTZPresetTourPresetDetailOptionsExtension (439)
 #endif
 
 /* tt__PTZPresetTourPresetDetailOptions has binding name 'tt__PTZPresetTourPresetDetailOptions' for type 'tt:PTZPresetTourPresetDetailOptions' */
 #ifndef SOAP_TYPE_tt__PTZPresetTourPresetDetailOptions
-#define SOAP_TYPE_tt__PTZPresetTourPresetDetailOptions (174)
+#define SOAP_TYPE_tt__PTZPresetTourPresetDetailOptions (438)
 #endif
 
 /* tt__PTZPresetTourSpotOptions has binding name 'tt__PTZPresetTourSpotOptions' for type 'tt:PTZPresetTourSpotOptions' */
 #ifndef SOAP_TYPE_tt__PTZPresetTourSpotOptions
-#define SOAP_TYPE_tt__PTZPresetTourSpotOptions (173)
+#define SOAP_TYPE_tt__PTZPresetTourSpotOptions (437)
 #endif
 
 /* tt__PTZPresetTourOptions has binding name 'tt__PTZPresetTourOptions' for type 'tt:PTZPresetTourOptions' */
 #ifndef SOAP_TYPE_tt__PTZPresetTourOptions
-#define SOAP_TYPE_tt__PTZPresetTourOptions (172)
+#define SOAP_TYPE_tt__PTZPresetTourOptions (436)
 #endif
 
 /* tt__PTZPresetTourStartingConditionExtension has binding name 'tt__PTZPresetTourStartingConditionExtension' for type 'tt:PTZPresetTourStartingConditionExtension' */
 #ifndef SOAP_TYPE_tt__PTZPresetTourStartingConditionExtension
-#define SOAP_TYPE_tt__PTZPresetTourStartingConditionExtension (171)
+#define SOAP_TYPE_tt__PTZPresetTourStartingConditionExtension (435)
 #endif
 
 /* tt__PTZPresetTourStartingCondition has binding name 'tt__PTZPresetTourStartingCondition' for type 'tt:PTZPresetTourStartingCondition' */
 #ifndef SOAP_TYPE_tt__PTZPresetTourStartingCondition
-#define SOAP_TYPE_tt__PTZPresetTourStartingCondition (170)
+#define SOAP_TYPE_tt__PTZPresetTourStartingCondition (434)
 #endif
 
 /* tt__PTZPresetTourStatusExtension has binding name 'tt__PTZPresetTourStatusExtension' for type 'tt:PTZPresetTourStatusExtension' */
 #ifndef SOAP_TYPE_tt__PTZPresetTourStatusExtension
-#define SOAP_TYPE_tt__PTZPresetTourStatusExtension (169)
+#define SOAP_TYPE_tt__PTZPresetTourStatusExtension (433)
 #endif
 
 /* tt__PTZPresetTourStatus has binding name 'tt__PTZPresetTourStatus' for type 'tt:PTZPresetTourStatus' */
 #ifndef SOAP_TYPE_tt__PTZPresetTourStatus
-#define SOAP_TYPE_tt__PTZPresetTourStatus (168)
+#define SOAP_TYPE_tt__PTZPresetTourStatus (432)
 #endif
 
 /* tt__PTZPresetTourTypeExtension has binding name 'tt__PTZPresetTourTypeExtension' for type 'tt:PTZPresetTourTypeExtension' */
 #ifndef SOAP_TYPE_tt__PTZPresetTourTypeExtension
-#define SOAP_TYPE_tt__PTZPresetTourTypeExtension (167)
+#define SOAP_TYPE_tt__PTZPresetTourTypeExtension (431)
 #endif
 
 /* tt__PTZPresetTourPresetDetail has binding name 'tt__PTZPresetTourPresetDetail' for type 'tt:PTZPresetTourPresetDetail' */
 #ifndef SOAP_TYPE_tt__PTZPresetTourPresetDetail
-#define SOAP_TYPE_tt__PTZPresetTourPresetDetail (166)
+#define SOAP_TYPE_tt__PTZPresetTourPresetDetail (430)
 #endif
 
 /* tt__PTZPresetTourSpotExtension has binding name 'tt__PTZPresetTourSpotExtension' for type 'tt:PTZPresetTourSpotExtension' */
 #ifndef SOAP_TYPE_tt__PTZPresetTourSpotExtension
-#define SOAP_TYPE_tt__PTZPresetTourSpotExtension (165)
+#define SOAP_TYPE_tt__PTZPresetTourSpotExtension (429)
 #endif
 
 /* tt__PTZPresetTourSpot has binding name 'tt__PTZPresetTourSpot' for type 'tt:PTZPresetTourSpot' */
 #ifndef SOAP_TYPE_tt__PTZPresetTourSpot
-#define SOAP_TYPE_tt__PTZPresetTourSpot (164)
+#define SOAP_TYPE_tt__PTZPresetTourSpot (428)
 #endif
 
 /* tt__PTZPresetTourExtension has binding name 'tt__PTZPresetTourExtension' for type 'tt:PTZPresetTourExtension' */
 #ifndef SOAP_TYPE_tt__PTZPresetTourExtension
-#define SOAP_TYPE_tt__PTZPresetTourExtension (163)
+#define SOAP_TYPE_tt__PTZPresetTourExtension (427)
 #endif
 
 /* tt__PresetTour has binding name 'tt__PresetTour' for type 'tt:PresetTour' */
 #ifndef SOAP_TYPE_tt__PresetTour
-#define SOAP_TYPE_tt__PresetTour (162)
+#define SOAP_TYPE_tt__PresetTour (426)
 #endif
 
 /* tt__PTZPreset has binding name 'tt__PTZPreset' for type 'tt:PTZPreset' */
 #ifndef SOAP_TYPE_tt__PTZPreset
-#define SOAP_TYPE_tt__PTZPreset (161)
+#define SOAP_TYPE_tt__PTZPreset (425)
 #endif
 
 /* tt__PTZSpeed has binding name 'tt__PTZSpeed' for type 'tt:PTZSpeed' */
 #ifndef SOAP_TYPE_tt__PTZSpeed
-#define SOAP_TYPE_tt__PTZSpeed (160)
+#define SOAP_TYPE_tt__PTZSpeed (424)
 #endif
 
 /* tt__Space1DDescription has binding name 'tt__Space1DDescription' for type 'tt:Space1DDescription' */
 #ifndef SOAP_TYPE_tt__Space1DDescription
-#define SOAP_TYPE_tt__Space1DDescription (159)
+#define SOAP_TYPE_tt__Space1DDescription (423)
 #endif
 
 /* tt__Space2DDescription has binding name 'tt__Space2DDescription' for type 'tt:Space2DDescription' */
 #ifndef SOAP_TYPE_tt__Space2DDescription
-#define SOAP_TYPE_tt__Space2DDescription (158)
+#define SOAP_TYPE_tt__Space2DDescription (422)
 #endif
 
 /* tt__PTZSpacesExtension has binding name 'tt__PTZSpacesExtension' for type 'tt:PTZSpacesExtension' */
 #ifndef SOAP_TYPE_tt__PTZSpacesExtension
-#define SOAP_TYPE_tt__PTZSpacesExtension (157)
+#define SOAP_TYPE_tt__PTZSpacesExtension (421)
 #endif
 
 /* tt__PTZSpaces has binding name 'tt__PTZSpaces' for type 'tt:PTZSpaces' */
 #ifndef SOAP_TYPE_tt__PTZSpaces
-#define SOAP_TYPE_tt__PTZSpaces (156)
+#define SOAP_TYPE_tt__PTZSpaces (420)
 #endif
 
 /* tt__ZoomLimits has binding name 'tt__ZoomLimits' for type 'tt:ZoomLimits' */
 #ifndef SOAP_TYPE_tt__ZoomLimits
-#define SOAP_TYPE_tt__ZoomLimits (155)
+#define SOAP_TYPE_tt__ZoomLimits (419)
 #endif
 
 /* tt__PanTiltLimits has binding name 'tt__PanTiltLimits' for type 'tt:PanTiltLimits' */
 #ifndef SOAP_TYPE_tt__PanTiltLimits
-#define SOAP_TYPE_tt__PanTiltLimits (154)
+#define SOAP_TYPE_tt__PanTiltLimits (418)
 #endif
 
 /* tt__ReverseOptionsExtension has binding name 'tt__ReverseOptionsExtension' for type 'tt:ReverseOptionsExtension' */
 #ifndef SOAP_TYPE_tt__ReverseOptionsExtension
-#define SOAP_TYPE_tt__ReverseOptionsExtension (153)
+#define SOAP_TYPE_tt__ReverseOptionsExtension (417)
 #endif
 
 /* tt__ReverseOptions has binding name 'tt__ReverseOptions' for type 'tt:ReverseOptions' */
 #ifndef SOAP_TYPE_tt__ReverseOptions
-#define SOAP_TYPE_tt__ReverseOptions (152)
+#define SOAP_TYPE_tt__ReverseOptions (416)
 #endif
 
 /* tt__EFlipOptionsExtension has binding name 'tt__EFlipOptionsExtension' for type 'tt:EFlipOptionsExtension' */
 #ifndef SOAP_TYPE_tt__EFlipOptionsExtension
-#define SOAP_TYPE_tt__EFlipOptionsExtension (151)
+#define SOAP_TYPE_tt__EFlipOptionsExtension (415)
 #endif
 
 /* tt__EFlipOptions has binding name 'tt__EFlipOptions' for type 'tt:EFlipOptions' */
 #ifndef SOAP_TYPE_tt__EFlipOptions
-#define SOAP_TYPE_tt__EFlipOptions (150)
+#define SOAP_TYPE_tt__EFlipOptions (414)
 #endif
 
 /* tt__PTControlDirectionOptionsExtension has binding name 'tt__PTControlDirectionOptionsExtension' for type 'tt:PTControlDirectionOptionsExtension' */
 #ifndef SOAP_TYPE_tt__PTControlDirectionOptionsExtension
-#define SOAP_TYPE_tt__PTControlDirectionOptionsExtension (149)
+#define SOAP_TYPE_tt__PTControlDirectionOptionsExtension (413)
 #endif
 
 /* tt__PTControlDirectionOptions has binding name 'tt__PTControlDirectionOptions' for type 'tt:PTControlDirectionOptions' */
 #ifndef SOAP_TYPE_tt__PTControlDirectionOptions
-#define SOAP_TYPE_tt__PTControlDirectionOptions (148)
+#define SOAP_TYPE_tt__PTControlDirectionOptions (412)
 #endif
 
 /* tt__PTZConfigurationOptions2 has binding name 'tt__PTZConfigurationOptions2' for type 'tt:PTZConfigurationOptions2' */
 #ifndef SOAP_TYPE_tt__PTZConfigurationOptions2
-#define SOAP_TYPE_tt__PTZConfigurationOptions2 (147)
+#define SOAP_TYPE_tt__PTZConfigurationOptions2 (411)
 #endif
 
 /* tt__PTZConfigurationOptions has binding name 'tt__PTZConfigurationOptions' for type 'tt:PTZConfigurationOptions' */
 #ifndef SOAP_TYPE_tt__PTZConfigurationOptions
-#define SOAP_TYPE_tt__PTZConfigurationOptions (146)
+#define SOAP_TYPE_tt__PTZConfigurationOptions (410)
 #endif
 
 /* tt__Reverse has binding name 'tt__Reverse' for type 'tt:Reverse' */
 #ifndef SOAP_TYPE_tt__Reverse
-#define SOAP_TYPE_tt__Reverse (145)
+#define SOAP_TYPE_tt__Reverse (409)
 #endif
 
 /* tt__EFlip has binding name 'tt__EFlip' for type 'tt:EFlip' */
 #ifndef SOAP_TYPE_tt__EFlip
-#define SOAP_TYPE_tt__EFlip (144)
+#define SOAP_TYPE_tt__EFlip (408)
 #endif
 
 /* tt__PTControlDirectionExtension has binding name 'tt__PTControlDirectionExtension' for type 'tt:PTControlDirectionExtension' */
 #ifndef SOAP_TYPE_tt__PTControlDirectionExtension
-#define SOAP_TYPE_tt__PTControlDirectionExtension (143)
+#define SOAP_TYPE_tt__PTControlDirectionExtension (407)
 #endif
 
 /* tt__PTControlDirection has binding name 'tt__PTControlDirection' for type 'tt:PTControlDirection' */
 #ifndef SOAP_TYPE_tt__PTControlDirection
-#define SOAP_TYPE_tt__PTControlDirection (142)
+#define SOAP_TYPE_tt__PTControlDirection (406)
 #endif
 
 /* tt__PTZConfigurationExtension2 has binding name 'tt__PTZConfigurationExtension2' for type 'tt:PTZConfigurationExtension2' */
 #ifndef SOAP_TYPE_tt__PTZConfigurationExtension2
-#define SOAP_TYPE_tt__PTZConfigurationExtension2 (141)
+#define SOAP_TYPE_tt__PTZConfigurationExtension2 (405)
 #endif
 
 /* tt__PTZConfigurationExtension has binding name 'tt__PTZConfigurationExtension' for type 'tt:PTZConfigurationExtension' */
 #ifndef SOAP_TYPE_tt__PTZConfigurationExtension
-#define SOAP_TYPE_tt__PTZConfigurationExtension (140)
+#define SOAP_TYPE_tt__PTZConfigurationExtension (404)
 #endif
 
 /* tt__PTZConfiguration has binding name 'tt__PTZConfiguration' for type 'tt:PTZConfiguration' */
 #ifndef SOAP_TYPE_tt__PTZConfiguration
-#define SOAP_TYPE_tt__PTZConfiguration (139)
+#define SOAP_TYPE_tt__PTZConfiguration (403)
 #endif
 
 /* tt__PTZPresetTourSupportedExtension has binding name 'tt__PTZPresetTourSupportedExtension' for type 'tt:PTZPresetTourSupportedExtension' */
 #ifndef SOAP_TYPE_tt__PTZPresetTourSupportedExtension
-#define SOAP_TYPE_tt__PTZPresetTourSupportedExtension (138)
+#define SOAP_TYPE_tt__PTZPresetTourSupportedExtension (402)
 #endif
 
 /* tt__PTZPresetTourSupported has binding name 'tt__PTZPresetTourSupported' for type 'tt:PTZPresetTourSupported' */
 #ifndef SOAP_TYPE_tt__PTZPresetTourSupported
-#define SOAP_TYPE_tt__PTZPresetTourSupported (137)
+#define SOAP_TYPE_tt__PTZPresetTourSupported (401)
 #endif
 
 /* tt__PTZNodeExtension2 has binding name 'tt__PTZNodeExtension2' for type 'tt:PTZNodeExtension2' */
 #ifndef SOAP_TYPE_tt__PTZNodeExtension2
-#define SOAP_TYPE_tt__PTZNodeExtension2 (136)
+#define SOAP_TYPE_tt__PTZNodeExtension2 (400)
 #endif
 
 /* tt__PTZNodeExtension has binding name 'tt__PTZNodeExtension' for type 'tt:PTZNodeExtension' */
 #ifndef SOAP_TYPE_tt__PTZNodeExtension
-#define SOAP_TYPE_tt__PTZNodeExtension (135)
+#define SOAP_TYPE_tt__PTZNodeExtension (399)
 #endif
 
 /* tt__PTZNode has binding name 'tt__PTZNode' for type 'tt:PTZNode' */
 #ifndef SOAP_TYPE_tt__PTZNode
-#define SOAP_TYPE_tt__PTZNode (134)
+#define SOAP_TYPE_tt__PTZNode (398)
 #endif
 
 /* tt__ConfigurationEntity has binding name 'tt__ConfigurationEntity' for type 'tt:ConfigurationEntity' */
 #ifndef SOAP_TYPE_tt__ConfigurationEntity
-#define SOAP_TYPE_tt__ConfigurationEntity (133)
+#define SOAP_TYPE_tt__ConfigurationEntity (397)
 #endif
 
 /* tt__DurationRange has binding name 'tt__DurationRange' for type 'tt:DurationRange' */
 #ifndef SOAP_TYPE_tt__DurationRange
-#define SOAP_TYPE_tt__DurationRange (132)
+#define SOAP_TYPE_tt__DurationRange (396)
 #endif
 
 /* tt__FloatRange has binding name 'tt__FloatRange' for type 'tt:FloatRange' */
 #ifndef SOAP_TYPE_tt__FloatRange
-#define SOAP_TYPE_tt__FloatRange (131)
+#define SOAP_TYPE_tt__FloatRange (395)
 #endif
 
 /* tt__DeviceEntity has binding name 'tt__DeviceEntity' for type 'tt:DeviceEntity' */
 #ifndef SOAP_TYPE_tt__DeviceEntity
-#define SOAP_TYPE_tt__DeviceEntity (130)
+#define SOAP_TYPE_tt__DeviceEntity (394)
 #endif
 
 /* _tptz__GetCompatibleConfigurationsResponse has binding name '_tptz__GetCompatibleConfigurationsResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__GetCompatibleConfigurationsResponse
-#define SOAP_TYPE__tptz__GetCompatibleConfigurationsResponse (129)
+#define SOAP_TYPE__tptz__GetCompatibleConfigurationsResponse (393)
 #endif
 
 /* _tptz__GetCompatibleConfigurations has binding name '_tptz__GetCompatibleConfigurations' for type '' */
 #ifndef SOAP_TYPE__tptz__GetCompatibleConfigurations
-#define SOAP_TYPE__tptz__GetCompatibleConfigurations (128)
+#define SOAP_TYPE__tptz__GetCompatibleConfigurations (392)
 #endif
 
 /* _tptz__RemovePresetTourResponse has binding name '_tptz__RemovePresetTourResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__RemovePresetTourResponse
-#define SOAP_TYPE__tptz__RemovePresetTourResponse (127)
+#define SOAP_TYPE__tptz__RemovePresetTourResponse (391)
 #endif
 
 /* _tptz__RemovePresetTour has binding name '_tptz__RemovePresetTour' for type '' */
 #ifndef SOAP_TYPE__tptz__RemovePresetTour
-#define SOAP_TYPE__tptz__RemovePresetTour (126)
+#define SOAP_TYPE__tptz__RemovePresetTour (390)
 #endif
 
 /* _tptz__OperatePresetTourResponse has binding name '_tptz__OperatePresetTourResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__OperatePresetTourResponse
-#define SOAP_TYPE__tptz__OperatePresetTourResponse (125)
+#define SOAP_TYPE__tptz__OperatePresetTourResponse (389)
 #endif
 
 /* _tptz__OperatePresetTour has binding name '_tptz__OperatePresetTour' for type '' */
 #ifndef SOAP_TYPE__tptz__OperatePresetTour
-#define SOAP_TYPE__tptz__OperatePresetTour (124)
+#define SOAP_TYPE__tptz__OperatePresetTour (388)
 #endif
 
 /* _tptz__ModifyPresetTourResponse has binding name '_tptz__ModifyPresetTourResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__ModifyPresetTourResponse
-#define SOAP_TYPE__tptz__ModifyPresetTourResponse (123)
+#define SOAP_TYPE__tptz__ModifyPresetTourResponse (387)
 #endif
 
 /* _tptz__ModifyPresetTour has binding name '_tptz__ModifyPresetTour' for type '' */
 #ifndef SOAP_TYPE__tptz__ModifyPresetTour
-#define SOAP_TYPE__tptz__ModifyPresetTour (122)
+#define SOAP_TYPE__tptz__ModifyPresetTour (386)
 #endif
 
 /* _tptz__CreatePresetTourResponse has binding name '_tptz__CreatePresetTourResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__CreatePresetTourResponse
-#define SOAP_TYPE__tptz__CreatePresetTourResponse (121)
+#define SOAP_TYPE__tptz__CreatePresetTourResponse (385)
 #endif
 
 /* _tptz__CreatePresetTour has binding name '_tptz__CreatePresetTour' for type '' */
 #ifndef SOAP_TYPE__tptz__CreatePresetTour
-#define SOAP_TYPE__tptz__CreatePresetTour (120)
+#define SOAP_TYPE__tptz__CreatePresetTour (384)
 #endif
 
 /* _tptz__GetPresetTourOptionsResponse has binding name '_tptz__GetPresetTourOptionsResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__GetPresetTourOptionsResponse
-#define SOAP_TYPE__tptz__GetPresetTourOptionsResponse (119)
+#define SOAP_TYPE__tptz__GetPresetTourOptionsResponse (383)
 #endif
 
 /* _tptz__GetPresetTourOptions has binding name '_tptz__GetPresetTourOptions' for type '' */
 #ifndef SOAP_TYPE__tptz__GetPresetTourOptions
-#define SOAP_TYPE__tptz__GetPresetTourOptions (118)
+#define SOAP_TYPE__tptz__GetPresetTourOptions (382)
 #endif
 
 /* _tptz__GetPresetTourResponse has binding name '_tptz__GetPresetTourResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__GetPresetTourResponse
-#define SOAP_TYPE__tptz__GetPresetTourResponse (117)
+#define SOAP_TYPE__tptz__GetPresetTourResponse (381)
 #endif
 
 /* _tptz__GetPresetTour has binding name '_tptz__GetPresetTour' for type '' */
 #ifndef SOAP_TYPE__tptz__GetPresetTour
-#define SOAP_TYPE__tptz__GetPresetTour (116)
+#define SOAP_TYPE__tptz__GetPresetTour (380)
 #endif
 
 /* _tptz__GetPresetToursResponse has binding name '_tptz__GetPresetToursResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__GetPresetToursResponse
-#define SOAP_TYPE__tptz__GetPresetToursResponse (115)
+#define SOAP_TYPE__tptz__GetPresetToursResponse (379)
 #endif
 
 /* _tptz__GetPresetTours has binding name '_tptz__GetPresetTours' for type '' */
 #ifndef SOAP_TYPE__tptz__GetPresetTours
-#define SOAP_TYPE__tptz__GetPresetTours (114)
+#define SOAP_TYPE__tptz__GetPresetTours (378)
 #endif
 
 /* _tptz__StopResponse has binding name '_tptz__StopResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__StopResponse
-#define SOAP_TYPE__tptz__StopResponse (113)
+#define SOAP_TYPE__tptz__StopResponse (377)
 #endif
 
 /* _tptz__Stop has binding name '_tptz__Stop' for type '' */
 #ifndef SOAP_TYPE__tptz__Stop
-#define SOAP_TYPE__tptz__Stop (112)
+#define SOAP_TYPE__tptz__Stop (376)
 #endif
 
 /* _tptz__GeoMoveResponse has binding name '_tptz__GeoMoveResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__GeoMoveResponse
-#define SOAP_TYPE__tptz__GeoMoveResponse (111)
+#define SOAP_TYPE__tptz__GeoMoveResponse (375)
 #endif
 
 /* _tptz__GeoMove has binding name '_tptz__GeoMove' for type '' */
 #ifndef SOAP_TYPE__tptz__GeoMove
-#define SOAP_TYPE__tptz__GeoMove (110)
+#define SOAP_TYPE__tptz__GeoMove (374)
 #endif
 
 /* _tptz__AbsoluteMoveResponse has binding name '_tptz__AbsoluteMoveResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__AbsoluteMoveResponse
-#define SOAP_TYPE__tptz__AbsoluteMoveResponse (109)
+#define SOAP_TYPE__tptz__AbsoluteMoveResponse (373)
 #endif
 
 /* _tptz__AbsoluteMove has binding name '_tptz__AbsoluteMove' for type '' */
 #ifndef SOAP_TYPE__tptz__AbsoluteMove
-#define SOAP_TYPE__tptz__AbsoluteMove (108)
+#define SOAP_TYPE__tptz__AbsoluteMove (372)
 #endif
 
 /* _tptz__RelativeMoveResponse has binding name '_tptz__RelativeMoveResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__RelativeMoveResponse
-#define SOAP_TYPE__tptz__RelativeMoveResponse (107)
+#define SOAP_TYPE__tptz__RelativeMoveResponse (371)
 #endif
 
 /* _tptz__RelativeMove has binding name '_tptz__RelativeMove' for type '' */
 #ifndef SOAP_TYPE__tptz__RelativeMove
-#define SOAP_TYPE__tptz__RelativeMove (106)
+#define SOAP_TYPE__tptz__RelativeMove (370)
 #endif
 
 /* _tptz__ContinuousMoveResponse has binding name '_tptz__ContinuousMoveResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__ContinuousMoveResponse
-#define SOAP_TYPE__tptz__ContinuousMoveResponse (105)
+#define SOAP_TYPE__tptz__ContinuousMoveResponse (369)
 #endif
 
 /* _tptz__ContinuousMove has binding name '_tptz__ContinuousMove' for type '' */
 #ifndef SOAP_TYPE__tptz__ContinuousMove
-#define SOAP_TYPE__tptz__ContinuousMove (104)
+#define SOAP_TYPE__tptz__ContinuousMove (368)
 #endif
 
 /* _tptz__SetHomePositionResponse has binding name '_tptz__SetHomePositionResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__SetHomePositionResponse
-#define SOAP_TYPE__tptz__SetHomePositionResponse (103)
+#define SOAP_TYPE__tptz__SetHomePositionResponse (367)
 #endif
 
 /* _tptz__SetHomePosition has binding name '_tptz__SetHomePosition' for type '' */
 #ifndef SOAP_TYPE__tptz__SetHomePosition
-#define SOAP_TYPE__tptz__SetHomePosition (102)
+#define SOAP_TYPE__tptz__SetHomePosition (366)
 #endif
 
 /* _tptz__GotoHomePositionResponse has binding name '_tptz__GotoHomePositionResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__GotoHomePositionResponse
-#define SOAP_TYPE__tptz__GotoHomePositionResponse (101)
+#define SOAP_TYPE__tptz__GotoHomePositionResponse (365)
 #endif
 
 /* _tptz__GotoHomePosition has binding name '_tptz__GotoHomePosition' for type '' */
 #ifndef SOAP_TYPE__tptz__GotoHomePosition
-#define SOAP_TYPE__tptz__GotoHomePosition (100)
+#define SOAP_TYPE__tptz__GotoHomePosition (364)
 #endif
 
 /* _tptz__GetStatusResponse has binding name '_tptz__GetStatusResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__GetStatusResponse
-#define SOAP_TYPE__tptz__GetStatusResponse (99)
+#define SOAP_TYPE__tptz__GetStatusResponse (363)
 #endif
 
 /* _tptz__GetStatus has binding name '_tptz__GetStatus' for type '' */
 #ifndef SOAP_TYPE__tptz__GetStatus
-#define SOAP_TYPE__tptz__GetStatus (98)
+#define SOAP_TYPE__tptz__GetStatus (362)
 #endif
 
 /* _tptz__GotoPresetResponse has binding name '_tptz__GotoPresetResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__GotoPresetResponse
-#define SOAP_TYPE__tptz__GotoPresetResponse (97)
+#define SOAP_TYPE__tptz__GotoPresetResponse (361)
 #endif
 
 /* _tptz__GotoPreset has binding name '_tptz__GotoPreset' for type '' */
 #ifndef SOAP_TYPE__tptz__GotoPreset
-#define SOAP_TYPE__tptz__GotoPreset (96)
+#define SOAP_TYPE__tptz__GotoPreset (360)
 #endif
 
 /* _tptz__RemovePresetResponse has binding name '_tptz__RemovePresetResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__RemovePresetResponse
-#define SOAP_TYPE__tptz__RemovePresetResponse (95)
+#define SOAP_TYPE__tptz__RemovePresetResponse (359)
 #endif
 
 /* _tptz__RemovePreset has binding name '_tptz__RemovePreset' for type '' */
 #ifndef SOAP_TYPE__tptz__RemovePreset
-#define SOAP_TYPE__tptz__RemovePreset (94)
+#define SOAP_TYPE__tptz__RemovePreset (358)
 #endif
 
 /* _tptz__SetPresetResponse has binding name '_tptz__SetPresetResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__SetPresetResponse
-#define SOAP_TYPE__tptz__SetPresetResponse (93)
+#define SOAP_TYPE__tptz__SetPresetResponse (357)
 #endif
 
 /* _tptz__SetPreset has binding name '_tptz__SetPreset' for type '' */
 #ifndef SOAP_TYPE__tptz__SetPreset
-#define SOAP_TYPE__tptz__SetPreset (92)
+#define SOAP_TYPE__tptz__SetPreset (356)
 #endif
 
 /* _tptz__GetPresetsResponse has binding name '_tptz__GetPresetsResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__GetPresetsResponse
-#define SOAP_TYPE__tptz__GetPresetsResponse (91)
+#define SOAP_TYPE__tptz__GetPresetsResponse (355)
 #endif
 
 /* _tptz__GetPresets has binding name '_tptz__GetPresets' for type '' */
 #ifndef SOAP_TYPE__tptz__GetPresets
-#define SOAP_TYPE__tptz__GetPresets (90)
+#define SOAP_TYPE__tptz__GetPresets (354)
 #endif
 
 /* _tptz__SendAuxiliaryCommandResponse has binding name '_tptz__SendAuxiliaryCommandResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__SendAuxiliaryCommandResponse
-#define SOAP_TYPE__tptz__SendAuxiliaryCommandResponse (89)
+#define SOAP_TYPE__tptz__SendAuxiliaryCommandResponse (353)
 #endif
 
 /* _tptz__SendAuxiliaryCommand has binding name '_tptz__SendAuxiliaryCommand' for type '' */
 #ifndef SOAP_TYPE__tptz__SendAuxiliaryCommand
-#define SOAP_TYPE__tptz__SendAuxiliaryCommand (88)
+#define SOAP_TYPE__tptz__SendAuxiliaryCommand (352)
 #endif
 
 /* _tptz__GetConfigurationOptionsResponse has binding name '_tptz__GetConfigurationOptionsResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__GetConfigurationOptionsResponse
-#define SOAP_TYPE__tptz__GetConfigurationOptionsResponse (87)
+#define SOAP_TYPE__tptz__GetConfigurationOptionsResponse (351)
 #endif
 
 /* _tptz__GetConfigurationOptions has binding name '_tptz__GetConfigurationOptions' for type '' */
 #ifndef SOAP_TYPE__tptz__GetConfigurationOptions
-#define SOAP_TYPE__tptz__GetConfigurationOptions (86)
+#define SOAP_TYPE__tptz__GetConfigurationOptions (350)
 #endif
 
 /* _tptz__SetConfigurationResponse has binding name '_tptz__SetConfigurationResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__SetConfigurationResponse
-#define SOAP_TYPE__tptz__SetConfigurationResponse (85)
+#define SOAP_TYPE__tptz__SetConfigurationResponse (349)
 #endif
 
 /* _tptz__SetConfiguration has binding name '_tptz__SetConfiguration' for type '' */
 #ifndef SOAP_TYPE__tptz__SetConfiguration
-#define SOAP_TYPE__tptz__SetConfiguration (84)
+#define SOAP_TYPE__tptz__SetConfiguration (348)
 #endif
 
 /* _tptz__GetConfigurationResponse has binding name '_tptz__GetConfigurationResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__GetConfigurationResponse
-#define SOAP_TYPE__tptz__GetConfigurationResponse (83)
+#define SOAP_TYPE__tptz__GetConfigurationResponse (347)
 #endif
 
 /* _tptz__GetConfiguration has binding name '_tptz__GetConfiguration' for type '' */
 #ifndef SOAP_TYPE__tptz__GetConfiguration
-#define SOAP_TYPE__tptz__GetConfiguration (82)
+#define SOAP_TYPE__tptz__GetConfiguration (346)
 #endif
 
 /* _tptz__GetConfigurationsResponse has binding name '_tptz__GetConfigurationsResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__GetConfigurationsResponse
-#define SOAP_TYPE__tptz__GetConfigurationsResponse (81)
+#define SOAP_TYPE__tptz__GetConfigurationsResponse (345)
 #endif
 
 /* _tptz__GetConfigurations has binding name '_tptz__GetConfigurations' for type '' */
 #ifndef SOAP_TYPE__tptz__GetConfigurations
-#define SOAP_TYPE__tptz__GetConfigurations (80)
+#define SOAP_TYPE__tptz__GetConfigurations (344)
 #endif
 
 /* _tptz__GetNodeResponse has binding name '_tptz__GetNodeResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__GetNodeResponse
-#define SOAP_TYPE__tptz__GetNodeResponse (79)
+#define SOAP_TYPE__tptz__GetNodeResponse (343)
 #endif
 
 /* _tptz__GetNode has binding name '_tptz__GetNode' for type '' */
 #ifndef SOAP_TYPE__tptz__GetNode
-#define SOAP_TYPE__tptz__GetNode (78)
+#define SOAP_TYPE__tptz__GetNode (342)
 #endif
 
 /* _tptz__GetNodesResponse has binding name '_tptz__GetNodesResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__GetNodesResponse
-#define SOAP_TYPE__tptz__GetNodesResponse (77)
+#define SOAP_TYPE__tptz__GetNodesResponse (341)
 #endif
 
 /* _tptz__GetNodes has binding name '_tptz__GetNodes' for type '' */
 #ifndef SOAP_TYPE__tptz__GetNodes
-#define SOAP_TYPE__tptz__GetNodes (76)
+#define SOAP_TYPE__tptz__GetNodes (340)
 #endif
 
 /* _tptz__GetServiceCapabilitiesResponse has binding name '_tptz__GetServiceCapabilitiesResponse' for type '' */
 #ifndef SOAP_TYPE__tptz__GetServiceCapabilitiesResponse
-#define SOAP_TYPE__tptz__GetServiceCapabilitiesResponse (75)
+#define SOAP_TYPE__tptz__GetServiceCapabilitiesResponse (339)
 #endif
 
 /* _tptz__GetServiceCapabilities has binding name '_tptz__GetServiceCapabilities' for type '' */
 #ifndef SOAP_TYPE__tptz__GetServiceCapabilities
-#define SOAP_TYPE__tptz__GetServiceCapabilities (74)
+#define SOAP_TYPE__tptz__GetServiceCapabilities (338)
 #endif
 
 /* tptz__Capabilities has binding name 'tptz__Capabilities' for type 'tptz:Capabilities' */
 #ifndef SOAP_TYPE_tptz__Capabilities
-#define SOAP_TYPE_tptz__Capabilities (73)
+#define SOAP_TYPE_tptz__Capabilities (337)
 #endif
 
 /* _xml__lang has binding name '_xml__lang' for type '' */
 #ifndef SOAP_TYPE__xml__lang
-#define SOAP_TYPE__xml__lang (72)
+#define SOAP_TYPE__xml__lang (336)
 #endif
 
 /* xsd__token has binding name 'xsd__token' for type 'xsd:token' */
 #ifndef SOAP_TYPE_xsd__token
-#define SOAP_TYPE_xsd__token (71)
+#define SOAP_TYPE_xsd__token (335)
 #endif
 
 /* xsd__nonNegativeInteger has binding name 'xsd__nonNegativeInteger' for type 'xsd:nonNegativeInteger' */
 #ifndef SOAP_TYPE_xsd__nonNegativeInteger
-#define SOAP_TYPE_xsd__nonNegativeInteger (70)
+#define SOAP_TYPE_xsd__nonNegativeInteger (334)
 #endif
 
 /* xsd__integer has binding name 'xsd__integer' for type 'xsd:integer' */
 #ifndef SOAP_TYPE_xsd__integer
-#define SOAP_TYPE_xsd__integer (69)
+#define SOAP_TYPE_xsd__integer (333)
 #endif
 
 /* xsd__duration has binding name 'xsd__duration' for type 'xsd:duration' */
 #ifndef SOAP_TYPE_xsd__duration
-#define SOAP_TYPE_xsd__duration (68)
+#define SOAP_TYPE_xsd__duration (332)
 #endif
 
 /* xsd__anyURI has binding name 'xsd__anyURI' for type 'xsd:anyURI' */
 #ifndef SOAP_TYPE_xsd__anyURI
-#define SOAP_TYPE_xsd__anyURI (67)
+#define SOAP_TYPE_xsd__anyURI (331)
 #endif
 
 /* xsd__anySimpleType has binding name 'xsd__anySimpleType' for type 'xsd:anySimpleType' */
 #ifndef SOAP_TYPE_xsd__anySimpleType
-#define SOAP_TYPE_xsd__anySimpleType (66)
+#define SOAP_TYPE_xsd__anySimpleType (330)
 #endif
 
 /* xsd__NCName has binding name 'xsd__NCName' for type 'xsd:NCName' */
 #ifndef SOAP_TYPE_xsd__NCName
-#define SOAP_TYPE_xsd__NCName (65)
+#define SOAP_TYPE_xsd__NCName (329)
 #endif
 
 /* xsd__hexBinary has binding name 'xsd__hexBinary' for type 'xsd:hexBinary' */
 #ifndef SOAP_TYPE_xsd__hexBinary
-#define SOAP_TYPE_xsd__hexBinary (64)
+#define SOAP_TYPE_xsd__hexBinary (328)
 #endif
 
 /* xsd__base64Binary has binding name 'xsd__base64Binary' for type 'xsd:base64Binary' */
 #ifndef SOAP_TYPE_xsd__base64Binary
-#define SOAP_TYPE_xsd__base64Binary (63)
+#define SOAP_TYPE_xsd__base64Binary (327)
 #endif
 
 /* xsd__QName has binding name 'xsd__QName' for type 'xsd:QName' */
 #ifndef SOAP_TYPE_xsd__QName
-#define SOAP_TYPE_xsd__QName (62)
+#define SOAP_TYPE_xsd__QName (326)
 #endif
 
 /* std::string has binding name 'std__string' for type 'xsd:string' */
 #ifndef SOAP_TYPE_std__string
-#define SOAP_TYPE_std__string (61)
+#define SOAP_TYPE_std__string (325)
 #endif
 
 /* xsd__anyType has binding name 'xsd__anyType' for type 'xsd:anyType' */
 #ifndef SOAP_TYPE_xsd__anyType
-#define SOAP_TYPE_xsd__anyType (57)
+#define SOAP_TYPE_xsd__anyType (321)
 #endif
 
 /* struct SOAP_ENV__Envelope has binding name 'SOAP_ENV__Envelope' for type '' */
 #ifndef SOAP_TYPE_SOAP_ENV__Envelope
-#define SOAP_TYPE_SOAP_ENV__Envelope (59)
+#define SOAP_TYPE_SOAP_ENV__Envelope (323)
+#endif
+
+/* struct _wsse__Security has binding name '_wsse__Security' for type '' */
+#ifndef SOAP_TYPE__wsse__Security
+#define SOAP_TYPE__wsse__Security (314)
+#endif
+
+/* _saml2__EncryptedAttribute has binding name '_saml2__EncryptedAttribute' for type '' */
+#ifndef SOAP_TYPE__saml2__EncryptedAttribute
+#define SOAP_TYPE__saml2__EncryptedAttribute (313)
+#endif
+
+/* _saml2__Attribute has binding name '_saml2__Attribute' for type '' */
+#ifndef SOAP_TYPE__saml2__Attribute
+#define SOAP_TYPE__saml2__Attribute (311)
+#endif
+
+/* _saml2__AttributeStatement has binding name '_saml2__AttributeStatement' for type '' */
+#ifndef SOAP_TYPE__saml2__AttributeStatement
+#define SOAP_TYPE__saml2__AttributeStatement (310)
+#endif
+
+/* _saml2__Evidence has binding name '_saml2__Evidence' for type '' */
+#ifndef SOAP_TYPE__saml2__Evidence
+#define SOAP_TYPE__saml2__Evidence (309)
+#endif
+
+/* _saml2__Action has binding name '_saml2__Action' for type '' */
+#ifndef SOAP_TYPE__saml2__Action
+#define SOAP_TYPE__saml2__Action (308)
+#endif
+
+/* _saml2__AuthzDecisionStatement has binding name '_saml2__AuthzDecisionStatement' for type '' */
+#ifndef SOAP_TYPE__saml2__AuthzDecisionStatement
+#define SOAP_TYPE__saml2__AuthzDecisionStatement (307)
+#endif
+
+/* _saml2__AuthnContext has binding name '_saml2__AuthnContext' for type '' */
+#ifndef SOAP_TYPE__saml2__AuthnContext
+#define SOAP_TYPE__saml2__AuthnContext (302)
+#endif
+
+/* _saml2__SubjectLocality has binding name '_saml2__SubjectLocality' for type '' */
+#ifndef SOAP_TYPE__saml2__SubjectLocality
+#define SOAP_TYPE__saml2__SubjectLocality (301)
+#endif
+
+/* _saml2__AuthnStatement has binding name '_saml2__AuthnStatement' for type '' */
+#ifndef SOAP_TYPE__saml2__AuthnStatement
+#define SOAP_TYPE__saml2__AuthnStatement (300)
+#endif
+
+/* _saml2__Statement has binding name '_saml2__Statement' for type '' */
+#ifndef SOAP_TYPE__saml2__Statement
+#define SOAP_TYPE__saml2__Statement (299)
+#endif
+
+/* _saml2__EncryptedAssertion has binding name '_saml2__EncryptedAssertion' for type '' */
+#ifndef SOAP_TYPE__saml2__EncryptedAssertion
+#define SOAP_TYPE__saml2__EncryptedAssertion (298)
+#endif
+
+/* _saml2__Advice has binding name '_saml2__Advice' for type '' */
+#ifndef SOAP_TYPE__saml2__Advice
+#define SOAP_TYPE__saml2__Advice (297)
+#endif
+
+/* _saml2__ProxyRestriction has binding name '_saml2__ProxyRestriction' for type '' */
+#ifndef SOAP_TYPE__saml2__ProxyRestriction
+#define SOAP_TYPE__saml2__ProxyRestriction (296)
+#endif
+
+/* _saml2__OneTimeUse has binding name '_saml2__OneTimeUse' for type '' */
+#ifndef SOAP_TYPE__saml2__OneTimeUse
+#define SOAP_TYPE__saml2__OneTimeUse (295)
+#endif
+
+/* _saml2__AudienceRestriction has binding name '_saml2__AudienceRestriction' for type '' */
+#ifndef SOAP_TYPE__saml2__AudienceRestriction
+#define SOAP_TYPE__saml2__AudienceRestriction (293)
+#endif
+
+/* _saml2__Condition has binding name '_saml2__Condition' for type '' */
+#ifndef SOAP_TYPE__saml2__Condition
+#define SOAP_TYPE__saml2__Condition (292)
+#endif
+
+/* _saml2__Conditions has binding name '_saml2__Conditions' for type '' */
+#ifndef SOAP_TYPE__saml2__Conditions
+#define SOAP_TYPE__saml2__Conditions (291)
+#endif
+
+/* _saml2__SubjectConfirmationData has binding name '_saml2__SubjectConfirmationData' for type '' */
+#ifndef SOAP_TYPE__saml2__SubjectConfirmationData
+#define SOAP_TYPE__saml2__SubjectConfirmationData (290)
+#endif
+
+/* _saml2__SubjectConfirmation has binding name '_saml2__SubjectConfirmation' for type '' */
+#ifndef SOAP_TYPE__saml2__SubjectConfirmation
+#define SOAP_TYPE__saml2__SubjectConfirmation (289)
+#endif
+
+/* _saml2__Subject has binding name '_saml2__Subject' for type '' */
+#ifndef SOAP_TYPE__saml2__Subject
+#define SOAP_TYPE__saml2__Subject (288)
+#endif
+
+/* _saml2__Assertion has binding name '_saml2__Assertion' for type '' */
+#ifndef SOAP_TYPE__saml2__Assertion
+#define SOAP_TYPE__saml2__Assertion (287)
+#endif
+
+/* _saml2__Issuer has binding name '_saml2__Issuer' for type '' */
+#ifndef SOAP_TYPE__saml2__Issuer
+#define SOAP_TYPE__saml2__Issuer (284)
+#endif
+
+/* _saml2__EncryptedID has binding name '_saml2__EncryptedID' for type '' */
+#ifndef SOAP_TYPE__saml2__EncryptedID
+#define SOAP_TYPE__saml2__EncryptedID (283)
+#endif
+
+/* _saml2__NameID has binding name '_saml2__NameID' for type '' */
+#ifndef SOAP_TYPE__saml2__NameID
+#define SOAP_TYPE__saml2__NameID (282)
+#endif
+
+/* _saml2__BaseID has binding name '_saml2__BaseID' for type '' */
+#ifndef SOAP_TYPE__saml2__BaseID
+#define SOAP_TYPE__saml2__BaseID (281)
+#endif
+
+/* struct saml2__AttributeType has binding name 'saml2__AttributeType' for type 'saml2:AttributeType' */
+#ifndef SOAP_TYPE_saml2__AttributeType
+#define SOAP_TYPE_saml2__AttributeType (245)
+#endif
+
+/* struct saml2__AttributeStatementType has binding name 'saml2__AttributeStatementType' for type 'saml2:AttributeStatementType' */
+#ifndef SOAP_TYPE_saml2__AttributeStatementType
+#define SOAP_TYPE_saml2__AttributeStatementType (244)
+#endif
+
+/* struct saml2__EvidenceType has binding name 'saml2__EvidenceType' for type 'saml2:EvidenceType' */
+#ifndef SOAP_TYPE_saml2__EvidenceType
+#define SOAP_TYPE_saml2__EvidenceType (243)
+#endif
+
+/* struct saml2__ActionType has binding name 'saml2__ActionType' for type 'saml2:ActionType' */
+#ifndef SOAP_TYPE_saml2__ActionType
+#define SOAP_TYPE_saml2__ActionType (242)
+#endif
+
+/* struct saml2__AuthzDecisionStatementType has binding name 'saml2__AuthzDecisionStatementType' for type 'saml2:AuthzDecisionStatementType' */
+#ifndef SOAP_TYPE_saml2__AuthzDecisionStatementType
+#define SOAP_TYPE_saml2__AuthzDecisionStatementType (241)
+#endif
+
+/* struct saml2__AuthnContextType has binding name 'saml2__AuthnContextType' for type 'saml2:AuthnContextType' */
+#ifndef SOAP_TYPE_saml2__AuthnContextType
+#define SOAP_TYPE_saml2__AuthnContextType (240)
+#endif
+
+/* struct saml2__SubjectLocalityType has binding name 'saml2__SubjectLocalityType' for type 'saml2:SubjectLocalityType' */
+#ifndef SOAP_TYPE_saml2__SubjectLocalityType
+#define SOAP_TYPE_saml2__SubjectLocalityType (239)
+#endif
+
+/* struct saml2__AuthnStatementType has binding name 'saml2__AuthnStatementType' for type 'saml2:AuthnStatementType' */
+#ifndef SOAP_TYPE_saml2__AuthnStatementType
+#define SOAP_TYPE_saml2__AuthnStatementType (238)
+#endif
+
+/* struct saml2__StatementAbstractType has binding name 'saml2__StatementAbstractType' for type 'saml2:StatementAbstractType' */
+#ifndef SOAP_TYPE_saml2__StatementAbstractType
+#define SOAP_TYPE_saml2__StatementAbstractType (237)
+#endif
+
+/* struct saml2__AdviceType has binding name 'saml2__AdviceType' for type 'saml2:AdviceType' */
+#ifndef SOAP_TYPE_saml2__AdviceType
+#define SOAP_TYPE_saml2__AdviceType (236)
+#endif
+
+/* struct saml2__ProxyRestrictionType has binding name 'saml2__ProxyRestrictionType' for type 'saml2:ProxyRestrictionType' */
+#ifndef SOAP_TYPE_saml2__ProxyRestrictionType
+#define SOAP_TYPE_saml2__ProxyRestrictionType (235)
+#endif
+
+/* struct saml2__OneTimeUseType has binding name 'saml2__OneTimeUseType' for type 'saml2:OneTimeUseType' */
+#ifndef SOAP_TYPE_saml2__OneTimeUseType
+#define SOAP_TYPE_saml2__OneTimeUseType (234)
+#endif
+
+/* struct saml2__AudienceRestrictionType has binding name 'saml2__AudienceRestrictionType' for type 'saml2:AudienceRestrictionType' */
+#ifndef SOAP_TYPE_saml2__AudienceRestrictionType
+#define SOAP_TYPE_saml2__AudienceRestrictionType (233)
+#endif
+
+/* struct saml2__ConditionAbstractType has binding name 'saml2__ConditionAbstractType' for type 'saml2:ConditionAbstractType' */
+#ifndef SOAP_TYPE_saml2__ConditionAbstractType
+#define SOAP_TYPE_saml2__ConditionAbstractType (232)
+#endif
+
+/* struct saml2__ConditionsType has binding name 'saml2__ConditionsType' for type 'saml2:ConditionsType' */
+#ifndef SOAP_TYPE_saml2__ConditionsType
+#define SOAP_TYPE_saml2__ConditionsType (231)
+#endif
+
+/* struct saml2__KeyInfoConfirmationDataType has binding name 'saml2__KeyInfoConfirmationDataType' for type 'saml2:KeyInfoConfirmationDataType' */
+#ifndef SOAP_TYPE_saml2__KeyInfoConfirmationDataType
+#define SOAP_TYPE_saml2__KeyInfoConfirmationDataType (230)
+#endif
+
+/* struct saml2__SubjectConfirmationDataType has binding name 'saml2__SubjectConfirmationDataType' for type 'saml2:SubjectConfirmationDataType' */
+#ifndef SOAP_TYPE_saml2__SubjectConfirmationDataType
+#define SOAP_TYPE_saml2__SubjectConfirmationDataType (229)
+#endif
+
+/* struct saml2__SubjectConfirmationType has binding name 'saml2__SubjectConfirmationType' for type 'saml2:SubjectConfirmationType' */
+#ifndef SOAP_TYPE_saml2__SubjectConfirmationType
+#define SOAP_TYPE_saml2__SubjectConfirmationType (228)
+#endif
+
+/* struct saml2__SubjectType has binding name 'saml2__SubjectType' for type 'saml2:SubjectType' */
+#ifndef SOAP_TYPE_saml2__SubjectType
+#define SOAP_TYPE_saml2__SubjectType (227)
+#endif
+
+/* struct saml2__AssertionType has binding name 'saml2__AssertionType' for type 'saml2:AssertionType' */
+#ifndef SOAP_TYPE_saml2__AssertionType
+#define SOAP_TYPE_saml2__AssertionType (226)
+#endif
+
+/* struct saml2__EncryptedElementType has binding name 'saml2__EncryptedElementType' for type 'saml2:EncryptedElementType' */
+#ifndef SOAP_TYPE_saml2__EncryptedElementType
+#define SOAP_TYPE_saml2__EncryptedElementType (225)
+#endif
+
+/* struct saml2__NameIDType has binding name 'saml2__NameIDType' for type 'saml2:NameIDType' */
+#ifndef SOAP_TYPE_saml2__NameIDType
+#define SOAP_TYPE_saml2__NameIDType (224)
+#endif
+
+/* struct saml2__BaseIDAbstractType has binding name 'saml2__BaseIDAbstractType' for type 'saml2:BaseIDAbstractType' */
+#ifndef SOAP_TYPE_saml2__BaseIDAbstractType
+#define SOAP_TYPE_saml2__BaseIDAbstractType (223)
+#endif
+
+/* _saml1__Attribute has binding name '_saml1__Attribute' for type '' */
+#ifndef SOAP_TYPE__saml1__Attribute
+#define SOAP_TYPE__saml1__Attribute (221)
+#endif
+
+/* _saml1__AttributeDesignator has binding name '_saml1__AttributeDesignator' for type '' */
+#ifndef SOAP_TYPE__saml1__AttributeDesignator
+#define SOAP_TYPE__saml1__AttributeDesignator (220)
+#endif
+
+/* _saml1__AttributeStatement has binding name '_saml1__AttributeStatement' for type '' */
+#ifndef SOAP_TYPE__saml1__AttributeStatement
+#define SOAP_TYPE__saml1__AttributeStatement (219)
+#endif
+
+/* _saml1__Evidence has binding name '_saml1__Evidence' for type '' */
+#ifndef SOAP_TYPE__saml1__Evidence
+#define SOAP_TYPE__saml1__Evidence (218)
+#endif
+
+/* _saml1__Action has binding name '_saml1__Action' for type '' */
+#ifndef SOAP_TYPE__saml1__Action
+#define SOAP_TYPE__saml1__Action (217)
+#endif
+
+/* _saml1__AuthorizationDecisionStatement has binding name '_saml1__AuthorizationDecisionStatement' for type '' */
+#ifndef SOAP_TYPE__saml1__AuthorizationDecisionStatement
+#define SOAP_TYPE__saml1__AuthorizationDecisionStatement (216)
+#endif
+
+/* _saml1__AuthorityBinding has binding name '_saml1__AuthorityBinding' for type '' */
+#ifndef SOAP_TYPE__saml1__AuthorityBinding
+#define SOAP_TYPE__saml1__AuthorityBinding (215)
+#endif
+
+/* _saml1__SubjectLocality has binding name '_saml1__SubjectLocality' for type '' */
+#ifndef SOAP_TYPE__saml1__SubjectLocality
+#define SOAP_TYPE__saml1__SubjectLocality (214)
+#endif
+
+/* _saml1__AuthenticationStatement has binding name '_saml1__AuthenticationStatement' for type '' */
+#ifndef SOAP_TYPE__saml1__AuthenticationStatement
+#define SOAP_TYPE__saml1__AuthenticationStatement (213)
+#endif
+
+/* _saml1__SubjectConfirmation has binding name '_saml1__SubjectConfirmation' for type '' */
+#ifndef SOAP_TYPE__saml1__SubjectConfirmation
+#define SOAP_TYPE__saml1__SubjectConfirmation (210)
+#endif
+
+/* _saml1__NameIdentifier has binding name '_saml1__NameIdentifier' for type '' */
+#ifndef SOAP_TYPE__saml1__NameIdentifier
+#define SOAP_TYPE__saml1__NameIdentifier (209)
+#endif
+
+/* _saml1__Subject has binding name '_saml1__Subject' for type '' */
+#ifndef SOAP_TYPE__saml1__Subject
+#define SOAP_TYPE__saml1__Subject (208)
+#endif
+
+/* _saml1__SubjectStatement has binding name '_saml1__SubjectStatement' for type '' */
+#ifndef SOAP_TYPE__saml1__SubjectStatement
+#define SOAP_TYPE__saml1__SubjectStatement (207)
+#endif
+
+/* _saml1__Statement has binding name '_saml1__Statement' for type '' */
+#ifndef SOAP_TYPE__saml1__Statement
+#define SOAP_TYPE__saml1__Statement (206)
+#endif
+
+/* _saml1__Advice has binding name '_saml1__Advice' for type '' */
+#ifndef SOAP_TYPE__saml1__Advice
+#define SOAP_TYPE__saml1__Advice (205)
+#endif
+
+/* _saml1__DoNotCacheCondition has binding name '_saml1__DoNotCacheCondition' for type '' */
+#ifndef SOAP_TYPE__saml1__DoNotCacheCondition
+#define SOAP_TYPE__saml1__DoNotCacheCondition (204)
+#endif
+
+/* _saml1__AudienceRestrictionCondition has binding name '_saml1__AudienceRestrictionCondition' for type '' */
+#ifndef SOAP_TYPE__saml1__AudienceRestrictionCondition
+#define SOAP_TYPE__saml1__AudienceRestrictionCondition (202)
+#endif
+
+/* _saml1__Condition has binding name '_saml1__Condition' for type '' */
+#ifndef SOAP_TYPE__saml1__Condition
+#define SOAP_TYPE__saml1__Condition (201)
+#endif
+
+/* _saml1__Conditions has binding name '_saml1__Conditions' for type '' */
+#ifndef SOAP_TYPE__saml1__Conditions
+#define SOAP_TYPE__saml1__Conditions (200)
+#endif
+
+/* _saml1__Assertion has binding name '_saml1__Assertion' for type '' */
+#ifndef SOAP_TYPE__saml1__Assertion
+#define SOAP_TYPE__saml1__Assertion (199)
+#endif
+
+/* struct saml1__AttributeType has binding name 'saml1__AttributeType' for type 'saml1:AttributeType' */
+#ifndef SOAP_TYPE_saml1__AttributeType
+#define SOAP_TYPE_saml1__AttributeType (166)
+#endif
+
+/* struct saml1__AttributeDesignatorType has binding name 'saml1__AttributeDesignatorType' for type 'saml1:AttributeDesignatorType' */
+#ifndef SOAP_TYPE_saml1__AttributeDesignatorType
+#define SOAP_TYPE_saml1__AttributeDesignatorType (165)
+#endif
+
+/* struct saml1__AttributeStatementType has binding name 'saml1__AttributeStatementType' for type 'saml1:AttributeStatementType' */
+#ifndef SOAP_TYPE_saml1__AttributeStatementType
+#define SOAP_TYPE_saml1__AttributeStatementType (164)
+#endif
+
+/* struct saml1__EvidenceType has binding name 'saml1__EvidenceType' for type 'saml1:EvidenceType' */
+#ifndef SOAP_TYPE_saml1__EvidenceType
+#define SOAP_TYPE_saml1__EvidenceType (163)
+#endif
+
+/* struct saml1__ActionType has binding name 'saml1__ActionType' for type 'saml1:ActionType' */
+#ifndef SOAP_TYPE_saml1__ActionType
+#define SOAP_TYPE_saml1__ActionType (162)
+#endif
+
+/* struct saml1__AuthorizationDecisionStatementType has binding name 'saml1__AuthorizationDecisionStatementType' for type 'saml1:AuthorizationDecisionStatementType' */
+#ifndef SOAP_TYPE_saml1__AuthorizationDecisionStatementType
+#define SOAP_TYPE_saml1__AuthorizationDecisionStatementType (161)
+#endif
+
+/* struct saml1__AuthorityBindingType has binding name 'saml1__AuthorityBindingType' for type 'saml1:AuthorityBindingType' */
+#ifndef SOAP_TYPE_saml1__AuthorityBindingType
+#define SOAP_TYPE_saml1__AuthorityBindingType (160)
+#endif
+
+/* struct saml1__SubjectLocalityType has binding name 'saml1__SubjectLocalityType' for type 'saml1:SubjectLocalityType' */
+#ifndef SOAP_TYPE_saml1__SubjectLocalityType
+#define SOAP_TYPE_saml1__SubjectLocalityType (159)
+#endif
+
+/* struct saml1__AuthenticationStatementType has binding name 'saml1__AuthenticationStatementType' for type 'saml1:AuthenticationStatementType' */
+#ifndef SOAP_TYPE_saml1__AuthenticationStatementType
+#define SOAP_TYPE_saml1__AuthenticationStatementType (158)
+#endif
+
+/* struct saml1__SubjectConfirmationType has binding name 'saml1__SubjectConfirmationType' for type 'saml1:SubjectConfirmationType' */
+#ifndef SOAP_TYPE_saml1__SubjectConfirmationType
+#define SOAP_TYPE_saml1__SubjectConfirmationType (157)
+#endif
+
+/* struct saml1__NameIdentifierType has binding name 'saml1__NameIdentifierType' for type 'saml1:NameIdentifierType' */
+#ifndef SOAP_TYPE_saml1__NameIdentifierType
+#define SOAP_TYPE_saml1__NameIdentifierType (156)
+#endif
+
+/* struct saml1__SubjectType has binding name 'saml1__SubjectType' for type 'saml1:SubjectType' */
+#ifndef SOAP_TYPE_saml1__SubjectType
+#define SOAP_TYPE_saml1__SubjectType (155)
+#endif
+
+/* struct saml1__SubjectStatementAbstractType has binding name 'saml1__SubjectStatementAbstractType' for type 'saml1:SubjectStatementAbstractType' */
+#ifndef SOAP_TYPE_saml1__SubjectStatementAbstractType
+#define SOAP_TYPE_saml1__SubjectStatementAbstractType (154)
+#endif
+
+/* struct saml1__StatementAbstractType has binding name 'saml1__StatementAbstractType' for type 'saml1:StatementAbstractType' */
+#ifndef SOAP_TYPE_saml1__StatementAbstractType
+#define SOAP_TYPE_saml1__StatementAbstractType (153)
+#endif
+
+/* struct saml1__AdviceType has binding name 'saml1__AdviceType' for type 'saml1:AdviceType' */
+#ifndef SOAP_TYPE_saml1__AdviceType
+#define SOAP_TYPE_saml1__AdviceType (152)
+#endif
+
+/* struct saml1__DoNotCacheConditionType has binding name 'saml1__DoNotCacheConditionType' for type 'saml1:DoNotCacheConditionType' */
+#ifndef SOAP_TYPE_saml1__DoNotCacheConditionType
+#define SOAP_TYPE_saml1__DoNotCacheConditionType (151)
+#endif
+
+/* struct saml1__AudienceRestrictionConditionType has binding name 'saml1__AudienceRestrictionConditionType' for type 'saml1:AudienceRestrictionConditionType' */
+#ifndef SOAP_TYPE_saml1__AudienceRestrictionConditionType
+#define SOAP_TYPE_saml1__AudienceRestrictionConditionType (150)
+#endif
+
+/* struct saml1__ConditionAbstractType has binding name 'saml1__ConditionAbstractType' for type 'saml1:ConditionAbstractType' */
+#ifndef SOAP_TYPE_saml1__ConditionAbstractType
+#define SOAP_TYPE_saml1__ConditionAbstractType (149)
+#endif
+
+/* struct saml1__ConditionsType has binding name 'saml1__ConditionsType' for type 'saml1:ConditionsType' */
+#ifndef SOAP_TYPE_saml1__ConditionsType
+#define SOAP_TYPE_saml1__ConditionsType (148)
+#endif
+
+/* struct saml1__AssertionType has binding name 'saml1__AssertionType' for type 'saml1:AssertionType' */
+#ifndef SOAP_TYPE_saml1__AssertionType
+#define SOAP_TYPE_saml1__AssertionType (147)
+#endif
+
+/* xsd__dateTime has binding name 'xsd__dateTime' for type 'xsd:dateTime' */
+#ifndef SOAP_TYPE_xsd__dateTime
+#define SOAP_TYPE_xsd__dateTime (146)
+#endif
+
+/* struct wsc__PropertiesType has binding name 'wsc__PropertiesType' for type 'wsc:PropertiesType' */
+#ifndef SOAP_TYPE_wsc__PropertiesType
+#define SOAP_TYPE_wsc__PropertiesType (139)
+#endif
+
+/* struct wsc__DerivedKeyTokenType has binding name 'wsc__DerivedKeyTokenType' for type 'wsc:DerivedKeyTokenType' */
+#ifndef SOAP_TYPE_wsc__DerivedKeyTokenType
+#define SOAP_TYPE_wsc__DerivedKeyTokenType (138)
+#endif
+
+/* struct wsc__SecurityContextTokenType has binding name 'wsc__SecurityContextTokenType' for type 'wsc:SecurityContextTokenType' */
+#ifndef SOAP_TYPE_wsc__SecurityContextTokenType
+#define SOAP_TYPE_wsc__SecurityContextTokenType (137)
+#endif
+
+/* struct _xenc__ReferenceList has binding name '_xenc__ReferenceList' for type '' */
+#ifndef SOAP_TYPE__xenc__ReferenceList
+#define SOAP_TYPE__xenc__ReferenceList (123)
+#endif
+
+/* struct xenc__EncryptionPropertyType has binding name 'xenc__EncryptionPropertyType' for type 'xenc:EncryptionPropertyType' */
+#ifndef SOAP_TYPE_xenc__EncryptionPropertyType
+#define SOAP_TYPE_xenc__EncryptionPropertyType (122)
+#endif
+
+/* struct xenc__EncryptionPropertiesType has binding name 'xenc__EncryptionPropertiesType' for type 'xenc:EncryptionPropertiesType' */
+#ifndef SOAP_TYPE_xenc__EncryptionPropertiesType
+#define SOAP_TYPE_xenc__EncryptionPropertiesType (121)
+#endif
+
+/* struct xenc__ReferenceType has binding name 'xenc__ReferenceType' for type 'xenc:ReferenceType' */
+#ifndef SOAP_TYPE_xenc__ReferenceType
+#define SOAP_TYPE_xenc__ReferenceType (120)
+#endif
+
+/* struct xenc__AgreementMethodType has binding name 'xenc__AgreementMethodType' for type 'xenc:AgreementMethodType' */
+#ifndef SOAP_TYPE_xenc__AgreementMethodType
+#define SOAP_TYPE_xenc__AgreementMethodType (119)
+#endif
+
+/* struct xenc__EncryptedDataType has binding name 'xenc__EncryptedDataType' for type 'xenc:EncryptedDataType' */
+#ifndef SOAP_TYPE_xenc__EncryptedDataType
+#define SOAP_TYPE_xenc__EncryptedDataType (118)
+#endif
+
+/* struct xenc__TransformsType has binding name 'xenc__TransformsType' for type 'xenc:TransformsType' */
+#ifndef SOAP_TYPE_xenc__TransformsType
+#define SOAP_TYPE_xenc__TransformsType (117)
+#endif
+
+/* struct xenc__CipherReferenceType has binding name 'xenc__CipherReferenceType' for type 'xenc:CipherReferenceType' */
+#ifndef SOAP_TYPE_xenc__CipherReferenceType
+#define SOAP_TYPE_xenc__CipherReferenceType (116)
+#endif
+
+/* struct xenc__CipherDataType has binding name 'xenc__CipherDataType' for type 'xenc:CipherDataType' */
+#ifndef SOAP_TYPE_xenc__CipherDataType
+#define SOAP_TYPE_xenc__CipherDataType (115)
+#endif
+
+/* struct xenc__EncryptionMethodType has binding name 'xenc__EncryptionMethodType' for type 'xenc:EncryptionMethodType' */
+#ifndef SOAP_TYPE_xenc__EncryptionMethodType
+#define SOAP_TYPE_xenc__EncryptionMethodType (114)
+#endif
+
+/* struct xenc__EncryptedType has binding name 'xenc__EncryptedType' for type 'xenc:EncryptedType' */
+#ifndef SOAP_TYPE_xenc__EncryptedType
+#define SOAP_TYPE_xenc__EncryptedType (113)
+#endif
+
+/* struct ds__RSAKeyValueType has binding name 'ds__RSAKeyValueType' for type 'ds:RSAKeyValueType' */
+#ifndef SOAP_TYPE_ds__RSAKeyValueType
+#define SOAP_TYPE_ds__RSAKeyValueType (102)
+#endif
+
+/* struct ds__DSAKeyValueType has binding name 'ds__DSAKeyValueType' for type 'ds:DSAKeyValueType' */
+#ifndef SOAP_TYPE_ds__DSAKeyValueType
+#define SOAP_TYPE_ds__DSAKeyValueType (101)
+#endif
+
+/* struct ds__X509IssuerSerialType has binding name 'ds__X509IssuerSerialType' for type 'ds:X509IssuerSerialType' */
+#ifndef SOAP_TYPE_ds__X509IssuerSerialType
+#define SOAP_TYPE_ds__X509IssuerSerialType (100)
+#endif
+
+/* _ds__KeyInfo has binding name '_ds__KeyInfo' for type '' */
+#ifndef SOAP_TYPE__ds__KeyInfo
+#define SOAP_TYPE__ds__KeyInfo (99)
+#endif
+
+/* struct ds__RetrievalMethodType has binding name 'ds__RetrievalMethodType' for type 'ds:RetrievalMethodType' */
+#ifndef SOAP_TYPE_ds__RetrievalMethodType
+#define SOAP_TYPE_ds__RetrievalMethodType (96)
+#endif
+
+/* struct ds__KeyValueType has binding name 'ds__KeyValueType' for type 'ds:KeyValueType' */
+#ifndef SOAP_TYPE_ds__KeyValueType
+#define SOAP_TYPE_ds__KeyValueType (94)
+#endif
+
+/* struct ds__DigestMethodType has binding name 'ds__DigestMethodType' for type 'ds:DigestMethodType' */
+#ifndef SOAP_TYPE_ds__DigestMethodType
+#define SOAP_TYPE_ds__DigestMethodType (93)
+#endif
+
+/* _ds__Transform has binding name '_ds__Transform' for type '' */
+#ifndef SOAP_TYPE__ds__Transform
+#define SOAP_TYPE__ds__Transform (92)
+#endif
+
+/* struct ds__TransformType has binding name 'ds__TransformType' for type 'ds:TransformType' */
+#ifndef SOAP_TYPE_ds__TransformType
+#define SOAP_TYPE_ds__TransformType (90)
+#endif
+
+/* struct _c14n__InclusiveNamespaces has binding name '_c14n__InclusiveNamespaces' for type '' */
+#ifndef SOAP_TYPE__c14n__InclusiveNamespaces
+#define SOAP_TYPE__c14n__InclusiveNamespaces (89)
+#endif
+
+/* struct ds__TransformsType has binding name 'ds__TransformsType' for type 'ds:TransformsType' */
+#ifndef SOAP_TYPE_ds__TransformsType
+#define SOAP_TYPE_ds__TransformsType (88)
+#endif
+
+/* struct ds__ReferenceType has binding name 'ds__ReferenceType' for type 'ds:ReferenceType' */
+#ifndef SOAP_TYPE_ds__ReferenceType
+#define SOAP_TYPE_ds__ReferenceType (87)
+#endif
+
+/* struct ds__SignatureMethodType has binding name 'ds__SignatureMethodType' for type 'ds:SignatureMethodType' */
+#ifndef SOAP_TYPE_ds__SignatureMethodType
+#define SOAP_TYPE_ds__SignatureMethodType (86)
+#endif
+
+/* struct ds__CanonicalizationMethodType has binding name 'ds__CanonicalizationMethodType' for type 'ds:CanonicalizationMethodType' */
+#ifndef SOAP_TYPE_ds__CanonicalizationMethodType
+#define SOAP_TYPE_ds__CanonicalizationMethodType (85)
+#endif
+
+/* _ds__Signature has binding name '_ds__Signature' for type '' */
+#ifndef SOAP_TYPE__ds__Signature
+#define SOAP_TYPE__ds__Signature (84)
+#endif
+
+/* struct ds__SignedInfoType has binding name 'ds__SignedInfoType' for type 'ds:SignedInfoType' */
+#ifndef SOAP_TYPE_ds__SignedInfoType
+#define SOAP_TYPE_ds__SignedInfoType (81)
+#endif
+
+/* struct ds__SignatureType has binding name 'ds__SignatureType' for type 'ds:SignatureType' */
+#ifndef SOAP_TYPE_ds__SignatureType
+#define SOAP_TYPE_ds__SignatureType (80)
+#endif
+
+/* struct xenc__EncryptedKeyType has binding name 'xenc__EncryptedKeyType' for type 'xenc:EncryptedKeyType' */
+#ifndef SOAP_TYPE_xenc__EncryptedKeyType
+#define SOAP_TYPE_xenc__EncryptedKeyType (77)
+#endif
+
+/* struct ds__KeyInfoType has binding name 'ds__KeyInfoType' for type 'ds:KeyInfoType' */
+#ifndef SOAP_TYPE_ds__KeyInfoType
+#define SOAP_TYPE_ds__KeyInfoType (76)
+#endif
+
+/* struct ds__X509DataType has binding name 'ds__X509DataType' for type 'ds:X509DataType' */
+#ifndef SOAP_TYPE_ds__X509DataType
+#define SOAP_TYPE_ds__X509DataType (74)
+#endif
+
+/* struct _wsse__SecurityTokenReference has binding name '_wsse__SecurityTokenReference' for type '' */
+#ifndef SOAP_TYPE__wsse__SecurityTokenReference
+#define SOAP_TYPE__wsse__SecurityTokenReference (70)
+#endif
+
+/* struct _wsse__KeyIdentifier has binding name '_wsse__KeyIdentifier' for type '' */
+#ifndef SOAP_TYPE__wsse__KeyIdentifier
+#define SOAP_TYPE__wsse__KeyIdentifier (69)
+#endif
+
+/* struct _wsse__Embedded has binding name '_wsse__Embedded' for type '' */
+#ifndef SOAP_TYPE__wsse__Embedded
+#define SOAP_TYPE__wsse__Embedded (68)
+#endif
+
+/* struct _wsse__Reference has binding name '_wsse__Reference' for type '' */
+#ifndef SOAP_TYPE__wsse__Reference
+#define SOAP_TYPE__wsse__Reference (67)
+#endif
+
+/* struct _wsse__BinarySecurityToken has binding name '_wsse__BinarySecurityToken' for type '' */
+#ifndef SOAP_TYPE__wsse__BinarySecurityToken
+#define SOAP_TYPE__wsse__BinarySecurityToken (66)
+#endif
+
+/* struct _wsse__Password has binding name '_wsse__Password' for type '' */
+#ifndef SOAP_TYPE__wsse__Password
+#define SOAP_TYPE__wsse__Password (62)
+#endif
+
+/* struct _wsse__UsernameToken has binding name '_wsse__UsernameToken' for type '' */
+#ifndef SOAP_TYPE__wsse__UsernameToken
+#define SOAP_TYPE__wsse__UsernameToken (61)
+#endif
+
+/* struct wsse__EncodedString has binding name 'wsse__EncodedString' for type 'wsse:EncodedString' */
+#ifndef SOAP_TYPE_wsse__EncodedString
+#define SOAP_TYPE_wsse__EncodedString (59)
+#endif
+
+/* struct _wsu__Timestamp has binding name '_wsu__Timestamp' for type '' */
+#ifndef SOAP_TYPE__wsu__Timestamp
+#define SOAP_TYPE__wsu__Timestamp (58)
 #endif
 
 /* struct SOAP_ENV__Fault has binding name 'SOAP_ENV__Fault' for type '' */
@@ -6522,477 +9927,1042 @@ typedef std::string tt__ReferenceToken;
 
 /* _tptz__GetCompatibleConfigurations * has binding name 'PointerTo_tptz__GetCompatibleConfigurations' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__GetCompatibleConfigurations
-#define SOAP_TYPE_PointerTo_tptz__GetCompatibleConfigurations (388)
+#define SOAP_TYPE_PointerTo_tptz__GetCompatibleConfigurations (652)
 #endif
 
 /* _tptz__RemovePresetTour * has binding name 'PointerTo_tptz__RemovePresetTour' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__RemovePresetTour
-#define SOAP_TYPE_PointerTo_tptz__RemovePresetTour (384)
+#define SOAP_TYPE_PointerTo_tptz__RemovePresetTour (648)
 #endif
 
 /* _tptz__OperatePresetTour * has binding name 'PointerTo_tptz__OperatePresetTour' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__OperatePresetTour
-#define SOAP_TYPE_PointerTo_tptz__OperatePresetTour (380)
+#define SOAP_TYPE_PointerTo_tptz__OperatePresetTour (644)
 #endif
 
 /* _tptz__ModifyPresetTour * has binding name 'PointerTo_tptz__ModifyPresetTour' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__ModifyPresetTour
-#define SOAP_TYPE_PointerTo_tptz__ModifyPresetTour (376)
+#define SOAP_TYPE_PointerTo_tptz__ModifyPresetTour (640)
 #endif
 
 /* _tptz__CreatePresetTour * has binding name 'PointerTo_tptz__CreatePresetTour' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__CreatePresetTour
-#define SOAP_TYPE_PointerTo_tptz__CreatePresetTour (372)
+#define SOAP_TYPE_PointerTo_tptz__CreatePresetTour (636)
 #endif
 
 /* _tptz__GetPresetTourOptions * has binding name 'PointerTo_tptz__GetPresetTourOptions' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__GetPresetTourOptions
-#define SOAP_TYPE_PointerTo_tptz__GetPresetTourOptions (368)
+#define SOAP_TYPE_PointerTo_tptz__GetPresetTourOptions (632)
 #endif
 
 /* _tptz__GetPresetTour * has binding name 'PointerTo_tptz__GetPresetTour' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__GetPresetTour
-#define SOAP_TYPE_PointerTo_tptz__GetPresetTour (364)
+#define SOAP_TYPE_PointerTo_tptz__GetPresetTour (628)
 #endif
 
 /* _tptz__GetPresetTours * has binding name 'PointerTo_tptz__GetPresetTours' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__GetPresetTours
-#define SOAP_TYPE_PointerTo_tptz__GetPresetTours (360)
+#define SOAP_TYPE_PointerTo_tptz__GetPresetTours (624)
 #endif
 
 /* _tptz__Stop * has binding name 'PointerTo_tptz__Stop' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__Stop
-#define SOAP_TYPE_PointerTo_tptz__Stop (356)
+#define SOAP_TYPE_PointerTo_tptz__Stop (620)
 #endif
 
 /* _tptz__GeoMove * has binding name 'PointerTo_tptz__GeoMove' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__GeoMove
-#define SOAP_TYPE_PointerTo_tptz__GeoMove (352)
+#define SOAP_TYPE_PointerTo_tptz__GeoMove (616)
 #endif
 
 /* _tptz__AbsoluteMove * has binding name 'PointerTo_tptz__AbsoluteMove' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__AbsoluteMove
-#define SOAP_TYPE_PointerTo_tptz__AbsoluteMove (348)
+#define SOAP_TYPE_PointerTo_tptz__AbsoluteMove (612)
 #endif
 
 /* _tptz__SendAuxiliaryCommand * has binding name 'PointerTo_tptz__SendAuxiliaryCommand' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__SendAuxiliaryCommand
-#define SOAP_TYPE_PointerTo_tptz__SendAuxiliaryCommand (344)
+#define SOAP_TYPE_PointerTo_tptz__SendAuxiliaryCommand (608)
 #endif
 
 /* _tptz__RelativeMove * has binding name 'PointerTo_tptz__RelativeMove' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__RelativeMove
-#define SOAP_TYPE_PointerTo_tptz__RelativeMove (340)
+#define SOAP_TYPE_PointerTo_tptz__RelativeMove (604)
 #endif
 
 /* _tptz__ContinuousMove * has binding name 'PointerTo_tptz__ContinuousMove' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__ContinuousMove
-#define SOAP_TYPE_PointerTo_tptz__ContinuousMove (336)
+#define SOAP_TYPE_PointerTo_tptz__ContinuousMove (600)
 #endif
 
 /* _tptz__SetHomePosition * has binding name 'PointerTo_tptz__SetHomePosition' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__SetHomePosition
-#define SOAP_TYPE_PointerTo_tptz__SetHomePosition (332)
+#define SOAP_TYPE_PointerTo_tptz__SetHomePosition (596)
 #endif
 
 /* _tptz__GotoHomePosition * has binding name 'PointerTo_tptz__GotoHomePosition' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__GotoHomePosition
-#define SOAP_TYPE_PointerTo_tptz__GotoHomePosition (328)
+#define SOAP_TYPE_PointerTo_tptz__GotoHomePosition (592)
 #endif
 
 /* _tptz__GetConfigurationOptions * has binding name 'PointerTo_tptz__GetConfigurationOptions' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__GetConfigurationOptions
-#define SOAP_TYPE_PointerTo_tptz__GetConfigurationOptions (324)
+#define SOAP_TYPE_PointerTo_tptz__GetConfigurationOptions (588)
 #endif
 
 /* _tptz__SetConfiguration * has binding name 'PointerTo_tptz__SetConfiguration' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__SetConfiguration
-#define SOAP_TYPE_PointerTo_tptz__SetConfiguration (320)
+#define SOAP_TYPE_PointerTo_tptz__SetConfiguration (584)
 #endif
 
 /* _tptz__GetNode * has binding name 'PointerTo_tptz__GetNode' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__GetNode
-#define SOAP_TYPE_PointerTo_tptz__GetNode (316)
+#define SOAP_TYPE_PointerTo_tptz__GetNode (580)
 #endif
 
 /* _tptz__GetNodes * has binding name 'PointerTo_tptz__GetNodes' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__GetNodes
-#define SOAP_TYPE_PointerTo_tptz__GetNodes (312)
+#define SOAP_TYPE_PointerTo_tptz__GetNodes (576)
 #endif
 
 /* _tptz__GetConfiguration * has binding name 'PointerTo_tptz__GetConfiguration' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__GetConfiguration
-#define SOAP_TYPE_PointerTo_tptz__GetConfiguration (308)
+#define SOAP_TYPE_PointerTo_tptz__GetConfiguration (572)
 #endif
 
 /* _tptz__GetStatus * has binding name 'PointerTo_tptz__GetStatus' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__GetStatus
-#define SOAP_TYPE_PointerTo_tptz__GetStatus (304)
+#define SOAP_TYPE_PointerTo_tptz__GetStatus (568)
 #endif
 
 /* _tptz__GotoPreset * has binding name 'PointerTo_tptz__GotoPreset' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__GotoPreset
-#define SOAP_TYPE_PointerTo_tptz__GotoPreset (300)
+#define SOAP_TYPE_PointerTo_tptz__GotoPreset (564)
 #endif
 
 /* _tptz__RemovePreset * has binding name 'PointerTo_tptz__RemovePreset' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__RemovePreset
-#define SOAP_TYPE_PointerTo_tptz__RemovePreset (296)
+#define SOAP_TYPE_PointerTo_tptz__RemovePreset (560)
 #endif
 
 /* _tptz__SetPreset * has binding name 'PointerTo_tptz__SetPreset' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__SetPreset
-#define SOAP_TYPE_PointerTo_tptz__SetPreset (292)
+#define SOAP_TYPE_PointerTo_tptz__SetPreset (556)
 #endif
 
 /* _tptz__GetPresets * has binding name 'PointerTo_tptz__GetPresets' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__GetPresets
-#define SOAP_TYPE_PointerTo_tptz__GetPresets (288)
+#define SOAP_TYPE_PointerTo_tptz__GetPresets (552)
 #endif
 
 /* _tptz__GetConfigurations * has binding name 'PointerTo_tptz__GetConfigurations' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__GetConfigurations
-#define SOAP_TYPE_PointerTo_tptz__GetConfigurations (284)
+#define SOAP_TYPE_PointerTo_tptz__GetConfigurations (548)
 #endif
 
 /* _tptz__GetServiceCapabilities * has binding name 'PointerTo_tptz__GetServiceCapabilities' for type '' */
 #ifndef SOAP_TYPE_PointerTo_tptz__GetServiceCapabilities
-#define SOAP_TYPE_PointerTo_tptz__GetServiceCapabilities (280)
+#define SOAP_TYPE_PointerTo_tptz__GetServiceCapabilities (544)
 #endif
 
 /* tt__PTZConfigurationExtension * has binding name 'PointerTott__PTZConfigurationExtension' for type 'tt:PTZConfigurationExtension' */
 #ifndef SOAP_TYPE_PointerTott__PTZConfigurationExtension
-#define SOAP_TYPE_PointerTott__PTZConfigurationExtension (279)
+#define SOAP_TYPE_PointerTott__PTZConfigurationExtension (543)
 #endif
 
 /* tt__ZoomLimits * has binding name 'PointerTott__ZoomLimits' for type 'tt:ZoomLimits' */
 #ifndef SOAP_TYPE_PointerTott__ZoomLimits
-#define SOAP_TYPE_PointerTott__ZoomLimits (278)
+#define SOAP_TYPE_PointerTott__ZoomLimits (542)
 #endif
 
 /* tt__PanTiltLimits * has binding name 'PointerTott__PanTiltLimits' for type 'tt:PanTiltLimits' */
 #ifndef SOAP_TYPE_PointerTott__PanTiltLimits
-#define SOAP_TYPE_PointerTott__PanTiltLimits (277)
+#define SOAP_TYPE_PointerTott__PanTiltLimits (541)
 #endif
 
 /* tt__PTZNodeExtension * has binding name 'PointerTott__PTZNodeExtension' for type 'tt:PTZNodeExtension' */
 #ifndef SOAP_TYPE_PointerTott__PTZNodeExtension
-#define SOAP_TYPE_PointerTott__PTZNodeExtension (276)
+#define SOAP_TYPE_PointerTott__PTZNodeExtension (540)
 #endif
 
 /* double * has binding name 'PointerTodouble' for type 'xsd:double' */
 #ifndef SOAP_TYPE_PointerTodouble
-#define SOAP_TYPE_PointerTodouble (274)
+#define SOAP_TYPE_PointerTodouble (538)
 #endif
 
 /* enum tt__MoveStatus * has binding name 'PointerTott__MoveStatus' for type 'tt:MoveStatus' */
 #ifndef SOAP_TYPE_PointerTott__MoveStatus
-#define SOAP_TYPE_PointerTott__MoveStatus (272)
+#define SOAP_TYPE_PointerTott__MoveStatus (536)
 #endif
 
 /* tt__PTZMoveStatus * has binding name 'PointerTott__PTZMoveStatus' for type 'tt:PTZMoveStatus' */
 #ifndef SOAP_TYPE_PointerTott__PTZMoveStatus
-#define SOAP_TYPE_PointerTott__PTZMoveStatus (270)
+#define SOAP_TYPE_PointerTott__PTZMoveStatus (534)
 #endif
 
 /* std::string * has binding name 'PointerToxsd__anyURI' for type 'xsd:anyURI' */
 #ifndef SOAP_TYPE_PointerToxsd__anyURI
-#define SOAP_TYPE_PointerToxsd__anyURI (269)
+#define SOAP_TYPE_PointerToxsd__anyURI (533)
 #endif
 
 /* tt__PTZPresetTourStartingConditionOptionsExtension * has binding name 'PointerTott__PTZPresetTourStartingConditionOptionsExtension' for type 'tt:PTZPresetTourStartingConditionOptionsExtension' */
 #ifndef SOAP_TYPE_PointerTott__PTZPresetTourStartingConditionOptionsExtension
-#define SOAP_TYPE_PointerTott__PTZPresetTourStartingConditionOptionsExtension (268)
+#define SOAP_TYPE_PointerTott__PTZPresetTourStartingConditionOptionsExtension (532)
 #endif
 
 /* tt__IntRange * has binding name 'PointerTott__IntRange' for type 'tt:IntRange' */
 #ifndef SOAP_TYPE_PointerTott__IntRange
-#define SOAP_TYPE_PointerTott__IntRange (266)
+#define SOAP_TYPE_PointerTott__IntRange (530)
 #endif
 
 /* tt__PTZPresetTourPresetDetailOptionsExtension * has binding name 'PointerTott__PTZPresetTourPresetDetailOptionsExtension' for type 'tt:PTZPresetTourPresetDetailOptionsExtension' */
 #ifndef SOAP_TYPE_PointerTott__PTZPresetTourPresetDetailOptionsExtension
-#define SOAP_TYPE_PointerTott__PTZPresetTourPresetDetailOptionsExtension (265)
+#define SOAP_TYPE_PointerTott__PTZPresetTourPresetDetailOptionsExtension (529)
 #endif
 
 /* tt__PTZPresetTourPresetDetailOptions * has binding name 'PointerTott__PTZPresetTourPresetDetailOptions' for type 'tt:PTZPresetTourPresetDetailOptions' */
 #ifndef SOAP_TYPE_PointerTott__PTZPresetTourPresetDetailOptions
-#define SOAP_TYPE_PointerTott__PTZPresetTourPresetDetailOptions (263)
+#define SOAP_TYPE_PointerTott__PTZPresetTourPresetDetailOptions (527)
 #endif
 
 /* tt__PTZPresetTourSpotOptions * has binding name 'PointerTott__PTZPresetTourSpotOptions' for type 'tt:PTZPresetTourSpotOptions' */
 #ifndef SOAP_TYPE_PointerTott__PTZPresetTourSpotOptions
-#define SOAP_TYPE_PointerTott__PTZPresetTourSpotOptions (262)
+#define SOAP_TYPE_PointerTott__PTZPresetTourSpotOptions (526)
 #endif
 
 /* tt__PTZPresetTourStartingConditionOptions * has binding name 'PointerTott__PTZPresetTourStartingConditionOptions' for type 'tt:PTZPresetTourStartingConditionOptions' */
 #ifndef SOAP_TYPE_PointerTott__PTZPresetTourStartingConditionOptions
-#define SOAP_TYPE_PointerTott__PTZPresetTourStartingConditionOptions (261)
+#define SOAP_TYPE_PointerTott__PTZPresetTourStartingConditionOptions (525)
 #endif
 
 /* tt__PTZPresetTourStartingConditionExtension * has binding name 'PointerTott__PTZPresetTourStartingConditionExtension' for type 'tt:PTZPresetTourStartingConditionExtension' */
 #ifndef SOAP_TYPE_PointerTott__PTZPresetTourStartingConditionExtension
-#define SOAP_TYPE_PointerTott__PTZPresetTourStartingConditionExtension (260)
+#define SOAP_TYPE_PointerTott__PTZPresetTourStartingConditionExtension (524)
 #endif
 
 /* enum tt__PTZPresetTourDirection * has binding name 'PointerTott__PTZPresetTourDirection' for type 'tt:PTZPresetTourDirection' */
 #ifndef SOAP_TYPE_PointerTott__PTZPresetTourDirection
-#define SOAP_TYPE_PointerTott__PTZPresetTourDirection (259)
+#define SOAP_TYPE_PointerTott__PTZPresetTourDirection (523)
 #endif
 
 /* tt__PTZPresetTourStatusExtension * has binding name 'PointerTott__PTZPresetTourStatusExtension' for type 'tt:PTZPresetTourStatusExtension' */
 #ifndef SOAP_TYPE_PointerTott__PTZPresetTourStatusExtension
-#define SOAP_TYPE_PointerTott__PTZPresetTourStatusExtension (258)
+#define SOAP_TYPE_PointerTott__PTZPresetTourStatusExtension (522)
 #endif
 
 /* tt__PTZPresetTourTypeExtension * has binding name 'PointerTott__PTZPresetTourTypeExtension' for type 'tt:PTZPresetTourTypeExtension' */
 #ifndef SOAP_TYPE_PointerTott__PTZPresetTourTypeExtension
-#define SOAP_TYPE_PointerTott__PTZPresetTourTypeExtension (257)
+#define SOAP_TYPE_PointerTott__PTZPresetTourTypeExtension (521)
 #endif
 
 /* tt__PTZPresetTourSpotExtension * has binding name 'PointerTott__PTZPresetTourSpotExtension' for type 'tt:PTZPresetTourSpotExtension' */
 #ifndef SOAP_TYPE_PointerTott__PTZPresetTourSpotExtension
-#define SOAP_TYPE_PointerTott__PTZPresetTourSpotExtension (255)
+#define SOAP_TYPE_PointerTott__PTZPresetTourSpotExtension (519)
 #endif
 
 /* tt__PTZPresetTourPresetDetail * has binding name 'PointerTott__PTZPresetTourPresetDetail' for type 'tt:PTZPresetTourPresetDetail' */
 #ifndef SOAP_TYPE_PointerTott__PTZPresetTourPresetDetail
-#define SOAP_TYPE_PointerTott__PTZPresetTourPresetDetail (254)
+#define SOAP_TYPE_PointerTott__PTZPresetTourPresetDetail (518)
 #endif
 
 /* tt__PTZPresetTourExtension * has binding name 'PointerTott__PTZPresetTourExtension' for type 'tt:PTZPresetTourExtension' */
 #ifndef SOAP_TYPE_PointerTott__PTZPresetTourExtension
-#define SOAP_TYPE_PointerTott__PTZPresetTourExtension (253)
+#define SOAP_TYPE_PointerTott__PTZPresetTourExtension (517)
 #endif
 
 /* tt__PTZPresetTourSpot * has binding name 'PointerTott__PTZPresetTourSpot' for type 'tt:PTZPresetTourSpot' */
 #ifndef SOAP_TYPE_PointerTott__PTZPresetTourSpot
-#define SOAP_TYPE_PointerTott__PTZPresetTourSpot (251)
+#define SOAP_TYPE_PointerTott__PTZPresetTourSpot (515)
 #endif
 
 /* tt__PTZPresetTourStartingCondition * has binding name 'PointerTott__PTZPresetTourStartingCondition' for type 'tt:PTZPresetTourStartingCondition' */
 #ifndef SOAP_TYPE_PointerTott__PTZPresetTourStartingCondition
-#define SOAP_TYPE_PointerTott__PTZPresetTourStartingCondition (250)
+#define SOAP_TYPE_PointerTott__PTZPresetTourStartingCondition (514)
 #endif
 
 /* tt__PTZPresetTourStatus * has binding name 'PointerTott__PTZPresetTourStatus' for type 'tt:PTZPresetTourStatus' */
 #ifndef SOAP_TYPE_PointerTott__PTZPresetTourStatus
-#define SOAP_TYPE_PointerTott__PTZPresetTourStatus (249)
+#define SOAP_TYPE_PointerTott__PTZPresetTourStatus (513)
 #endif
 
 /* std::string * has binding name 'PointerTott__Name' for type 'tt:Name' */
 #ifndef SOAP_TYPE_PointerTott__Name
-#define SOAP_TYPE_PointerTott__Name (248)
+#define SOAP_TYPE_PointerTott__Name (512)
 #endif
 
 /* tt__Vector1D * has binding name 'PointerTott__Vector1D' for type 'tt:Vector1D' */
 #ifndef SOAP_TYPE_PointerTott__Vector1D
-#define SOAP_TYPE_PointerTott__Vector1D (247)
+#define SOAP_TYPE_PointerTott__Vector1D (511)
 #endif
 
 /* tt__Vector2D * has binding name 'PointerTott__Vector2D' for type 'tt:Vector2D' */
 #ifndef SOAP_TYPE_PointerTott__Vector2D
-#define SOAP_TYPE_PointerTott__Vector2D (246)
+#define SOAP_TYPE_PointerTott__Vector2D (510)
 #endif
 
 /* tt__FloatRange * has binding name 'PointerTott__FloatRange' for type 'tt:FloatRange' */
 #ifndef SOAP_TYPE_PointerTott__FloatRange
-#define SOAP_TYPE_PointerTott__FloatRange (245)
+#define SOAP_TYPE_PointerTott__FloatRange (509)
 #endif
 
 /* tt__PTZSpacesExtension * has binding name 'PointerTott__PTZSpacesExtension' for type 'tt:PTZSpacesExtension' */
 #ifndef SOAP_TYPE_PointerTott__PTZSpacesExtension
-#define SOAP_TYPE_PointerTott__PTZSpacesExtension (244)
+#define SOAP_TYPE_PointerTott__PTZSpacesExtension (508)
 #endif
 
 /* tt__Space1DDescription * has binding name 'PointerTott__Space1DDescription' for type 'tt:Space1DDescription' */
 #ifndef SOAP_TYPE_PointerTott__Space1DDescription
-#define SOAP_TYPE_PointerTott__Space1DDescription (241)
+#define SOAP_TYPE_PointerTott__Space1DDescription (505)
 #endif
 
 /* tt__Space2DDescription * has binding name 'PointerTott__Space2DDescription' for type 'tt:Space2DDescription' */
 #ifndef SOAP_TYPE_PointerTott__Space2DDescription
-#define SOAP_TYPE_PointerTott__Space2DDescription (240)
+#define SOAP_TYPE_PointerTott__Space2DDescription (504)
 #endif
 
 /* tt__ReverseOptionsExtension * has binding name 'PointerTott__ReverseOptionsExtension' for type 'tt:ReverseOptionsExtension' */
 #ifndef SOAP_TYPE_PointerTott__ReverseOptionsExtension
-#define SOAP_TYPE_PointerTott__ReverseOptionsExtension (239)
+#define SOAP_TYPE_PointerTott__ReverseOptionsExtension (503)
 #endif
 
 /* tt__EFlipOptionsExtension * has binding name 'PointerTott__EFlipOptionsExtension' for type 'tt:EFlipOptionsExtension' */
 #ifndef SOAP_TYPE_PointerTott__EFlipOptionsExtension
-#define SOAP_TYPE_PointerTott__EFlipOptionsExtension (237)
+#define SOAP_TYPE_PointerTott__EFlipOptionsExtension (501)
 #endif
 
 /* tt__PTControlDirectionOptionsExtension * has binding name 'PointerTott__PTControlDirectionOptionsExtension' for type 'tt:PTControlDirectionOptionsExtension' */
 #ifndef SOAP_TYPE_PointerTott__PTControlDirectionOptionsExtension
-#define SOAP_TYPE_PointerTott__PTControlDirectionOptionsExtension (235)
+#define SOAP_TYPE_PointerTott__PTControlDirectionOptionsExtension (499)
 #endif
 
 /* tt__ReverseOptions * has binding name 'PointerTott__ReverseOptions' for type 'tt:ReverseOptions' */
 #ifndef SOAP_TYPE_PointerTott__ReverseOptions
-#define SOAP_TYPE_PointerTott__ReverseOptions (234)
+#define SOAP_TYPE_PointerTott__ReverseOptions (498)
 #endif
 
 /* tt__EFlipOptions * has binding name 'PointerTott__EFlipOptions' for type 'tt:EFlipOptions' */
 #ifndef SOAP_TYPE_PointerTott__EFlipOptions
-#define SOAP_TYPE_PointerTott__EFlipOptions (233)
+#define SOAP_TYPE_PointerTott__EFlipOptions (497)
 #endif
 
 /* std::string * has binding name 'PointerTott__IntAttrList' for type 'tt:IntAttrList' */
 #ifndef SOAP_TYPE_PointerTott__IntAttrList
-#define SOAP_TYPE_PointerTott__IntAttrList (232)
+#define SOAP_TYPE_PointerTott__IntAttrList (496)
 #endif
 
 /* tt__PTZConfigurationOptions2 * has binding name 'PointerTott__PTZConfigurationOptions2' for type 'tt:PTZConfigurationOptions2' */
 #ifndef SOAP_TYPE_PointerTott__PTZConfigurationOptions2
-#define SOAP_TYPE_PointerTott__PTZConfigurationOptions2 (231)
+#define SOAP_TYPE_PointerTott__PTZConfigurationOptions2 (495)
 #endif
 
 /* tt__PTControlDirectionOptions * has binding name 'PointerTott__PTControlDirectionOptions' for type 'tt:PTControlDirectionOptions' */
 #ifndef SOAP_TYPE_PointerTott__PTControlDirectionOptions
-#define SOAP_TYPE_PointerTott__PTControlDirectionOptions (230)
+#define SOAP_TYPE_PointerTott__PTControlDirectionOptions (494)
 #endif
 
 /* tt__DurationRange * has binding name 'PointerTott__DurationRange' for type 'tt:DurationRange' */
 #ifndef SOAP_TYPE_PointerTott__DurationRange
-#define SOAP_TYPE_PointerTott__DurationRange (229)
+#define SOAP_TYPE_PointerTott__DurationRange (493)
 #endif
 
 /* tt__PTZSpaces * has binding name 'PointerTott__PTZSpaces' for type 'tt:PTZSpaces' */
 #ifndef SOAP_TYPE_PointerTott__PTZSpaces
-#define SOAP_TYPE_PointerTott__PTZSpaces (228)
+#define SOAP_TYPE_PointerTott__PTZSpaces (492)
 #endif
 
 /* tt__PTControlDirectionExtension * has binding name 'PointerTott__PTControlDirectionExtension' for type 'tt:PTControlDirectionExtension' */
 #ifndef SOAP_TYPE_PointerTott__PTControlDirectionExtension
-#define SOAP_TYPE_PointerTott__PTControlDirectionExtension (227)
+#define SOAP_TYPE_PointerTott__PTControlDirectionExtension (491)
 #endif
 
 /* tt__Reverse * has binding name 'PointerTott__Reverse' for type 'tt:Reverse' */
 #ifndef SOAP_TYPE_PointerTott__Reverse
-#define SOAP_TYPE_PointerTott__Reverse (226)
+#define SOAP_TYPE_PointerTott__Reverse (490)
 #endif
 
 /* tt__EFlip * has binding name 'PointerTott__EFlip' for type 'tt:EFlip' */
 #ifndef SOAP_TYPE_PointerTott__EFlip
-#define SOAP_TYPE_PointerTott__EFlip (225)
+#define SOAP_TYPE_PointerTott__EFlip (489)
 #endif
 
 /* tt__PTZConfigurationExtension2 * has binding name 'PointerTott__PTZConfigurationExtension2' for type 'tt:PTZConfigurationExtension2' */
 #ifndef SOAP_TYPE_PointerTott__PTZConfigurationExtension2
-#define SOAP_TYPE_PointerTott__PTZConfigurationExtension2 (224)
+#define SOAP_TYPE_PointerTott__PTZConfigurationExtension2 (488)
 #endif
 
 /* tt__PTControlDirection * has binding name 'PointerTott__PTControlDirection' for type 'tt:PTControlDirection' */
 #ifndef SOAP_TYPE_PointerTott__PTControlDirection
-#define SOAP_TYPE_PointerTott__PTControlDirection (223)
+#define SOAP_TYPE_PointerTott__PTControlDirection (487)
 #endif
 
 /* tt__PTZPresetTourSupportedExtension * has binding name 'PointerTott__PTZPresetTourSupportedExtension' for type 'tt:PTZPresetTourSupportedExtension' */
 #ifndef SOAP_TYPE_PointerTott__PTZPresetTourSupportedExtension
-#define SOAP_TYPE_PointerTott__PTZPresetTourSupportedExtension (222)
+#define SOAP_TYPE_PointerTott__PTZPresetTourSupportedExtension (486)
 #endif
 
 /* tt__PTZNodeExtension2 * has binding name 'PointerTott__PTZNodeExtension2' for type 'tt:PTZNodeExtension2' */
 #ifndef SOAP_TYPE_PointerTott__PTZNodeExtension2
-#define SOAP_TYPE_PointerTott__PTZNodeExtension2 (220)
+#define SOAP_TYPE_PointerTott__PTZNodeExtension2 (484)
 #endif
 
 /* tt__PTZPresetTourSupported * has binding name 'PointerTott__PTZPresetTourSupported' for type 'tt:PTZPresetTourSupported' */
 #ifndef SOAP_TYPE_PointerTott__PTZPresetTourSupported
-#define SOAP_TYPE_PointerTott__PTZPresetTourSupported (219)
+#define SOAP_TYPE_PointerTott__PTZPresetTourSupported (483)
 #endif
 
 /* tt__PTZPresetTourOptions * has binding name 'PointerTott__PTZPresetTourOptions' for type 'tt:PTZPresetTourOptions' */
 #ifndef SOAP_TYPE_PointerTott__PTZPresetTourOptions
-#define SOAP_TYPE_PointerTott__PTZPresetTourOptions (218)
+#define SOAP_TYPE_PointerTott__PTZPresetTourOptions (482)
 #endif
 
 /* tt__PresetTour * has binding name 'PointerTott__PresetTour' for type 'tt:PresetTour' */
 #ifndef SOAP_TYPE_PointerTott__PresetTour
-#define SOAP_TYPE_PointerTott__PresetTour (216)
+#define SOAP_TYPE_PointerTott__PresetTour (480)
 #endif
 
 /* float * has binding name 'PointerTofloat' for type 'xsd:float' */
 #ifndef SOAP_TYPE_PointerTofloat
-#define SOAP_TYPE_PointerTofloat (215)
+#define SOAP_TYPE_PointerTofloat (479)
 #endif
 
 /* tt__GeoLocation * has binding name 'PointerTott__GeoLocation' for type 'tt:GeoLocation' */
 #ifndef SOAP_TYPE_PointerTott__GeoLocation
-#define SOAP_TYPE_PointerTott__GeoLocation (213)
+#define SOAP_TYPE_PointerTott__GeoLocation (477)
 #endif
 
 /* tt__PTZVector * has binding name 'PointerTott__PTZVector' for type 'tt:PTZVector' */
 #ifndef SOAP_TYPE_PointerTott__PTZVector
-#define SOAP_TYPE_PointerTott__PTZVector (212)
+#define SOAP_TYPE_PointerTott__PTZVector (476)
 #endif
 
 /* std::string * has binding name 'PointerToxsd__duration' for type 'xsd:duration' */
 #ifndef SOAP_TYPE_PointerToxsd__duration
-#define SOAP_TYPE_PointerToxsd__duration (211)
+#define SOAP_TYPE_PointerToxsd__duration (475)
 #endif
 
 /* tt__PTZStatus * has binding name 'PointerTott__PTZStatus' for type 'tt:PTZStatus' */
 #ifndef SOAP_TYPE_PointerTott__PTZStatus
-#define SOAP_TYPE_PointerTott__PTZStatus (210)
+#define SOAP_TYPE_PointerTott__PTZStatus (474)
 #endif
 
 /* tt__PTZSpeed * has binding name 'PointerTott__PTZSpeed' for type 'tt:PTZSpeed' */
 #ifndef SOAP_TYPE_PointerTott__PTZSpeed
-#define SOAP_TYPE_PointerTott__PTZSpeed (209)
+#define SOAP_TYPE_PointerTott__PTZSpeed (473)
 #endif
 
 /* std::string * has binding name 'PointerTott__ReferenceToken' for type 'tt:ReferenceToken' */
 #ifndef SOAP_TYPE_PointerTott__ReferenceToken
-#define SOAP_TYPE_PointerTott__ReferenceToken (208)
+#define SOAP_TYPE_PointerTott__ReferenceToken (472)
 #endif
 
 /* std::string * has binding name 'PointerTostd__string' for type 'xsd:string' */
 #ifndef SOAP_TYPE_PointerTostd__string
-#define SOAP_TYPE_PointerTostd__string (207)
+#define SOAP_TYPE_PointerTostd__string (471)
 #endif
 
 /* tt__PTZPreset * has binding name 'PointerTott__PTZPreset' for type 'tt:PTZPreset' */
 #ifndef SOAP_TYPE_PointerTott__PTZPreset
-#define SOAP_TYPE_PointerTott__PTZPreset (205)
+#define SOAP_TYPE_PointerTott__PTZPreset (469)
 #endif
 
 /* tt__PTZConfigurationOptions * has binding name 'PointerTott__PTZConfigurationOptions' for type 'tt:PTZConfigurationOptions' */
 #ifndef SOAP_TYPE_PointerTott__PTZConfigurationOptions
-#define SOAP_TYPE_PointerTott__PTZConfigurationOptions (204)
+#define SOAP_TYPE_PointerTott__PTZConfigurationOptions (468)
 #endif
 
 /* struct __tptz__SetConfigurationResponse_sequence * has binding name 'PointerTo__tptz__SetConfigurationResponse_sequence' for type '-tptz:SetConfigurationResponse-sequence' */
 #ifndef SOAP_TYPE_PointerTo__tptz__SetConfigurationResponse_sequence
-#define SOAP_TYPE_PointerTo__tptz__SetConfigurationResponse_sequence (203)
+#define SOAP_TYPE_PointerTo__tptz__SetConfigurationResponse_sequence (467)
 #endif
 
 /* tt__PTZConfiguration * has binding name 'PointerTott__PTZConfiguration' for type 'tt:PTZConfiguration' */
 #ifndef SOAP_TYPE_PointerTott__PTZConfiguration
-#define SOAP_TYPE_PointerTott__PTZConfiguration (200)
+#define SOAP_TYPE_PointerTott__PTZConfiguration (464)
 #endif
 
 /* tt__PTZNode * has binding name 'PointerTott__PTZNode' for type 'tt:PTZNode' */
 #ifndef SOAP_TYPE_PointerTott__PTZNode
-#define SOAP_TYPE_PointerTott__PTZNode (198)
+#define SOAP_TYPE_PointerTott__PTZNode (462)
 #endif
 
 /* tptz__Capabilities * has binding name 'PointerTotptz__Capabilities' for type 'tptz:Capabilities' */
 #ifndef SOAP_TYPE_PointerTotptz__Capabilities
-#define SOAP_TYPE_PointerTotptz__Capabilities (197)
+#define SOAP_TYPE_PointerTotptz__Capabilities (461)
 #endif
 
 /* bool * has binding name 'PointerTobool' for type 'xsd:boolean' */
 #ifndef SOAP_TYPE_PointerTobool
-#define SOAP_TYPE_PointerTobool (196)
+#define SOAP_TYPE_PointerTobool (460)
 #endif
 
 /* struct SOAP_ENV__Header * has binding name 'PointerToSOAP_ENV__Header' for type '' */
 #ifndef SOAP_TYPE_PointerToSOAP_ENV__Header
-#define SOAP_TYPE_PointerToSOAP_ENV__Header (60)
+#define SOAP_TYPE_PointerToSOAP_ENV__Header (324)
+#endif
+
+/* struct _wsse__Security * has binding name 'PointerTo_wsse__Security' for type '' */
+#ifndef SOAP_TYPE_PointerTo_wsse__Security
+#define SOAP_TYPE_PointerTo_wsse__Security (320)
+#endif
+
+/* struct ds__SignatureType * has binding name 'PointerTods__SignatureType' for type 'ds:SignatureType' */
+#ifndef SOAP_TYPE_PointerTods__SignatureType
+#define SOAP_TYPE_PointerTods__SignatureType (319)
+#endif
+
+/* struct wsc__SecurityContextTokenType * has binding name 'PointerTowsc__SecurityContextTokenType' for type 'wsc:SecurityContextTokenType' */
+#ifndef SOAP_TYPE_PointerTowsc__SecurityContextTokenType
+#define SOAP_TYPE_PointerTowsc__SecurityContextTokenType (318)
+#endif
+
+/* struct _wsse__BinarySecurityToken * has binding name 'PointerTo_wsse__BinarySecurityToken' for type '' */
+#ifndef SOAP_TYPE_PointerTo_wsse__BinarySecurityToken
+#define SOAP_TYPE_PointerTo_wsse__BinarySecurityToken (317)
+#endif
+
+/* struct _wsse__UsernameToken * has binding name 'PointerTo_wsse__UsernameToken' for type '' */
+#ifndef SOAP_TYPE_PointerTo_wsse__UsernameToken
+#define SOAP_TYPE_PointerTo_wsse__UsernameToken (316)
+#endif
+
+/* struct _wsu__Timestamp * has binding name 'PointerTo_wsu__Timestamp' for type '' */
+#ifndef SOAP_TYPE_PointerTo_wsu__Timestamp
+#define SOAP_TYPE_PointerTo_wsu__Timestamp (315)
+#endif
+
+/* _saml2__AttributeValue has binding name '_saml2__AttributeValue' for type '' */
+#ifndef SOAP_TYPE__saml2__AttributeValue
+#define SOAP_TYPE__saml2__AttributeValue (312)
+#endif
+
+/* _saml2__AuthenticatingAuthority has binding name '_saml2__AuthenticatingAuthority' for type '' */
+#ifndef SOAP_TYPE__saml2__AuthenticatingAuthority
+#define SOAP_TYPE__saml2__AuthenticatingAuthority (306)
+#endif
+
+/* _saml2__AuthnContextDecl has binding name '_saml2__AuthnContextDecl' for type '' */
+#ifndef SOAP_TYPE__saml2__AuthnContextDecl
+#define SOAP_TYPE__saml2__AuthnContextDecl (305)
+#endif
+
+/* _saml2__AuthnContextDeclRef has binding name '_saml2__AuthnContextDeclRef' for type '' */
+#ifndef SOAP_TYPE__saml2__AuthnContextDeclRef
+#define SOAP_TYPE__saml2__AuthnContextDeclRef (304)
+#endif
+
+/* _saml2__AuthnContextClassRef has binding name '_saml2__AuthnContextClassRef' for type '' */
+#ifndef SOAP_TYPE__saml2__AuthnContextClassRef
+#define SOAP_TYPE__saml2__AuthnContextClassRef (303)
+#endif
+
+/* _saml2__Audience has binding name '_saml2__Audience' for type '' */
+#ifndef SOAP_TYPE__saml2__Audience
+#define SOAP_TYPE__saml2__Audience (294)
+#endif
+
+/* _saml2__AssertionURIRef has binding name '_saml2__AssertionURIRef' for type '' */
+#ifndef SOAP_TYPE__saml2__AssertionURIRef
+#define SOAP_TYPE__saml2__AssertionURIRef (286)
+#endif
+
+/* _saml2__AssertionIDRef has binding name '_saml2__AssertionIDRef' for type '' */
+#ifndef SOAP_TYPE__saml2__AssertionIDRef
+#define SOAP_TYPE__saml2__AssertionIDRef (285)
+#endif
+
+/* struct ds__KeyInfoType ** has binding name 'PointerToPointerTo_ds__KeyInfo' for type '' */
+#ifndef SOAP_TYPE_PointerToPointerTo_ds__KeyInfo
+#define SOAP_TYPE_PointerToPointerTo_ds__KeyInfo (280)
+#endif
+
+/* struct __saml2__union_AttributeStatementType * has binding name 'PointerTo__saml2__union_AttributeStatementType' for type '-saml2:union-AttributeStatementType' */
+#ifndef SOAP_TYPE_PointerTo__saml2__union_AttributeStatementType
+#define SOAP_TYPE_PointerTo__saml2__union_AttributeStatementType (279)
+#endif
+
+/* struct saml2__AttributeType * has binding name 'PointerTosaml2__AttributeType' for type 'saml2:AttributeType' */
+#ifndef SOAP_TYPE_PointerTosaml2__AttributeType
+#define SOAP_TYPE_PointerTosaml2__AttributeType (278)
+#endif
+
+/* struct saml2__EvidenceType * has binding name 'PointerTosaml2__EvidenceType' for type 'saml2:EvidenceType' */
+#ifndef SOAP_TYPE_PointerTosaml2__EvidenceType
+#define SOAP_TYPE_PointerTosaml2__EvidenceType (276)
+#endif
+
+/* struct saml2__ActionType * has binding name 'PointerTosaml2__ActionType' for type 'saml2:ActionType' */
+#ifndef SOAP_TYPE_PointerTosaml2__ActionType
+#define SOAP_TYPE_PointerTosaml2__ActionType (275)
+#endif
+
+/* struct saml2__AuthnContextType * has binding name 'PointerTosaml2__AuthnContextType' for type 'saml2:AuthnContextType' */
+#ifndef SOAP_TYPE_PointerTosaml2__AuthnContextType
+#define SOAP_TYPE_PointerTosaml2__AuthnContextType (274)
+#endif
+
+/* struct saml2__SubjectLocalityType * has binding name 'PointerTosaml2__SubjectLocalityType' for type 'saml2:SubjectLocalityType' */
+#ifndef SOAP_TYPE_PointerTosaml2__SubjectLocalityType
+#define SOAP_TYPE_PointerTosaml2__SubjectLocalityType (273)
+#endif
+
+/* struct __saml2__union_EvidenceType * has binding name 'PointerTo__saml2__union_EvidenceType' for type '-saml2:union-EvidenceType' */
+#ifndef SOAP_TYPE_PointerTo__saml2__union_EvidenceType
+#define SOAP_TYPE_PointerTo__saml2__union_EvidenceType (272)
+#endif
+
+/* struct __saml2__union_AdviceType * has binding name 'PointerTo__saml2__union_AdviceType' for type '-saml2:union-AdviceType' */
+#ifndef SOAP_TYPE_PointerTo__saml2__union_AdviceType
+#define SOAP_TYPE_PointerTo__saml2__union_AdviceType (270)
+#endif
+
+/* struct saml2__AssertionType * has binding name 'PointerTosaml2__AssertionType' for type 'saml2:AssertionType' */
+#ifndef SOAP_TYPE_PointerTosaml2__AssertionType
+#define SOAP_TYPE_PointerTosaml2__AssertionType (269)
+#endif
+
+/* struct __saml2__union_ConditionsType * has binding name 'PointerTo__saml2__union_ConditionsType' for type '-saml2:union-ConditionsType' */
+#ifndef SOAP_TYPE_PointerTo__saml2__union_ConditionsType
+#define SOAP_TYPE_PointerTo__saml2__union_ConditionsType (267)
+#endif
+
+/* struct saml2__ProxyRestrictionType * has binding name 'PointerTosaml2__ProxyRestrictionType' for type 'saml2:ProxyRestrictionType' */
+#ifndef SOAP_TYPE_PointerTosaml2__ProxyRestrictionType
+#define SOAP_TYPE_PointerTosaml2__ProxyRestrictionType (266)
+#endif
+
+/* struct saml2__OneTimeUseType * has binding name 'PointerTosaml2__OneTimeUseType' for type 'saml2:OneTimeUseType' */
+#ifndef SOAP_TYPE_PointerTosaml2__OneTimeUseType
+#define SOAP_TYPE_PointerTosaml2__OneTimeUseType (265)
+#endif
+
+/* struct saml2__AudienceRestrictionType * has binding name 'PointerTosaml2__AudienceRestrictionType' for type 'saml2:AudienceRestrictionType' */
+#ifndef SOAP_TYPE_PointerTosaml2__AudienceRestrictionType
+#define SOAP_TYPE_PointerTosaml2__AudienceRestrictionType (264)
+#endif
+
+/* struct saml2__ConditionAbstractType * has binding name 'PointerTosaml2__ConditionAbstractType' for type 'saml2:ConditionAbstractType' */
+#ifndef SOAP_TYPE_PointerTosaml2__ConditionAbstractType
+#define SOAP_TYPE_PointerTosaml2__ConditionAbstractType (263)
+#endif
+
+/* struct saml2__SubjectConfirmationDataType * has binding name 'PointerTosaml2__SubjectConfirmationDataType' for type 'saml2:SubjectConfirmationDataType' */
+#ifndef SOAP_TYPE_PointerTosaml2__SubjectConfirmationDataType
+#define SOAP_TYPE_PointerTosaml2__SubjectConfirmationDataType (261)
+#endif
+
+/* struct saml2__SubjectConfirmationType * has binding name 'PointerTosaml2__SubjectConfirmationType' for type 'saml2:SubjectConfirmationType' */
+#ifndef SOAP_TYPE_PointerTosaml2__SubjectConfirmationType
+#define SOAP_TYPE_PointerTosaml2__SubjectConfirmationType (260)
+#endif
+
+/* struct saml2__EncryptedElementType * has binding name 'PointerTosaml2__EncryptedElementType' for type 'saml2:EncryptedElementType' */
+#ifndef SOAP_TYPE_PointerTosaml2__EncryptedElementType
+#define SOAP_TYPE_PointerTosaml2__EncryptedElementType (259)
+#endif
+
+/* struct saml2__BaseIDAbstractType * has binding name 'PointerTosaml2__BaseIDAbstractType' for type 'saml2:BaseIDAbstractType' */
+#ifndef SOAP_TYPE_PointerTosaml2__BaseIDAbstractType
+#define SOAP_TYPE_PointerTosaml2__BaseIDAbstractType (258)
+#endif
+
+/* struct __saml2__union_AssertionType * has binding name 'PointerTo__saml2__union_AssertionType' for type '-saml2:union-AssertionType' */
+#ifndef SOAP_TYPE_PointerTo__saml2__union_AssertionType
+#define SOAP_TYPE_PointerTo__saml2__union_AssertionType (257)
+#endif
+
+/* struct saml2__AttributeStatementType * has binding name 'PointerTosaml2__AttributeStatementType' for type 'saml2:AttributeStatementType' */
+#ifndef SOAP_TYPE_PointerTosaml2__AttributeStatementType
+#define SOAP_TYPE_PointerTosaml2__AttributeStatementType (256)
+#endif
+
+/* struct saml2__AuthzDecisionStatementType * has binding name 'PointerTosaml2__AuthzDecisionStatementType' for type 'saml2:AuthzDecisionStatementType' */
+#ifndef SOAP_TYPE_PointerTosaml2__AuthzDecisionStatementType
+#define SOAP_TYPE_PointerTosaml2__AuthzDecisionStatementType (255)
+#endif
+
+/* struct saml2__AuthnStatementType * has binding name 'PointerTosaml2__AuthnStatementType' for type 'saml2:AuthnStatementType' */
+#ifndef SOAP_TYPE_PointerTosaml2__AuthnStatementType
+#define SOAP_TYPE_PointerTosaml2__AuthnStatementType (254)
+#endif
+
+/* struct saml2__StatementAbstractType * has binding name 'PointerTosaml2__StatementAbstractType' for type 'saml2:StatementAbstractType' */
+#ifndef SOAP_TYPE_PointerTosaml2__StatementAbstractType
+#define SOAP_TYPE_PointerTosaml2__StatementAbstractType (253)
+#endif
+
+/* struct saml2__AdviceType * has binding name 'PointerTosaml2__AdviceType' for type 'saml2:AdviceType' */
+#ifndef SOAP_TYPE_PointerTosaml2__AdviceType
+#define SOAP_TYPE_PointerTosaml2__AdviceType (251)
+#endif
+
+/* struct saml2__ConditionsType * has binding name 'PointerTosaml2__ConditionsType' for type 'saml2:ConditionsType' */
+#ifndef SOAP_TYPE_PointerTosaml2__ConditionsType
+#define SOAP_TYPE_PointerTosaml2__ConditionsType (250)
+#endif
+
+/* struct saml2__SubjectType * has binding name 'PointerTosaml2__SubjectType' for type 'saml2:SubjectType' */
+#ifndef SOAP_TYPE_PointerTosaml2__SubjectType
+#define SOAP_TYPE_PointerTosaml2__SubjectType (249)
+#endif
+
+/* struct saml2__NameIDType * has binding name 'PointerTosaml2__NameIDType' for type 'saml2:NameIDType' */
+#ifndef SOAP_TYPE_PointerTosaml2__NameIDType
+#define SOAP_TYPE_PointerTosaml2__NameIDType (248)
+#endif
+
+/* struct xenc__EncryptedKeyType ** has binding name 'PointerToPointerToxenc__EncryptedKeyType' for type 'xenc:EncryptedKeyType' */
+#ifndef SOAP_TYPE_PointerToPointerToxenc__EncryptedKeyType
+#define SOAP_TYPE_PointerToPointerToxenc__EncryptedKeyType (247)
+#endif
+
+/* _saml1__AttributeValue has binding name '_saml1__AttributeValue' for type '' */
+#ifndef SOAP_TYPE__saml1__AttributeValue
+#define SOAP_TYPE__saml1__AttributeValue (222)
+#endif
+
+/* _saml1__ConfirmationMethod has binding name '_saml1__ConfirmationMethod' for type '' */
+#ifndef SOAP_TYPE__saml1__ConfirmationMethod
+#define SOAP_TYPE__saml1__ConfirmationMethod (212)
+#endif
+
+/* _saml1__SubjectConfirmationData has binding name '_saml1__SubjectConfirmationData' for type '' */
+#ifndef SOAP_TYPE__saml1__SubjectConfirmationData
+#define SOAP_TYPE__saml1__SubjectConfirmationData (211)
+#endif
+
+/* _saml1__Audience has binding name '_saml1__Audience' for type '' */
+#ifndef SOAP_TYPE__saml1__Audience
+#define SOAP_TYPE__saml1__Audience (203)
+#endif
+
+/* _saml1__AssertionIDReference has binding name '_saml1__AssertionIDReference' for type '' */
+#ifndef SOAP_TYPE__saml1__AssertionIDReference
+#define SOAP_TYPE__saml1__AssertionIDReference (198)
+#endif
+
+/* struct saml1__AttributeType * has binding name 'PointerTosaml1__AttributeType' for type 'saml1:AttributeType' */
+#ifndef SOAP_TYPE_PointerTosaml1__AttributeType
+#define SOAP_TYPE_PointerTosaml1__AttributeType (197)
+#endif
+
+/* struct saml1__EvidenceType * has binding name 'PointerTosaml1__EvidenceType' for type 'saml1:EvidenceType' */
+#ifndef SOAP_TYPE_PointerTosaml1__EvidenceType
+#define SOAP_TYPE_PointerTosaml1__EvidenceType (196)
+#endif
+
+/* struct saml1__ActionType * has binding name 'PointerTosaml1__ActionType' for type 'saml1:ActionType' */
+#ifndef SOAP_TYPE_PointerTosaml1__ActionType
+#define SOAP_TYPE_PointerTosaml1__ActionType (195)
+#endif
+
+/* struct saml1__AuthorityBindingType * has binding name 'PointerTosaml1__AuthorityBindingType' for type 'saml1:AuthorityBindingType' */
+#ifndef SOAP_TYPE_PointerTosaml1__AuthorityBindingType
+#define SOAP_TYPE_PointerTosaml1__AuthorityBindingType (194)
+#endif
+
+/* struct saml1__SubjectLocalityType * has binding name 'PointerTosaml1__SubjectLocalityType' for type 'saml1:SubjectLocalityType' */
+#ifndef SOAP_TYPE_PointerTosaml1__SubjectLocalityType
+#define SOAP_TYPE_PointerTosaml1__SubjectLocalityType (193)
+#endif
+
+/* struct saml1__SubjectType * has binding name 'PointerTosaml1__SubjectType' for type 'saml1:SubjectType' */
+#ifndef SOAP_TYPE_PointerTosaml1__SubjectType
+#define SOAP_TYPE_PointerTosaml1__SubjectType (192)
+#endif
+
+/* struct __saml1__union_EvidenceType * has binding name 'PointerTo__saml1__union_EvidenceType' for type '-saml1:union-EvidenceType' */
+#ifndef SOAP_TYPE_PointerTo__saml1__union_EvidenceType
+#define SOAP_TYPE_PointerTo__saml1__union_EvidenceType (191)
+#endif
+
+/* char ** has binding name 'PointerTostring' for type 'xsd:string' */
+#ifndef SOAP_TYPE_PointerTostring
+#define SOAP_TYPE_PointerTostring (189)
+#endif
+
+/* struct saml1__SubjectConfirmationType * has binding name 'PointerTosaml1__SubjectConfirmationType' for type 'saml1:SubjectConfirmationType' */
+#ifndef SOAP_TYPE_PointerTosaml1__SubjectConfirmationType
+#define SOAP_TYPE_PointerTosaml1__SubjectConfirmationType (188)
+#endif
+
+/* struct saml1__NameIdentifierType * has binding name 'PointerTosaml1__NameIdentifierType' for type 'saml1:NameIdentifierType' */
+#ifndef SOAP_TYPE_PointerTosaml1__NameIdentifierType
+#define SOAP_TYPE_PointerTosaml1__NameIdentifierType (187)
+#endif
+
+/* struct __saml1__union_AdviceType * has binding name 'PointerTo__saml1__union_AdviceType' for type '-saml1:union-AdviceType' */
+#ifndef SOAP_TYPE_PointerTo__saml1__union_AdviceType
+#define SOAP_TYPE_PointerTo__saml1__union_AdviceType (186)
+#endif
+
+/* struct saml1__AssertionType * has binding name 'PointerTosaml1__AssertionType' for type 'saml1:AssertionType' */
+#ifndef SOAP_TYPE_PointerTosaml1__AssertionType
+#define SOAP_TYPE_PointerTosaml1__AssertionType (185)
+#endif
+
+/* struct timeval * has binding name 'PointerToxsd__dateTime' for type 'xsd:dateTime' */
+#ifndef SOAP_TYPE_PointerToxsd__dateTime
+#define SOAP_TYPE_PointerToxsd__dateTime (183)
+#endif
+
+/* struct __saml1__union_ConditionsType * has binding name 'PointerTo__saml1__union_ConditionsType' for type '-saml1:union-ConditionsType' */
+#ifndef SOAP_TYPE_PointerTo__saml1__union_ConditionsType
+#define SOAP_TYPE_PointerTo__saml1__union_ConditionsType (182)
+#endif
+
+/* struct saml1__ConditionAbstractType * has binding name 'PointerTosaml1__ConditionAbstractType' for type 'saml1:ConditionAbstractType' */
+#ifndef SOAP_TYPE_PointerTosaml1__ConditionAbstractType
+#define SOAP_TYPE_PointerTosaml1__ConditionAbstractType (181)
+#endif
+
+/* struct saml1__DoNotCacheConditionType * has binding name 'PointerTosaml1__DoNotCacheConditionType' for type 'saml1:DoNotCacheConditionType' */
+#ifndef SOAP_TYPE_PointerTosaml1__DoNotCacheConditionType
+#define SOAP_TYPE_PointerTosaml1__DoNotCacheConditionType (180)
+#endif
+
+/* struct saml1__AudienceRestrictionConditionType * has binding name 'PointerTosaml1__AudienceRestrictionConditionType' for type 'saml1:AudienceRestrictionConditionType' */
+#ifndef SOAP_TYPE_PointerTosaml1__AudienceRestrictionConditionType
+#define SOAP_TYPE_PointerTosaml1__AudienceRestrictionConditionType (179)
+#endif
+
+/* struct ds__SignatureType * has binding name 'PointerTo_ds__Signature' for type '' */
+#ifndef SOAP_TYPE_PointerTo_ds__Signature
+#define SOAP_TYPE_PointerTo_ds__Signature (177)
+#endif
+
+/* struct __saml1__union_AssertionType * has binding name 'PointerTo__saml1__union_AssertionType' for type '-saml1:union-AssertionType' */
+#ifndef SOAP_TYPE_PointerTo__saml1__union_AssertionType
+#define SOAP_TYPE_PointerTo__saml1__union_AssertionType (176)
+#endif
+
+/* struct saml1__AttributeStatementType * has binding name 'PointerTosaml1__AttributeStatementType' for type 'saml1:AttributeStatementType' */
+#ifndef SOAP_TYPE_PointerTosaml1__AttributeStatementType
+#define SOAP_TYPE_PointerTosaml1__AttributeStatementType (175)
+#endif
+
+/* struct saml1__AuthorizationDecisionStatementType * has binding name 'PointerTosaml1__AuthorizationDecisionStatementType' for type 'saml1:AuthorizationDecisionStatementType' */
+#ifndef SOAP_TYPE_PointerTosaml1__AuthorizationDecisionStatementType
+#define SOAP_TYPE_PointerTosaml1__AuthorizationDecisionStatementType (174)
+#endif
+
+/* struct saml1__AuthenticationStatementType * has binding name 'PointerTosaml1__AuthenticationStatementType' for type 'saml1:AuthenticationStatementType' */
+#ifndef SOAP_TYPE_PointerTosaml1__AuthenticationStatementType
+#define SOAP_TYPE_PointerTosaml1__AuthenticationStatementType (173)
+#endif
+
+/* struct saml1__SubjectStatementAbstractType * has binding name 'PointerTosaml1__SubjectStatementAbstractType' for type 'saml1:SubjectStatementAbstractType' */
+#ifndef SOAP_TYPE_PointerTosaml1__SubjectStatementAbstractType
+#define SOAP_TYPE_PointerTosaml1__SubjectStatementAbstractType (172)
+#endif
+
+/* struct saml1__StatementAbstractType * has binding name 'PointerTosaml1__StatementAbstractType' for type 'saml1:StatementAbstractType' */
+#ifndef SOAP_TYPE_PointerTosaml1__StatementAbstractType
+#define SOAP_TYPE_PointerTosaml1__StatementAbstractType (171)
+#endif
+
+/* struct saml1__AdviceType * has binding name 'PointerTosaml1__AdviceType' for type 'saml1:AdviceType' */
+#ifndef SOAP_TYPE_PointerTosaml1__AdviceType
+#define SOAP_TYPE_PointerTosaml1__AdviceType (169)
+#endif
+
+/* struct saml1__ConditionsType * has binding name 'PointerTosaml1__ConditionsType' for type 'saml1:ConditionsType' */
+#ifndef SOAP_TYPE_PointerTosaml1__ConditionsType
+#define SOAP_TYPE_PointerTosaml1__ConditionsType (168)
+#endif
+
+/* struct __wsc__DerivedKeyTokenType_sequence * has binding name 'PointerTo__wsc__DerivedKeyTokenType_sequence' for type '-wsc:DerivedKeyTokenType-sequence' */
+#ifndef SOAP_TYPE_PointerTo__wsc__DerivedKeyTokenType_sequence
+#define SOAP_TYPE_PointerTo__wsc__DerivedKeyTokenType_sequence (144)
+#endif
+
+/* ULONG64 * has binding name 'PointerToULONG64' for type 'xsd:unsignedLong' */
+#ifndef SOAP_TYPE_PointerToULONG64
+#define SOAP_TYPE_PointerToULONG64 (143)
+#endif
+
+/* struct wsc__PropertiesType * has binding name 'PointerTowsc__PropertiesType' for type 'wsc:PropertiesType' */
+#ifndef SOAP_TYPE_PointerTowsc__PropertiesType
+#define SOAP_TYPE_PointerTowsc__PropertiesType (140)
+#endif
+
+/* wsc__FaultCodeOpenEnumType has binding name 'wsc__FaultCodeOpenEnumType' for type 'wsc:FaultCodeOpenEnumType' */
+#ifndef SOAP_TYPE_wsc__FaultCodeOpenEnumType
+#define SOAP_TYPE_wsc__FaultCodeOpenEnumType (135)
+#endif
+
+/* struct _xenc__ReferenceList * has binding name 'PointerTo_xenc__ReferenceList' for type '' */
+#ifndef SOAP_TYPE_PointerTo_xenc__ReferenceList
+#define SOAP_TYPE_PointerTo_xenc__ReferenceList (134)
+#endif
+
+/* struct __xenc__union_ReferenceList * has binding name 'PointerTo__xenc__union_ReferenceList' for type '-xenc:union-ReferenceList' */
+#ifndef SOAP_TYPE_PointerTo__xenc__union_ReferenceList
+#define SOAP_TYPE_PointerTo__xenc__union_ReferenceList (133)
+#endif
+
+/* struct xenc__ReferenceType * has binding name 'PointerToxenc__ReferenceType' for type 'xenc:ReferenceType' */
+#ifndef SOAP_TYPE_PointerToxenc__ReferenceType
+#define SOAP_TYPE_PointerToxenc__ReferenceType (132)
+#endif
+
+/* struct xenc__EncryptionPropertyType * has binding name 'PointerToxenc__EncryptionPropertyType' for type 'xenc:EncryptionPropertyType' */
+#ifndef SOAP_TYPE_PointerToxenc__EncryptionPropertyType
+#define SOAP_TYPE_PointerToxenc__EncryptionPropertyType (130)
+#endif
+
+/* struct xenc__TransformsType * has binding name 'PointerToxenc__TransformsType' for type 'xenc:TransformsType' */
+#ifndef SOAP_TYPE_PointerToxenc__TransformsType
+#define SOAP_TYPE_PointerToxenc__TransformsType (129)
+#endif
+
+/* struct xenc__CipherReferenceType * has binding name 'PointerToxenc__CipherReferenceType' for type 'xenc:CipherReferenceType' */
+#ifndef SOAP_TYPE_PointerToxenc__CipherReferenceType
+#define SOAP_TYPE_PointerToxenc__CipherReferenceType (128)
+#endif
+
+/* struct xenc__EncryptionPropertiesType * has binding name 'PointerToxenc__EncryptionPropertiesType' for type 'xenc:EncryptionPropertiesType' */
+#ifndef SOAP_TYPE_PointerToxenc__EncryptionPropertiesType
+#define SOAP_TYPE_PointerToxenc__EncryptionPropertiesType (127)
+#endif
+
+/* struct xenc__CipherDataType * has binding name 'PointerToxenc__CipherDataType' for type 'xenc:CipherDataType' */
+#ifndef SOAP_TYPE_PointerToxenc__CipherDataType
+#define SOAP_TYPE_PointerToxenc__CipherDataType (126)
+#endif
+
+/* struct ds__KeyInfoType * has binding name 'PointerTo_ds__KeyInfo' for type '' */
+#ifndef SOAP_TYPE_PointerTo_ds__KeyInfo
+#define SOAP_TYPE_PointerTo_ds__KeyInfo (125)
+#endif
+
+/* struct xenc__EncryptionMethodType * has binding name 'PointerToxenc__EncryptionMethodType' for type 'xenc:EncryptionMethodType' */
+#ifndef SOAP_TYPE_PointerToxenc__EncryptionMethodType
+#define SOAP_TYPE_PointerToxenc__EncryptionMethodType (124)
+#endif
+
+/* struct ds__X509IssuerSerialType * has binding name 'PointerTods__X509IssuerSerialType' for type 'ds:X509IssuerSerialType' */
+#ifndef SOAP_TYPE_PointerTods__X509IssuerSerialType
+#define SOAP_TYPE_PointerTods__X509IssuerSerialType (112)
+#endif
+
+/* struct ds__RSAKeyValueType * has binding name 'PointerTods__RSAKeyValueType' for type 'ds:RSAKeyValueType' */
+#ifndef SOAP_TYPE_PointerTods__RSAKeyValueType
+#define SOAP_TYPE_PointerTods__RSAKeyValueType (111)
+#endif
+
+/* struct ds__DSAKeyValueType * has binding name 'PointerTods__DSAKeyValueType' for type 'ds:DSAKeyValueType' */
+#ifndef SOAP_TYPE_PointerTods__DSAKeyValueType
+#define SOAP_TYPE_PointerTods__DSAKeyValueType (110)
+#endif
+
+/* struct ds__TransformType * has binding name 'PointerTods__TransformType' for type 'ds:TransformType' */
+#ifndef SOAP_TYPE_PointerTods__TransformType
+#define SOAP_TYPE_PointerTods__TransformType (109)
+#endif
+
+/* struct ds__DigestMethodType * has binding name 'PointerTods__DigestMethodType' for type 'ds:DigestMethodType' */
+#ifndef SOAP_TYPE_PointerTods__DigestMethodType
+#define SOAP_TYPE_PointerTods__DigestMethodType (108)
+#endif
+
+/* struct ds__TransformsType * has binding name 'PointerTods__TransformsType' for type 'ds:TransformsType' */
+#ifndef SOAP_TYPE_PointerTods__TransformsType
+#define SOAP_TYPE_PointerTods__TransformsType (107)
+#endif
+
+/* struct ds__ReferenceType ** has binding name 'PointerToPointerTods__ReferenceType' for type 'ds:ReferenceType' */
+#ifndef SOAP_TYPE_PointerToPointerTods__ReferenceType
+#define SOAP_TYPE_PointerToPointerTods__ReferenceType (106)
+#endif
+
+/* struct ds__ReferenceType * has binding name 'PointerTods__ReferenceType' for type 'ds:ReferenceType' */
+#ifndef SOAP_TYPE_PointerTods__ReferenceType
+#define SOAP_TYPE_PointerTods__ReferenceType (105)
+#endif
+
+/* struct ds__SignatureMethodType * has binding name 'PointerTods__SignatureMethodType' for type 'ds:SignatureMethodType' */
+#ifndef SOAP_TYPE_PointerTods__SignatureMethodType
+#define SOAP_TYPE_PointerTods__SignatureMethodType (104)
+#endif
+
+/* struct ds__CanonicalizationMethodType * has binding name 'PointerTods__CanonicalizationMethodType' for type 'ds:CanonicalizationMethodType' */
+#ifndef SOAP_TYPE_PointerTods__CanonicalizationMethodType
+#define SOAP_TYPE_PointerTods__CanonicalizationMethodType (103)
+#endif
+
+/* struct _wsse__SecurityTokenReference * has binding name 'PointerTo_wsse__SecurityTokenReference' for type '' */
+#ifndef SOAP_TYPE_PointerTo_wsse__SecurityTokenReference
+#define SOAP_TYPE_PointerTo_wsse__SecurityTokenReference (98)
+#endif
+
+/* struct ds__RetrievalMethodType * has binding name 'PointerTods__RetrievalMethodType' for type 'ds:RetrievalMethodType' */
+#ifndef SOAP_TYPE_PointerTods__RetrievalMethodType
+#define SOAP_TYPE_PointerTods__RetrievalMethodType (97)
+#endif
+
+/* struct ds__KeyValueType * has binding name 'PointerTods__KeyValueType' for type 'ds:KeyValueType' */
+#ifndef SOAP_TYPE_PointerTods__KeyValueType
+#define SOAP_TYPE_PointerTods__KeyValueType (95)
+#endif
+
+/* struct _c14n__InclusiveNamespaces * has binding name 'PointerTo_c14n__InclusiveNamespaces' for type '' */
+#ifndef SOAP_TYPE_PointerTo_c14n__InclusiveNamespaces
+#define SOAP_TYPE_PointerTo_c14n__InclusiveNamespaces (91)
+#endif
+
+/* struct ds__KeyInfoType * has binding name 'PointerTods__KeyInfoType' for type 'ds:KeyInfoType' */
+#ifndef SOAP_TYPE_PointerTods__KeyInfoType
+#define SOAP_TYPE_PointerTods__KeyInfoType (83)
+#endif
+
+/* struct ds__SignedInfoType * has binding name 'PointerTods__SignedInfoType' for type 'ds:SignedInfoType' */
+#ifndef SOAP_TYPE_PointerTods__SignedInfoType
+#define SOAP_TYPE_PointerTods__SignedInfoType (82)
+#endif
+
+/* _ds__SignatureValue has binding name '_ds__SignatureValue' for type '' */
+#ifndef SOAP_TYPE__ds__SignatureValue
+#define SOAP_TYPE__ds__SignatureValue (79)
+#endif
+
+/* struct xenc__EncryptedKeyType * has binding name 'PointerToxenc__EncryptedKeyType' for type 'xenc:EncryptedKeyType' */
+#ifndef SOAP_TYPE_PointerToxenc__EncryptedKeyType
+#define SOAP_TYPE_PointerToxenc__EncryptedKeyType (78)
+#endif
+
+/* struct ds__X509DataType * has binding name 'PointerTods__X509DataType' for type 'ds:X509DataType' */
+#ifndef SOAP_TYPE_PointerTods__X509DataType
+#define SOAP_TYPE_PointerTods__X509DataType (75)
+#endif
+
+/* struct _wsse__Embedded * has binding name 'PointerTo_wsse__Embedded' for type '' */
+#ifndef SOAP_TYPE_PointerTo_wsse__Embedded
+#define SOAP_TYPE_PointerTo_wsse__Embedded (73)
+#endif
+
+/* struct _wsse__KeyIdentifier * has binding name 'PointerTo_wsse__KeyIdentifier' for type '' */
+#ifndef SOAP_TYPE_PointerTo_wsse__KeyIdentifier
+#define SOAP_TYPE_PointerTo_wsse__KeyIdentifier (72)
+#endif
+
+/* struct _wsse__Reference * has binding name 'PointerTo_wsse__Reference' for type '' */
+#ifndef SOAP_TYPE_PointerTo_wsse__Reference
+#define SOAP_TYPE_PointerTo_wsse__Reference (71)
+#endif
+
+/* unsigned int * has binding name 'PointerTounsignedInt' for type 'xsd:unsignedInt' */
+#ifndef SOAP_TYPE_PointerTounsignedInt
+#define SOAP_TYPE_PointerTounsignedInt (65)
+#endif
+
+/* struct wsse__EncodedString * has binding name 'PointerTowsse__EncodedString' for type 'wsse:EncodedString' */
+#ifndef SOAP_TYPE_PointerTowsse__EncodedString
+#define SOAP_TYPE_PointerTowsse__EncodedString (64)
+#endif
+
+/* struct _wsse__Password * has binding name 'PointerTo_wsse__Password' for type '' */
+#ifndef SOAP_TYPE_PointerTo_wsse__Password
+#define SOAP_TYPE_PointerTo_wsse__Password (63)
 #endif
 
 /* struct SOAP_ENV__Reason * has binding name 'PointerToSOAP_ENV__Reason' for type '' */
@@ -7112,67 +11082,67 @@ typedef std::string tt__ReferenceToken;
 
 /* std::vector<std::string>  has binding name 'std__vectorTemplateOftt__AuxiliaryData' for type 'tt:AuxiliaryData' */
 #ifndef SOAP_TYPE_std__vectorTemplateOftt__AuxiliaryData
-#define SOAP_TYPE_std__vectorTemplateOftt__AuxiliaryData (275)
+#define SOAP_TYPE_std__vectorTemplateOftt__AuxiliaryData (539)
 #endif
 
 /* std::vector<enum tt__PTZPresetTourDirection>  has binding name 'std__vectorTemplateOftt__PTZPresetTourDirection' for type 'tt:PTZPresetTourDirection' */
 #ifndef SOAP_TYPE_std__vectorTemplateOftt__PTZPresetTourDirection
-#define SOAP_TYPE_std__vectorTemplateOftt__PTZPresetTourDirection (267)
+#define SOAP_TYPE_std__vectorTemplateOftt__PTZPresetTourDirection (531)
 #endif
 
 /* std::vector<std::string>  has binding name 'std__vectorTemplateOftt__ReferenceToken' for type 'tt:ReferenceToken' */
 #ifndef SOAP_TYPE_std__vectorTemplateOftt__ReferenceToken
-#define SOAP_TYPE_std__vectorTemplateOftt__ReferenceToken (264)
+#define SOAP_TYPE_std__vectorTemplateOftt__ReferenceToken (528)
 #endif
 
 /* std::vector<tt__PTZPresetTourSpot *>  has binding name 'std__vectorTemplateOfPointerTott__PTZPresetTourSpot' for type 'tt:PTZPresetTourSpot' */
 #ifndef SOAP_TYPE_std__vectorTemplateOfPointerTott__PTZPresetTourSpot
-#define SOAP_TYPE_std__vectorTemplateOfPointerTott__PTZPresetTourSpot (252)
+#define SOAP_TYPE_std__vectorTemplateOfPointerTott__PTZPresetTourSpot (516)
 #endif
 
 /* std::vector<tt__Space1DDescription *>  has binding name 'std__vectorTemplateOfPointerTott__Space1DDescription' for type 'tt:Space1DDescription' */
 #ifndef SOAP_TYPE_std__vectorTemplateOfPointerTott__Space1DDescription
-#define SOAP_TYPE_std__vectorTemplateOfPointerTott__Space1DDescription (243)
+#define SOAP_TYPE_std__vectorTemplateOfPointerTott__Space1DDescription (507)
 #endif
 
 /* std::vector<tt__Space2DDescription *>  has binding name 'std__vectorTemplateOfPointerTott__Space2DDescription' for type 'tt:Space2DDescription' */
 #ifndef SOAP_TYPE_std__vectorTemplateOfPointerTott__Space2DDescription
-#define SOAP_TYPE_std__vectorTemplateOfPointerTott__Space2DDescription (242)
+#define SOAP_TYPE_std__vectorTemplateOfPointerTott__Space2DDescription (506)
 #endif
 
 /* std::vector<enum tt__ReverseMode>  has binding name 'std__vectorTemplateOftt__ReverseMode' for type 'tt:ReverseMode' */
 #ifndef SOAP_TYPE_std__vectorTemplateOftt__ReverseMode
-#define SOAP_TYPE_std__vectorTemplateOftt__ReverseMode (238)
+#define SOAP_TYPE_std__vectorTemplateOftt__ReverseMode (502)
 #endif
 
 /* std::vector<enum tt__EFlipMode>  has binding name 'std__vectorTemplateOftt__EFlipMode' for type 'tt:EFlipMode' */
 #ifndef SOAP_TYPE_std__vectorTemplateOftt__EFlipMode
-#define SOAP_TYPE_std__vectorTemplateOftt__EFlipMode (236)
+#define SOAP_TYPE_std__vectorTemplateOftt__EFlipMode (500)
 #endif
 
 /* std::vector<enum tt__PTZPresetTourOperation>  has binding name 'std__vectorTemplateOftt__PTZPresetTourOperation' for type 'tt:PTZPresetTourOperation' */
 #ifndef SOAP_TYPE_std__vectorTemplateOftt__PTZPresetTourOperation
-#define SOAP_TYPE_std__vectorTemplateOftt__PTZPresetTourOperation (221)
+#define SOAP_TYPE_std__vectorTemplateOftt__PTZPresetTourOperation (485)
 #endif
 
 /* std::vector<tt__PresetTour *>  has binding name 'std__vectorTemplateOfPointerTott__PresetTour' for type 'tt:PresetTour' */
 #ifndef SOAP_TYPE_std__vectorTemplateOfPointerTott__PresetTour
-#define SOAP_TYPE_std__vectorTemplateOfPointerTott__PresetTour (217)
+#define SOAP_TYPE_std__vectorTemplateOfPointerTott__PresetTour (481)
 #endif
 
 /* std::vector<tt__PTZPreset *>  has binding name 'std__vectorTemplateOfPointerTott__PTZPreset' for type 'tt:PTZPreset' */
 #ifndef SOAP_TYPE_std__vectorTemplateOfPointerTott__PTZPreset
-#define SOAP_TYPE_std__vectorTemplateOfPointerTott__PTZPreset (206)
+#define SOAP_TYPE_std__vectorTemplateOfPointerTott__PTZPreset (470)
 #endif
 
 /* std::vector<tt__PTZConfiguration *>  has binding name 'std__vectorTemplateOfPointerTott__PTZConfiguration' for type 'tt:PTZConfiguration' */
 #ifndef SOAP_TYPE_std__vectorTemplateOfPointerTott__PTZConfiguration
-#define SOAP_TYPE_std__vectorTemplateOfPointerTott__PTZConfiguration (201)
+#define SOAP_TYPE_std__vectorTemplateOfPointerTott__PTZConfiguration (465)
 #endif
 
 /* std::vector<tt__PTZNode *>  has binding name 'std__vectorTemplateOfPointerTott__PTZNode' for type 'tt:PTZNode' */
 #ifndef SOAP_TYPE_std__vectorTemplateOfPointerTott__PTZNode
-#define SOAP_TYPE_std__vectorTemplateOfPointerTott__PTZNode (199)
+#define SOAP_TYPE_std__vectorTemplateOfPointerTott__PTZNode (463)
 #endif
 
 /******************************************************************************\
